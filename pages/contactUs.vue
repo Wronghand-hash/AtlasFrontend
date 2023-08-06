@@ -7,7 +7,7 @@
       test env
       {{ exam }}
       <button @click="clickTOGet()" class="bg-mainBlue rounded shadow-3xl">
-        click on this here
+        {{ data }}
       </button>
     </div>
 
@@ -19,6 +19,7 @@
 const { $gsap } = useNuxtApp();
 import { ref } from "vue";
 const ExamDiv = ref(null);
+const data = ref("not fetched");
 const scrollToExam = () => {
   $gsap.to(window, {
     duration: 1,
@@ -32,12 +33,13 @@ const scrollToExam = () => {
 const { data: exam } = await useFetch("http://localhost:3333/exam/highschool");
 const clickTOGet = async () => {
   const { data: me } = await $fetch("http://localhost:3333/user/me", {
-    headers: {
-      withCredentials: true,
-    },
+    headers: {},
+    withCredentials: true,
+    credentials: "include",
   })
     .then(function (response) {
       console.log(response);
+      data.value = response.msg;
     })
     .catch(function (error) {
       console.error(error);
