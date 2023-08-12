@@ -15,9 +15,9 @@
           value="1"
           @click="returnCalculation(torenceTest)"
         />
-        <p for="ingredient" class="ml-2 text-lg lg:text-xl cursor-pointer">
+        <label for="ingredient" class="ml-2 text-md lg:text-xl cursor-pointer">
           {{ question.answer1 }}
-        </p>
+        </label>
       </template>
       <template #choice2>
         <RadioButton
@@ -27,9 +27,9 @@
           value="2"
           @click="returnCalculation(torenceTest)"
         />
-        <p for="ingredient2" class="ml-2 text-lg lg:text-xl cursor-pointer">
+        <label for="ingredient2" class="ml-2 text-md lg:text-xl cursor-pointer">
           {{ question.answer2 }}
-        </p>
+        </label>
       </template>
       <template #choice3>
         <RadioButton
@@ -39,9 +39,9 @@
           value="3"
           @click="returnCalculation(torenceTest)"
         />
-        <p for="ingredient3" class="ml-2 text-lg lg:text-xl cursor-pointer">
+        <label for="ingredient3" class="ml-2 text-md lg:text-xl cursor-pointer">
           {{ question.answer3 }}
-        </p></template
+        </label></template
       >
     </ExamTemp>
   </div>
@@ -424,6 +424,40 @@ const torenceTest = ref([
     answer2: "فکر میکنم براش کار نسبتا آسانی باشه ",
     answer3: "فکر میکنم براش کار بسیار آسانی باشه",
     choice: choice36,
+  },
+  {
+    id: 37,
+    question:
+      "آیا فرزندتون به شغل هایی که نیازمند فکر کردن زیاد هستند علاقه مند هست؟",
+    answer1: "فکر نمیکنم علاقه مند باشه",
+    answer2: "شاید علاقه مند باشه ",
+    answer3: "به این نوع شغل ها خیلی علاقه مند هست",
+    choice: choice37,
+  },
+  {
+    id: 38,
+    question: "کدوم مورد برای فرزندتون  آسان تر هست؟",
+    answer1: "حفظ یک شعر ده بیتی",
+    answer2: "تفسیر یک شعر ده بیتی ",
+    answer3: "سرودن یک شعر ده بیتی",
+    choice: choice38,
+  },
+  {
+    id: 39,
+    question:
+      "وقتی فرزندتون به یک نقاشی نگاه میکنه، آیا سعی میکنه بفهمه معنای پشت نقاشی چی هست؟",
+    answer1: "به ندرت تلاش میکنه بفهمه نقاشی چه معنایی داره",
+    answer2: "بعضی وقت ها تلاش میکنه بفهمه نقاشی چه معنایی داره ",
+    answer3: "همیشه تلاش میکنه بفهمه نقاشی چه معنایی داره",
+    choice: choice39,
+  },
+  {
+    id: 40,
+    question: "فرزندتون چند جمله که با کلمه 'همه'  شروع شه میتونه بسازه؟",
+    answer1: "فقط تعدادی جمله میتونه بسازه",
+    answer2: "شاید تعداد زیادی جمله  بتونه بسازه ",
+    answer3: "تعداد خیلی زیادی جمله میتونه بسازه",
+    choice: choice40,
   },
 ]);
 const ingredient = ref("");
