@@ -52,21 +52,27 @@
           </h3>
         </div>
       </div>
-      <img class="h-44 w-full" src="../assets/images/WaveDivide.webp" alt="" />
+      <img
+        ref="ExamDiv"
+        class="h-44 w-full transform rotate-180 my-10"
+        src="../assets/images/WaveDivide.webp"
+        alt=""
+      />
     </div>
 
     <div
-      ref="ExamDiv"
       class="h-full w-full bg-mainWhite flex flex-col items-center py-10 space-y-14 px-14 lg:px-32"
     >
       <h2
         class="lg:text-6xl text-center text-3xl font-bold text-mainBlue border-b-4 rounded-lg pb-4 border-darkBlue"
       >
-        (TTCT) تست خلاقیت تورنس
+        فرزندتون چقدر خلاق هست؟
       </h2>
-      <div class="h-full w-full flex flex-col items-end space-y-4">
-        <h2 class="text-2xl font-bold text-darkBlue">تست خلاقیت تورنس چیست؟</h2>
-        <div
+      <div class="h-full w-full flex flex-col items-center space-y-4">
+        <h2 class="text-2xl font-bold text-darkBlue">
+          با سوالات دقیق به خلاقیت فرزندتون پی ببرید
+        </h2>
+        <!-- <div
           class="h-full space-y-8 text-right rounded-md py-9 px-6 w-full bg-gray-100 shadow-lg shadow-mainBlue"
         >
           <h2>
@@ -90,7 +96,7 @@
             نشان داده می‌شود که از طریق آن می‌توانید بفهمید خلاقیت شما چقدر است
             (خیلی کم، کم، متوسط، زیاد و خیلی زیاد)
           </h2>
-        </div>
+        </div> -->
       </div>
       <button
         @click="StartExam"
@@ -99,20 +105,21 @@
         <span>شروع آزمون</span>
       </button>
     </div>
-    <div ref="ExamStart" class="h-full w-full bg-mainWhite">
+    <div class="h-full w-full bg-mainWhite">
       <img
         class="h-44 w-screen"
         src="../assets/images/WaveDivide.webp"
         alt=""
       />
       <div
+        ref="ExamStart"
         class="h-full w-full space-y-14 px-10 lg:px-32 py-10 flex flex-col items-center"
       >
         <TorrenceExam></TorrenceExam>
         <button
           class="px-12 py-3 lg:my-0 text-xl border-2 items-center border-mainYellow text-md active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-darkBlue shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
         >
-          <span>نشان دادن نتایج</span>
+          <span @click="examStore.submitResult(5555)">نشان دادن نتایج</span>
         </button>
       </div>
     </div>
@@ -122,6 +129,11 @@
 <script setup>
 const { $gsap } = useNuxtApp();
 import { ref } from "vue";
+import { useExamStore } from "../stores/exam";
+
+const result = 5555;
+
+const examStore = useExamStore();
 const ingredient = ref("");
 const ExamDiv = ref(null);
 const ExamStart = ref(null);

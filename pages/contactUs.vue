@@ -11,6 +11,17 @@
       </button>
     </div>
 
+    <div class="flex justify-center items-center">
+      <button
+        @click="getTestResults()"
+        class="bg-yellow-400 rounded"
+        type="button"
+      >
+        <p v-if="!torrenceResults">get results</p>
+        <p v-else>{{ torrenceResults }}</p>
+      </button>
+    </div>
+
     <div ref="ExamDiv" class="h-screen w-full bg-mainWhite"></div>
   </div>
 </template>
@@ -40,6 +51,25 @@ const clickTOGet = async () => {
     .then(function (response) {
       console.log(response);
       data.value = response.msg;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+
+  console.log(me);
+};
+
+const torrenceResults = ref(null);
+
+const getTestResults = async () => {
+  const { data: me } = await $fetch("http://localhost:3333/user/myinfo", {
+    headers: {},
+    withCredentials: true,
+    credentials: "include",
+  })
+    .then(function (response) {
+      console.log("this is login response", response.TorrenceTestResult);
+      torrenceResults.value = response.TorrenceTestResult;
     })
     .catch(function (error) {
       console.error(error);
