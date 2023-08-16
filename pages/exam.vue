@@ -70,7 +70,8 @@
       </h2>
       <div class="h-full w-full flex flex-col items-center space-y-4">
         <h2 class="text-2xl font-bold text-darkBlue text-center">
-          با سوالات دقیق به خلاقیت فرزندتون پی ببرید
+          با پاسخ های دقیق به سوالات آزمون خلاقیت ما، به خلاقیت فرزندتون پی
+          ببرید
         </h2>
         <h3 class="text-xl text-blue-500 text-center">
           لطفا برای شروع آزمون اطلاعات مورد نیاز رو وارد کنید*
@@ -81,30 +82,58 @@
           <InputNumber
             placeholder="سن"
             id="email"
-            v-model="value"
+            v-model="age"
             class="w-full rounded-lg h-11 self"
             aria-describedby="username-help"
           />
           <InputText
             placeholder="نام و نام خانوادگی"
             id="email"
-            v-model="value"
+            v-model="fullName"
+            class="w-full rounded-lg h-11"
+            aria-describedby="username-help"
+          />
+          <InputNumber
+            placeholder="شماره موبایل"
+            v-model="phoneNumber"
             class="w-full rounded-lg h-11"
             aria-describedby="username-help"
           />
           <Dropdown
-            v-model="selectedRegion"
+            v-model="QnA"
             :options="regions"
             optionLabel="name"
             placeholder="علت شما برای شرکت در آزمون"
             class="w-full rounded-lg h-11"
           />
-          <InputNumber
-            placeholder="شماره تلفن"
-            v-model="value"
-            class="w-full rounded-lg h-11"
-            aria-describedby="username-help"
-          />
+        </div>
+        <div
+          class="w-full flex flex-col items-end space-y-7 justify-end lg:px-36"
+        >
+          <h3
+            class="text-lg text-blue-600 place-self-end justify-self-end col-span-2 text-center"
+          >
+            با انتخاب گزینه <span class="text-mainRed">"هر سه مورد"</span> یک
+            کوپن تخفیف ده درصدی به شما تعلق میگیره
+          </h3>
+          <h3
+            class="text-lg text-darkBlue p-2 border-2 border-dashed border-mainRed rounded-md place-self-end justify-self-end col-span-2 text-center"
+          >
+            ❤ متشکر از انتخاب شما
+          </h3>
+          <div
+            class="w-44 h-20 bg-mainYellow rounded-md justify-start flex items-center border-4 border-yellow-700 border-dashed"
+          >
+            <div
+              class="w-16 h-16 bg-mainWhite rounded-full -translate-x-7 border-r-4 border-yellow-700 border-dashed"
+            ></div>
+            <h2 class="text-black font-bold text-2xl font-sans">223344</h2>
+          </div>
+          <h3
+            class="text-lg text-darkBlue p-2 border-2 border-dashed border-mainRed rounded-md place-self-end justify-self-end col-span-2 text-center"
+          >
+            این شماره رو یادداشت کنید و زمان ثبت نام به ما تحویل بدید
+          </h3>
         </div>
         <!-- <div
           class="h-full space-y-8 text-right rounded-md py-9 px-6 w-full bg-gray-100 shadow-lg shadow-mainBlue"
@@ -150,11 +179,6 @@
         class="h-full w-full space-y-14 px-10 lg:px-32 py-10 flex flex-col items-center"
       >
         <TorrenceExam></TorrenceExam>
-        <button
-          class="px-12 py-3 lg:my-0 text-xl border-2 items-center border-mainYellow text-md active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-darkBlue shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
-        >
-          <span @click="examStore.submitResult(5555)">نشان دادن نتایج</span>
-        </button>
       </div>
     </div>
     <Footer />
@@ -166,6 +190,27 @@ const { $gsap } = useNuxtApp();
 import { useExamStore } from "../stores/exam";
 import { ref } from "vue";
 const selectedCity = ref();
+
+const age = ref(null);
+const phoneNumber = ref(null);
+const QnA = ref("");
+const fullName = ref("");
+
+const setInfomation = async () => {
+  const data = new URLSearchParams({
+    age: age.value,
+    phonenumber: phoneNumber.value,
+    QnA: QnA.value,
+    fullname: fullName.value,
+  });
+  await $fetch("http://localhost:3333/user/setInfo", {
+    method: "POST",
+    body: data,
+    withCredentials: true,
+    credentials: "include",
+  });
+};
+
 const cities = ref([
   { name: "تهران", code: "NY" },
   { name: "تبریز", code: "RM" },
@@ -223,7 +268,7 @@ const calculateResult = () => {
 </script>
 <style>
 .p-dropdown .p-dropdown-label.p-placeholder {
-  color: #7878bc;
+  color: #020225;
 }
 .p-dropdown .p-dropdown-label {
   display: flex;

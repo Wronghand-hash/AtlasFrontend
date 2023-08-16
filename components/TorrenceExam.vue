@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full w-full lg:px-20 flex flex-col items-center space-y-8">
+  <div class="h-full w-full lg:px-20 flex flex-col items-center px-7 space-y-8">
     <ExamTemp v-for="question in torenceTest" :key="question.id">
       <template #title>
         <span>
@@ -62,20 +62,6 @@
   </button>
 </template>
 
-<style>
-.p-radiobutton-box.p-highlight .p-radiobutton-icon {
-  transform: translateZ(0) scale(0, 0);
-}
-.p-radiobutton .p-radiobutton-box.p-highlight {
-  background-color: greenyellow;
-  border-color: darkgreen;
-}
-
-.p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
-  background-color: yellow;
-  border-color: yellowgreen;
-}
-</style>
 <script setup>
 import { ref, watch } from "vue";
 import { useExamStore } from "../stores/exam";
@@ -357,10 +343,10 @@ const torenceTest = ref([
   },
   {
     id: 28,
-    question: "فرزندتون معمولا کدوم نوع کار رو ترجیح میده؟",
-    answer1: "کاری که تمام مراحلش از پیش تعیین شده باشه",
-    answer2: "کاری که نصف از پیش تعیین شده و نصف نیازمند ابتکار باشه",
-    answer3: "کاری که اکثر مراحلش نیازمند ابتکار باشه",
+    question: "آیا فرزندتون علاقه مند به نقاشی کردن افکارش هست؟",
+    answer1: "به نقاشی خیلی علاقه مند نیست",
+    answer2: "بعضی وقت ها افکارش رو نقاشی میکنه",
+    answer3: "همیشه سعی میکنه افکارش رو نقاشی کنه",
     choice: choice28,
   },
   {
@@ -403,8 +389,8 @@ const torenceTest = ref([
     question:
       "وقتی فرزندتون با یک حادثه عجیب مواجه شه، چه واکنشی از خودش نشون  میده؟",
     answer1: "بهش توجهی نمیکنه",
-    answer2: "سعی میکنه چند علل برای اتفاق رو پیدا کنه",
-    answer3: "همیشه سعی میکنه تمام علل های اصلی اتفاق رو پیدا کنه",
+    answer2: "سعی میکنه دلیلی برای توضیح اتفاق بیاره",
+    answer3: "سعی میکنه دلایل مختلف ایجاد حادثه رو کشف کنه",
     choice: choice33,
   },
   {
@@ -418,17 +404,16 @@ const torenceTest = ref([
   },
   {
     id: 35,
-    question:
-      "آیا پیدا کردن مترادف برای کلمه ی 'سریع' برای فرزندتون کار راحتی هست؟",
-    answer1: "فکر میکنم براش کار سختی باشه",
-    answer2: "بعضی وقت ها براش کار راحتی هست",
-    answer3: "همیشه براش کار راحتی هست",
+    question: "آیا فرزندتون از سخنرانی در میان دیگران لذت میبره؟",
+    answer1: "فکر میکنم زیاد از سخنرانی جلوی دیگران لذت ببره",
+    answer2: "بعضی وقت ها از سخنرانی جلوی دیگران لذت میبره",
+    answer3: "همیشه از سخنرانی جلوی دیگران لذت میبره",
     choice: choice35,
   },
   {
     id: 36,
     question:
-      "آیا فرزندتون در بیان افکارش، پیدا کردن مترادف های مختلف براش کار آسانی هست؟",
+      "آیا فرزندتون در بیان افکارش، پیدا کردن هم معنی های مختلف براش کار آسانی هست؟",
     answer1: "فکر میکنم کار بسیار سختی باشه",
     answer2: "فکر میکنم براش کار نسبتا آسانی باشه ",
     answer3: "فکر میکنم براش کار بسیار آسانی باشه",
@@ -463,9 +448,9 @@ const torenceTest = ref([
   {
     id: 40,
     question: "فرزندتون چند جمله که با کلمه 'همه'  شروع شه میتونه بسازه؟",
-    answer1: "فقط تعدادی جمله میتونه بسازه",
-    answer2: "شاید تعداد زیادی جمله  بتونه بسازه ",
-    answer3: "تعداد خیلی زیادی جمله میتونه بسازه",
+    answer1: "فقط دو جمله میتونه بسازه",
+    answer2: "شاید چهار جمله  بتونه بسازه ",
+    answer3: "بیشتر از چهار جمله میتونه بسازه",
     choice: choice40,
   },
 ]);
@@ -492,4 +477,17 @@ const returnCalculation = (test) => {
 //   }
 // );
 </script>
-<style lang="scss" scoped></style>
+<style>
+.p-radiobutton-box.p-highlight .p-radiobutton-icon {
+  transform: translateZ(0) scale(0, 0);
+}
+.p-radiobutton .p-radiobutton-box.p-highlight {
+  background-color: greenyellow;
+  border-color: darkgreen;
+}
+
+.p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
+  background-color: yellow;
+  border-color: yellowgreen;
+}
+</style>
