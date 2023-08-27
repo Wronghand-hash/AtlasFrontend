@@ -84,7 +84,7 @@
             aria-describedby="username-help"
           />
           <InputText
-            :feedback="false"
+            type="password"
             placeholder="رمز عبور"
             id="password"
             v-model="password"
@@ -96,7 +96,7 @@
             :min="0"
             :max="25"
             :useGrouping="false"
-            placeholder="سال تولد فرزندتان"
+            placeholder="سن فرزندتان"
             id="age"
             v-model="age"
             class="w-full rounded-lg h-11 self"
@@ -110,7 +110,6 @@
             aria-describedby="username-help"
           />
           <InputNumber
-            :class="{ 'p-invalid': errorMessage }"
             :useGrouping="false"
             placeholder="شماره موبایل"
             v-model="phoneNumber"
