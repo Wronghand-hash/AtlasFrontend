@@ -1,11 +1,14 @@
 export default defineNuxtConfig({
-  modules: ["@hypernym/nuxt-gsap", "@pinia/nuxt"],
+  modules: ["@hypernym/nuxt-gsap", "@pinia/nuxt", "nuxt-simple-sitemap"],
   gsap: {
     extraPlugins: {
       scrollTrigger: true,
       motionPath: true,
       scrollTo: true,
     },
+  },
+  runtimeConfig: {
+    hostUrl: process.env.HOST_URL,
   },
   pages: true,
   css: [
@@ -22,4 +25,5 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  site: { url: "https://atlasacademy.ir" },
 });

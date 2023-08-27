@@ -9,12 +9,14 @@
         <span>درباره ما</span>
         <PhTranslate :size="20" weight="fill" />
       </button>
-      <button
-        class="px-7 py-1 border-2 items-center border-mainBlue text-md active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
-      >
-        <span>تماس با ما</span>
-        <PhPhoneCall :size="20" weight="fill" />
-      </button>
+      <NuxtLink to="/contactUs">
+        <button
+          class="px-7 py-1 border-2 items-center border-mainBlue text-md active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+        >
+          <span>تماس با ما</span>
+          <PhPhoneCall :size="20" weight="fill" />
+        </button>
+      </NuxtLink>
     </div>
     <div
       class="flex items-center justify-between lg:space-x-4 Navbar lg:w-auto w-full"
@@ -43,17 +45,12 @@
           </button>
         </NuxtLink>
       </div>
-      <PhoneNavbar class="flex lg:hidden" />
       <div
         class="justify-around items-center lg:flex-row flex-row-reverse space-x-2 lg:space-x-3 flex"
       >
-        <Login class="flex" />
-        <img
-          src="../assets/images/Logo.webp"
-          class="h-20 object-contain opacity-100 transition ease-in duration-300 hover:bg-mainBlue cursor-pointer p-5"
-          alt=""
-        />
+        <LazyLogin class="flex" />
       </div>
+      <LazyPhoneNavbar class="flex lg:hidden" />
     </div>
   </div>
 </template>

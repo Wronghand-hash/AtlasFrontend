@@ -3,7 +3,7 @@
     <button
       label="Show"
       @click="visible = true"
-      class="text-md active:text-darkPurple active:bg-mainBlue flex items-center space-x-2 px-6 py-1 transition duration-150 ease-in-out border-2 border-dashed border-mainBlue rounded-sm shadow-md shadow-transparent hover:shadow-mainBlue hover:text-darkBlue text-mainBlue"
+      class="text-xl bg-mainYellow active:text-darkPurple active:bg-mainBlue flex items-center space-x-2 px-10 py-2 transition duration-150 ease-in-out border-2 border-dashed border-mainBlue rounded-sm shadow-md shadow-transparent hover:shadow-mainBlue hover:text-darkBlue text-darkBlue"
     >
       <span> ثبت نام </span>
       <PhSignature :size="25" />
@@ -17,7 +17,7 @@
       dismissableMask
       :contentStyle="{ backgroundColor: '#f9f5ff' }"
     >
-      <div class="w-full h-rem34 flex items-center justify-center">
+      <div class="w-full h-full flex items-center justify-center">
         <div class="flex flex-col space-y-7 items-center">
           <h2 class="text-6xl text-mainBlue">ثبت نام</h2>
           <div class="flex flex-col items-center space-y-4">
@@ -77,7 +77,10 @@
 <script setup>
 import { ref } from "vue";
 import { PhSignature } from "@phosphor-icons/vue";
+import { useUserStore } from "../stores/user";
 const visible = ref(false);
+
+const userStore = useUserStore();
 
 const signupEmail = ref("");
 const signupPassword = ref(null);
@@ -91,9 +94,34 @@ async function formSubmit() {
   });
   console.log(data);
 
-  await $fetch("http://localhost:3333/signup", {
+  await $fetch("https://auth.atlasacademy.ir/signup", {
     method: "POST",
     body: data,
+  }).then(() => {
+    loginFunction();
   });
+}
+
+async function loginFunction() {
+  await $fetch("https://auth.atlasacademy.ir/signin", {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    credentials: "include",
+    body: data,
+    withCredentials: true,
+  })
+    .then(function (response) {
+      console.log(response);
+      if (response) {
+        userStore.setLogState();
+        message.value = true;
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 }
 </script>

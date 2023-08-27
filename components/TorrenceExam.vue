@@ -54,7 +54,9 @@
       >
     </ExamTemp>
   </div>
-  <ResultModal @click="returnCalculation(torenceTest)" />
+  <ResultModal @click="returnCalculation(torenceTest)">
+    <template #result>{{ resultSentence }}</template>
+  </ResultModal>
 </template>
 
 <script setup>
@@ -450,11 +452,24 @@ const torenceTest = ref([
   },
 ]);
 const ingredient = ref("");
+const resultSentence = ref("");
 
 const testResult = ref(0);
 
 const examStore = useExamStore();
-const returnCalculation = (test) => {
+
+const submitToDB = async () => {
+  const data = new URLSearchParams({
+    torrenceResults: testResult.value,
+  });
+  await $fetch("https://auth.atlasacademy.ir/user/submitresults", {
+    method: "POST",
+    body: data,
+    withCredentials: true,
+    credentials: "include",
+  });
+};
+const returnCalculation = async (test) => {
   let totalscore = 0;
   test.forEach((question, i) => {
     console.log(question.id, ":", Number(question.choice));
@@ -463,6 +478,19 @@ const returnCalculation = (test) => {
   });
   testResult.value = totalscore;
   examStore.submitResult(totalscore);
+  submitToDB();
+
+  if (totalscore >= 100) {
+    resultSentence.value = "فرزندتان بسیار خلاق است";
+  } else if (100 > totalscore >= 85) {
+    resultSentence.value = "فرزندتان خلاق است";
+  } else if (85 > totalscore >= 75) {
+    resultSentence.value = "فرزندتان خلاقیتی متوسط دارد";
+  } else if (75 > totalscore >= 50) {
+    resultSentence.value = "فرزندتان خلاقیت کمی دارد";
+  } else if (50 > totalscore) {
+    resultSentence.value = "فرزندتان خلاقیت بسیار کمی دارد";
+  }
 };
 
 // watch(

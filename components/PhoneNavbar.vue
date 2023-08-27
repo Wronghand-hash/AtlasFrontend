@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <Sidebar position="left" v-model:visible="visible">
+    <Sidebar position="right" v-model:visible="visible">
       <div
         class="h-full w-full bg-darkPurple flex flex-col items-center justify-start space-y-5 px-16 py-10"
       >
@@ -27,12 +27,15 @@
           <span>مقالات</span>
           <PhArticle :size="20" weight="fill" />
         </button>
-        <button
-          class="w-full justify-center py-1 border-2 items-center border-mainBlue text-md active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
-        >
-          <span>تماس با ما</span>
-          <PhPhoneCall :size="20" weight="fill" />
-        </button>
+        <NuxtLink class="w-full" to="/contactUs">
+          <button
+            class="w-full justify-center py-1 border-2 items-center border-mainBlue text-md active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+          >
+            <span>تماس با ما</span>
+            <PhPhoneCall :size="20" weight="fill" />
+          </button>
+        </NuxtLink>
+
         <button
           class="w-full justify-center py-1 border-2 items-center border-mainBlue text-md active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
         >

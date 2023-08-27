@@ -10,30 +10,27 @@
         <div
           class="flex flex-col items-center justify-center space-y-6 text-right px-14 lg:px-20 w-full lg:w-1/2 h-full"
         >
-          <h2 class="text-mainBlue text-4xl text-center">
-            معرفی
-
-            <span class="text-mainYellow">آزمون هوش</span>
-            اطلس
+          <h2 class="text-mainBlue text-3xl text-center">
+            به سایت منظومه اطلس خوش آمدید
           </h2>
           <h3>
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-            استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در
-            ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
-            کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی
-            در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را
-            می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی
-            الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این
-            صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و
-            شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای
-            اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد
-            استفاده قرار گیرد.
+            اولیای محترم، تحقیقات نشان داده که کودکان خلاق به دنیا می آیند ولی
+            خلاقیت آنها در حدود 10 سالگی افت می‌کند و علت اساسی آن به محیط های
+            آموزشی رسمی و غیر رسمی و بی توجهی به آموزش و پرورش پویا و خلاق در
+            سنین پیش دبستانی و دبستان برمی گردد
+          </h3>
+          <h3>
+            هدف دبستان اطلس از این آزمون ارزیابی صحیح و به موقع کودکان خلاق و
+            شرایط مناسب برای پرورش استعداد های آنان توسط مربیان و معلمان ماهر و
+            دوره دیده منظومه اطلس می باشد. لذا از شما پدر و مادر محترم خواهش
+            میکنیم با پاسخهای دقیق ما را در بررسی هر چه بهتر خلاقیت فرزندتان
+            یاری نمایید استفاده قرار گیرد
           </h3>
           <button
             @click="scrollToExam"
             class="px-12 py-3 lg:my-0 text-xl border-2 items-center border-mainYellow text-md active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-mainYellow shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
           >
-            <span>آزمون خلاقیت</span>
+            <span>آزمون اولیه خلاقیت</span>
           </button>
         </div>
         <div
@@ -45,7 +42,7 @@
             alt=""
           />
           <h1 class="lg:text-6xl text-5xl my-3 text-center text-mainYellow">
-            آزمون هوش
+            آزمون اولیه خلاقیت
           </h1>
           <h3 class="text-mainBlue lg:mb-0 mb-14">
             منظومه آموزشی و فرهنگی اطلس
@@ -70,8 +67,8 @@
       </h2>
       <div class="h-full w-full flex flex-col items-center space-y-4">
         <h2 class="text-2xl font-bold text-darkBlue text-center">
-          با پاسخ های دقیق به سوالات آزمون خلاقیت ما، به خلاقیت فرزندتون پی
-          ببرید
+          با پاسخ های دقیق به سوالات آزمون اولیه خلاقیت ما، به خلاقیت فرزندتون
+          پی ببرید
         </h2>
         <h3 class="text-xl text-blue-500 text-center">
           لطفا برای شروع آزمون اطلاعات مورد نیاز رو وارد کنید*
@@ -79,44 +76,78 @@
         <div
           class="lg:grid lg:grid-cols-2 lg:place-items-end lg:gap-5 h-full w-full lg:px-36 lg:py-6 my-10 lg:my-0 flex items-center justify-center space-y-7 lg:space-y-0 flex-col"
         >
-          <InputNumber
-            placeholder="سن"
+          <InputText
+            placeholder="رمز عبور"
+            id="password"
+            v-model="password"
+            class="w-full rounded-lg h-11"
+            aria-describedby="username-help"
+          />
+          <InputText
+            placeholder="نام کاربری"
             id="email"
+            v-model="username"
+            class="w-full rounded-lg h-11"
+            aria-describedby="username-help"
+          />
+          <InputNumber
+            placeholder="سال تولد فرزندتان"
+            id="age"
             v-model="age"
             class="w-full rounded-lg h-11 self"
             aria-describedby="username-help"
           />
           <InputText
-            placeholder="نام و نام خانوادگی"
+            placeholder="ایمیل"
             id="email"
-            v-model="fullName"
+            v-model="email"
             class="w-full rounded-lg h-11"
             aria-describedby="username-help"
           />
           <InputNumber
+            min="01111111111"
+            max="99999999999"
+            step="0"
+            :class="{ 'p-invalid': errorMessage }"
+            :useGrouping="false"
             placeholder="شماره موبایل"
             v-model="phoneNumber"
+            class="w-full rounded-lg h-11"
+            aria-describedby="username-help"
+          />
+          <InputText
+            placeholder="نام و نام خانوادگی فرزندتان"
+            id="fullname"
+            v-model="fullName"
             class="w-full rounded-lg h-11"
             aria-describedby="username-help"
           />
           <Dropdown
             v-model="QnA"
             :options="regions"
+            @change="showCode = true"
             optionLabel="name"
             placeholder="علت شما برای شرکت در آزمون"
-            class="w-full rounded-lg h-11"
+            class="w-full rounded-lg h-11 lg:col-span-2"
           />
         </div>
         <div
           class="w-full flex flex-col items-end space-y-7 justify-end lg:px-36"
         >
           <h3
+            class="text-lg text-mainRed place-self-end justify-self-end col-span-2 text-center"
+          >
+            توجه : این تست
+            <span class=" ">حدودا '15' تا '20' دقیقه طول خواهد کشید</span>
+          </h3>
+          <!-- <h3
             class="text-lg text-blue-600 place-self-end justify-self-end col-span-2 text-center"
           >
-            با انتخاب گزینه <span class="text-mainRed">"هر سه مورد"</span> یک
-            کوپن تخفیف ده درصدی به شما تعلق میگیره
-          </h3>
+            با انتخاب گزینه <span class="text-mainRed">"هر سه مورد"</span> یک کد
+            تخفیف ده درصدی به شما تعلق میگیره
+          </h3> -->
           <h3
+            v-if="showCode"
             class="text-lg text-darkBlue p-2 border-2 border-dashed border-mainRed rounded-md place-self-end justify-self-end col-span-2 text-center"
           >
             ❤ متشکر از انتخاب شما
@@ -127,12 +158,23 @@
             <div
               class="w-16 h-16 bg-mainWhite rounded-full -translate-x-7 border-r-4 border-yellow-700 border-dashed"
             ></div>
-            <h2 class="text-black font-bold text-2xl font-sans">223344</h2>
+            <h2
+              v-if="showCode"
+              class="text-black text-center justify-center font-bold text-2xl font-sans"
+            >
+              welcome to Atlas family
+            </h2>
           </div>
           <h3
+            v-if="showCode"
             class="text-lg text-darkBlue p-2 border-2 border-dashed border-mainRed rounded-md place-self-end justify-self-end col-span-2 text-center"
           >
             این شماره رو یادداشت کنید و زمان ثبت نام به ما تحویل بدید
+          </h3>
+          <h3
+            class="text-lg text-darkBlue p-2 border-2 border-dashed border-mainRed rounded-md place-self-end justify-self-end col-span-2 text-center"
+          >
+            برای شروع آزمون لطفا در سایت ثبت نام کنید و یا وارد حساب خود شوید
           </h3>
         </div>
         <!-- <div
@@ -161,8 +203,9 @@
           </h2>
         </div> -->
       </div>
+      <LazyLoginExam class="flex" />
       <button
-        @click="StartExam"
+        @click="handleSignup()"
         class="px-12 py-3 lg:my-0 text-xl border-2 items-center border-mainYellow text-md active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-mainYellow shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
       >
         <span>شروع آزمون</span>
@@ -170,40 +213,167 @@
     </div>
     <div class="h-full w-full bg-mainWhite">
       <img
+        ref="ExamStart"
         class="h-44 w-screen"
         src="../assets/images/WaveDivide.webp"
         alt=""
       />
       <div
-        ref="ExamStart"
+        v-if="isLogged"
         class="h-full w-full space-y-14 px-10 lg:px-32 py-10 flex flex-col items-center"
       >
-        <TorrenceExam></TorrenceExam>
+        <LazyResult />
+        <LazyTorrenceExam></LazyTorrenceExam>
+      </div>
+      <div
+        class="h-full w-full space-y-14 px-10 lg:px-32 py-10 flex flex-col items-center"
+        v-else
+      >
+        <p
+          class="text-lg text-darkBlue p-2 border-2 border-dashed border-mainRed rounded-md place-self-end justify-self-end col-span-2 text-center"
+        >
+          لطفا اطلاعات بالا را وارد نمایید و کلید شروع ازمون را کلیک کنید
+        </p>
       </div>
     </div>
-    <Footer />
+    <LazyFooter />
   </div>
 </template>
 
 <script setup>
+useHead({
+  title: " آزمون خلاقیت منظومه آموزشی و فرهنگی اطلس",
+  meta: [
+    {
+      name: "منظومه آموزشی و فرهنگی اطلس در ارومیه، رسالت ما آموزش مهارت های ضروری، علوم و دانش های روز به فرزندان شماست",
+      content:
+        "منظومه آموزشی و فرهنگی اطلس در ارومیه، رسالت ما آموزش مهارت های ضروری، علوم و دانش های روز به فرزندان شماست",
+    },
+  ],
+  bodyAttrs: {
+    class: "test",
+  },
+  script: [{ innerHTML: "console.log('Hello world')" }],
+});
 const { $gsap } = useNuxtApp();
 import { useExamStore } from "../stores/exam";
+import { PhSignature } from "@phosphor-icons/vue";
 import { ref } from "vue";
+import { useUserStore } from "../stores/user";
+import { storeToRefs } from "pinia";
 const selectedCity = ref();
+const errorMessage = ref("شماره واقعی خود را وارد کنید");
 
+// register user store
+
+const userStore = useUserStore();
+
+const { isLogged } = storeToRefs(userStore);
+
+// log state
+
+// tweak the log state , loading , anmation or whatever with this refrence state below
+
+// gathering signup information
+
+const email = ref("");
+const password = ref("");
+const username = ref("");
 const age = ref(null);
 const phoneNumber = ref(null);
 const QnA = ref("");
 const fullName = ref("");
+const showCode = ref(false);
 
+// handing signup for test and login after that
+
+const handleSignup = async function () {
+  const data = new URLSearchParams({
+    email: email.value,
+    password: password.value,
+    username: username.value,
+    age: age.value,
+    fullname: fullName.value,
+    phonenumber: phoneNumber.value,
+    QnA: QnA.value.name,
+  });
+  console.log(
+    email.value,
+    password.value,
+    username.value,
+    age.value,
+    phoneNumber.value,
+    QnA.value.name
+  );
+
+  await $fetch("https://auth.atlasacademy.ir/signupwithinfo", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: data,
+  }).then(() => {
+    loginFunction();
+  });
+
+  console.log(isLogged, "from signup with information");
+};
+
+async function loginFunction() {
+  const data = new URLSearchParams({
+    email: email.value,
+    password: password.value,
+    username: username.value,
+  });
+  await $fetch("https://auth.atlasacademy.ir/signin", {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    credentials: "include",
+    body: data,
+    withCredentials: true,
+  })
+    .then(function (response) {
+      console.log(response);
+      if (response) {
+        isLogged.value = true;
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+  console.log(isLogged.isLogged, "from login");
+}
+
+watchEffect(() => {
+  if (QnA.value === "هر سه مورد") {
+    showCode.value = true;
+  }
+});
+
+const validateNumber = function () {};
+
+const StartExam = () => {
+  $gsap.to(window, {
+    duration: 1,
+    scrollTo: {
+      y: ExamStart.value.offsetTop,
+      autoKill: false,
+    },
+    ease: "power4.out",
+  });
+};
 const setInfomation = async () => {
+  StartExam();
   const data = new URLSearchParams({
     age: age.value,
     phonenumber: phoneNumber.value,
     QnA: QnA.value,
     fullname: fullName.value,
   });
-  await $fetch("http://localhost:3333/user/setInfo", {
+  await $fetch("https://auth.atlasacademy.ir/user/setInfo", {
     method: "POST",
     body: data,
     withCredentials: true,
@@ -230,16 +400,7 @@ const examStore = useExamStore();
 const ingredient = ref("");
 const ExamDiv = ref(null);
 const ExamStart = ref(null);
-const StartExam = () => {
-  $gsap.to(window, {
-    duration: 1,
-    scrollTo: {
-      y: ExamStart.value.offsetTop,
-      autoKill: false,
-    },
-    ease: "power4.out",
-  });
-};
+
 const scrollToExam = () => {
   $gsap.to(window, {
     duration: 1,
@@ -266,6 +427,7 @@ const calculateResult = () => {
   });
 };
 </script>
+
 <style>
 .p-dropdown .p-dropdown-label.p-placeholder {
   color: #020225;

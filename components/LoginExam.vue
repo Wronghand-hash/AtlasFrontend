@@ -5,7 +5,7 @@
       @click="visible = true"
       class="text-lg flex active:text-mainWhite active:bg-mainBlue items-center space-x-2 lg:w-auto w-full px-8 py-1 transition duration-150 ease-in-out border-2 border-transparent hover:border-mainBlue rounded-sm shadow-md shadow-transparent hover:shadow-mainBlue hover:text-mainBlue text-mainBlue"
     >
-      <span> ورود </span>
+      <span> وارد حساب شوید </span>
       <PhLockKey weight="fill" :size="20" />
     </button>
 
@@ -90,7 +90,6 @@
 <script setup>
 import SignUp from "./SignUp.vue";
 import { ref } from "vue";
-import { PhLockKey, PhKeyhole } from "@phosphor-icons/vue";
 import { useUserStore } from "../stores/user";
 
 const userStore = useUserStore();
