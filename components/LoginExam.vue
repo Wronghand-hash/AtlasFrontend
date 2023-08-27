@@ -11,7 +11,7 @@
 
     <Dialog
       :breakpoints="{ '960px': '75vh', '641px': '100vh' }"
-      v-model="visible"
+      v-model:visible="visible"
       modal
       :showHeader="false"
       :style="{ width: '40vw', backgroundColor: '#f9f5ff', height: '100vw' }"
@@ -27,7 +27,7 @@
         >
           <div class="flex items-end flex-col space-y-3 order-1 lg:-order-none">
             <label class="text-xl text-mainBlue" for="password">رمز عبور</label>
-            <Password
+            <InputText
               :feedback="false"
               type="password"
               id="password"

@@ -83,11 +83,11 @@
             class="w-full rounded-lg h-11"
             aria-describedby="username-help"
           />
-          <Password
-            :feedback="false"
+          <InputText
             placeholder="رمز عبور"
             id="password"
             v-model="password"
+            type="password"
             class="rounded-lg h-11 w-full"
             aria-describedby="username-help "
           />
