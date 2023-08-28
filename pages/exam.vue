@@ -85,6 +85,7 @@
           />
           <InputText
             type="password"
+            :feedback="false"
             placeholder="رمز عبور"
             id="password"
             v-model="password"
@@ -93,7 +94,6 @@
           />
           <InputNumber
             showButtons
-            :min="0"
             :max="25"
             :useGrouping="false"
             placeholder="سن فرزندتان"
@@ -109,7 +109,8 @@
             class="w-full rounded-lg h-11"
             aria-describedby="username-help"
           />
-          <InputNumber
+          <InputText
+            :class="{ 'p-invalid': phoneNumberErr }"
             :useGrouping="false"
             placeholder="شماره موبایل"
             v-model="phoneNumber"
@@ -261,8 +262,9 @@ useHead({
 });
 const { $gsap } = useNuxtApp();
 import { useExamStore } from "../stores/exam";
+import Message from "primevue/message";
 import { PhSignature } from "@phosphor-icons/vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useUserStore } from "../stores/user";
 import { storeToRefs } from "pinia";
 const selectedCity = ref();
@@ -287,10 +289,29 @@ const email = ref("");
 const password = ref("");
 const username = ref("");
 const age = ref(null);
-const phoneNumber = ref(null);
+const phoneNumber = ref(0);
 const QnA = ref("");
 const fullName = ref("");
 const showCode = ref(false);
+
+// phone number validation
+
+const phoneNumberErr = ref(false);
+
+const validatePhoneNumber = (phoneNumber) => {
+  if (phoneNumber === "09*********") {
+    phoneNumberErr.value = true;
+  }
+};
+
+watch(phoneNumber, (current, old) => {
+  if (current.length >= 11) {
+    phoneNumberErr.value = true;
+  } else if (current.length <= 19) {
+    phoneNumberErr.value = false;
+  }
+  console.log(current.toString().length, current);
+});
 
 // handing signup for test and login after that
 
@@ -325,6 +346,7 @@ const handleSignup = async function () {
       console.log(error);
       loginFunction();
       message.value = true;
+      StartExam();
     })
     .catch((error) => {
       signupError.value = true;
@@ -374,6 +396,15 @@ watchEffect(() => {
   }
 });
 
+watch(phoneNumberErr, (current, old) => {
+  if (current === true) {
+    signupError.value = true;
+    errorSignupMessage.value = "شماره همراه خود را چک کنید";
+  } else if (current === false) {
+    signupError.value = false;
+  }
+});
+
 const validateNumber = function () {};
 
 const StartExam = () => {
@@ -387,7 +418,6 @@ const StartExam = () => {
   });
 };
 const setInfomation = async () => {
-  StartExam();
   const data = new URLSearchParams({
     age: age.value,
     phonenumber: phoneNumber.value,
