@@ -70,10 +70,11 @@
           با پاسخ های دقیق به سوالات آزمون اولیه خلاقیت ما، به خلاقیت فرزندتون
           پی ببرید
         </h2>
-        <h3 class="text-xl text-blue-500 text-center">
+        <h3 v-show="!isLogged" class="text-xl text-blue-500 text-center">
           لطفا برای شروع آزمون اطلاعات مورد نیاز رو وارد کنید*
         </h3>
         <div
+          v-show="!isLogged"
           class="lg:grid lg:grid-cols-2 lg:place-items-end lg:gap-5 h-full w-full lg:px-36 lg:py-6 my-10 lg:my-0 flex items-center justify-center space-y-7 lg:space-y-0 flex-col"
         >
           <InputText
@@ -96,7 +97,7 @@
             showButtons
             :max="25"
             :useGrouping="false"
-            placeholder="سن فرزندتان"
+            placeholder="سن فرزندتان راه وارد نمایید"
             id="age"
             v-model="age"
             class="w-full rounded-lg h-11 self"
@@ -173,14 +174,15 @@
           >
             این شماره رو یادداشت کنید و زمان ثبت نام به ما تحویل بدید
           </h3>
-          <h3
-            class="text-lg text-darkBlue p-2 border-2 border-dashed border-mainRed rounded-md place-self-end justify-self-end col-span-2 text-center"
-          >
-            برای شروع آزمون لطفا در سایت ثبت نام کنید و یا وارد حساب خود شوید
+          <h3 v-if="!isLogged" class="text-xl text-blue-500 text-center">
+            لطفا برای شروع آزمون اطلاعات مورد نیاز رو وارد کنید*
+          </h3>
+          <h3 v-if="isLogged" class="text-xl text-blue-500 text-center">
+            شما وارد سایت شده اید
           </h3>
         </div>
       </div>
-      <div class="flex items-center space-x-5">
+      <div v-show="!isLogged" class="flex items-center space-x-5">
         <button
           @click="handleSignup()"
           class="px-12 py-3 lg:my-0 text-lg border-2 items-center border-mainYellow text-md active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-darkBlue shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
@@ -305,9 +307,9 @@ const validatePhoneNumber = (phoneNumber) => {
 };
 
 watch(phoneNumber, (current, old) => {
-  if (current.length >= 11) {
+  if (current.length !== 11) {
     phoneNumberErr.value = true;
-  } else if (current.length <= 19) {
+  } else {
     phoneNumberErr.value = false;
   }
   console.log(current.toString().length, current);
@@ -345,8 +347,9 @@ const handleSignup = async function () {
       console.log(response);
       console.log(error);
       loginFunction();
-      message.value = true;
-      StartExam();
+      if (!error) {
+        message.value = true;
+      }
     })
     .catch((error) => {
       signupError.value = true;
