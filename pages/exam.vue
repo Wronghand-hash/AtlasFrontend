@@ -70,7 +70,7 @@
           با پاسخ های دقیق به سوالات آزمون اولیه خلاقیت ما، به خلاقیت فرزندتون
           پی ببرید
         </h2>
-        <h3 v-show="!isLogged" class="text-xl text-blue-500 text-center">
+        <h3 class="text-xl text-blue-500 text-center">
           لطفا برای شروع آزمون اطلاعات مورد نیاز رو وارد کنید*
         </h3>
         <div
@@ -97,7 +97,7 @@
             showButtons
             :max="25"
             :useGrouping="false"
-            placeholder="سن فرزندتان راه وارد نمایید"
+            placeholder="سن فرزندتان"
             id="age"
             v-model="age"
             class="w-full rounded-lg h-11 self"
@@ -165,7 +165,7 @@
               v-if="showCode"
               class="text-black text-center justify-center font-bold text-2xl font-sans"
             >
-              welcome to Atlas family
+              {{ discountCode }}
             </h2>
           </div>
           <h3
@@ -182,7 +182,7 @@
           </h3>
         </div>
       </div>
-      <div v-show="!isLogged" class="flex items-center space-x-5">
+      <div class="flex items-center space-x-5">
         <button
           @click="handleSignup()"
           class="px-12 py-3 lg:my-0 text-lg border-2 items-center border-mainYellow text-md active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-darkBlue shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
@@ -250,6 +250,8 @@
 <script setup>
 useHead({
   title: " آزمون خلاقیت آکادمی اطلس",
+  title: "Atlas Academy",
+
   meta: [
     {
       name: "منظومه آموزشی و فرهنگی اطلس در ارومیه، رسالت ما آموزش مهارت های ضروری، علوم و دانش های روز به فرزندان شماست",
@@ -298,7 +300,21 @@ const showCode = ref(false);
 
 // phone number validation
 
+const discountCode = ref("48534257452");
+
 const phoneNumberErr = ref(false);
+
+const generateNumber = () => {
+  let num = Math.random(43234234, 999999999);
+  discountCode.value = num;
+  console.log(discountCode.value);
+};
+
+watch(showCode, (current, old) => {
+  if (showCode === true) {
+    generateNumber();
+  }
+});
 
 const validatePhoneNumber = (phoneNumber) => {
   if (phoneNumber === "09*********") {
@@ -307,9 +323,9 @@ const validatePhoneNumber = (phoneNumber) => {
 };
 
 watch(phoneNumber, (current, old) => {
-  if (current.length !== 11) {
+  if (current.length >= 11) {
     phoneNumberErr.value = true;
-  } else {
+  } else if (current.length <= 19) {
     phoneNumberErr.value = false;
   }
   console.log(current.toString().length, current);
@@ -347,9 +363,8 @@ const handleSignup = async function () {
       console.log(response);
       console.log(error);
       loginFunction();
-      if (!error) {
-        message.value = true;
-      }
+      message.value = true;
+      StartExam();
     })
     .catch((error) => {
       signupError.value = true;
@@ -400,11 +415,9 @@ watchEffect(() => {
 });
 
 watch(phoneNumberErr, (current, old) => {
-  if (current === true) {
+  if (phoneNumberErr.value === true) {
     signupError.value = true;
     errorSignupMessage.value = "شماره همراه خود را چک کنید";
-  } else if (current === false) {
-    signupError.value = false;
   }
 });
 
