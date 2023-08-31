@@ -104,11 +104,11 @@ import { PhLockKey, PhKeyhole, PhUser } from "@phosphor-icons/vue";
 import { useUserStore } from "../stores/user";
 import { storeToRefs } from "pinia";
 
-const { isLogged } = storeToRefs(userStore);
 
 const userStore = useUserStore();
 const visible = ref(false);
 
+const { isLogged } = storeToRefs(userStore);
 const errorLogin = ref(false);
 const errorLoginMessage = ref("");
 

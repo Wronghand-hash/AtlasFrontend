@@ -224,6 +224,9 @@
         src="../assets/images/WaveDivide.webp"
         alt=""
       />
+      <div v-show="loading" class="flex justify-center align-center">
+        <ProgressSpinner></ProgressSpinner>
+      </div>
       <div
         v-if="isLogged"
         class="h-full w-full space-y-14 px-10 lg:px-32 py-10 flex flex-col items-center"
@@ -275,7 +278,7 @@ const selectedCity = ref();
 const errorMessage = ref("شماره واقعی خود را وارد کنید");
 const errorSignupMessage = ref("");
 const signupError = ref(false);
-
+const loading = ref(false);
 // register user store
 
 const userStore = useUserStore();
@@ -293,7 +296,7 @@ const email = ref("");
 const password = ref("");
 const username = ref("");
 const age = ref(null);
-const phoneNumber = ref(0);
+const phoneNumber = ref("");
 const QnA = ref("");
 const fullName = ref("");
 const showCode = ref(false);
@@ -336,6 +339,7 @@ watch(phoneNumber, (current, old) => {
 // handing signup for test and login after that
 
 const handleSignup = async function () {
+  loading.value = true;
   const data = new URLSearchParams({
     email: email.value,
     password: password.value,
@@ -383,6 +387,7 @@ const handleSignup = async function () {
 };
 
 async function loginFunction() {
+  loading.value = true;
   const data = new URLSearchParams({
     email: email.value,
     password: password.value,
@@ -408,6 +413,7 @@ async function loginFunction() {
       console.error(error);
     });
   console.log(isLogged.isLogged, "from login");
+  loading.value = false;
 }
 
 watchEffect(() => {

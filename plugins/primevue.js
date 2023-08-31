@@ -12,6 +12,7 @@ import Rating from "primevue/rating";
 import InputNumber from "primevue/inputnumber";
 import Message from "primevue/message";
 import RadioButton from "primevue/radiobutton";
+import ProgressSpinner from "primevue/progressspinner";
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(PrimeVue, { ripple: true });
   nuxtApp.vueApp.component("Dialog", Dialog);
@@ -23,6 +24,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component("Galleria", Galleria);
   nuxtApp.vueApp.component("Rating", Rating);
   nuxtApp.vueApp.component("Dropdown", Dropdown);
+  nuxtApp.vueApp.component("ProgressSpinner", ProgressSpinner);
   nuxtApp.vueApp.component("InputNumber", InputNumber);
   nuxtApp.vueApp.component("Message", Message);
 
