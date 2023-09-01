@@ -61,14 +61,11 @@ const getTestResults = async () => {
     }
   )
     .then(function (response) {
-      console.log("this is login response", response.TorrenceTestResult);
       torrenceResults.value = response.TorrenceTestResult;
     })
     .catch(function (error) {
       console.error(error);
     });
-
-  console.log(me);
 };
 
 onMounted(() => {
