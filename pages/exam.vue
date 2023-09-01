@@ -182,7 +182,7 @@
           </h3>
         </div>
       </div>
-      <div class="flex items-center space-x-5">
+      <div v-show="!isLogged" class="flex items-center space-x-5">
         <button
           @click="handleSignup()"
           class="px-12 py-3 lg:my-0 text-lg border-2 items-center border-mainYellow text-md active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-darkBlue shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
