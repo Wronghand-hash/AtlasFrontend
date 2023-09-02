@@ -134,6 +134,27 @@
             class="w-full rounded-lg h-11 lg:col-span-2"
           />
         </div>
+        <div v-if="Array.isArray(errorSignupMessage)">
+          <Message
+            v-for="error in errorSignupMessage"
+            :key="error"
+            class="w-full"
+            v-show="signupError"
+            severity="error"
+          >
+            <span class="text-2xl">{{ error }}</span>
+          </Message>
+        </div>
+        <div v-else>
+          <Message
+            :key="error"
+            class="w-full"
+            v-show="signupError"
+            severity="error"
+          >
+            <span class="text-2xl">{{ errorSignupMessage }}</span>
+          </Message>
+        </div>
         <div
           class="w-full flex flex-col items-end space-y-7 justify-end lg:px-36"
         >
@@ -195,27 +216,6 @@
       <Message class="w-full" v-show="message" severity="success">
         <span class="text-2xl">ثبت نام موفقیت آمیز بود</span>
       </Message>
-      <div v-if="Array.isArray(errorSignupMessage)">
-        <Message
-          v-for="error in errorSignupMessage"
-          :key="error"
-          class="w-full"
-          v-show="signupError"
-          severity="error"
-        >
-          <span class="text-2xl">{{ error }}</span>
-        </Message>
-      </div>
-      <div v-else>
-        <Message
-          :key="error"
-          class="w-full"
-          v-show="signupError"
-          severity="error"
-        >
-          <span class="text-2xl">{{ errorSignupMessage }}</span>
-        </Message>
-      </div>
     </div>
     <div class="h-full w-full bg-mainWhite">
       <img
@@ -318,12 +318,6 @@ watch(showCode, (current, old) => {
   }
 });
 
-const validatePhoneNumber = (phoneNumber) => {
-  if (phoneNumber === "09*********") {
-    phoneNumberErr.value = true;
-  }
-};
-
 watch(phoneNumber, (current, old) => {
   if (current.length === 12) {
     phoneNumberErr.value = true;
@@ -359,6 +353,10 @@ const handleSignup = async function () {
     .then((response, error) => {
       loginFunction();
       message.value = true;
+
+      setTimeout(() => {
+        message.value = false;
+      }, 5000);
       StartExam();
     })
     .catch((error) => {
@@ -409,6 +407,9 @@ watchEffect(() => {
 watch(phoneNumberErr, (current, old) => {
   if (phoneNumberErr.value === true) {
     signupError.value = true;
+    setTimeout(() => {
+      signupError.value = false;
+    }, 3000);
     errorSignupMessage.value = "شماره همراه خود را چک کنید";
   }
 });
