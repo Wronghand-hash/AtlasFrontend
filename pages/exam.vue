@@ -1,6 +1,6 @@
 <template>
   <div class="h-full w-screen text-right">
-    <Navbar />
+    <LazyNavbar />
     <div
       class="lg:h-full h-full w-full bg-mainWhite flex flex-col justify-center items-center py-14"
     >
@@ -78,7 +78,7 @@
           class="lg:grid lg:grid-cols-2 lg:place-items-end lg:gap-5 h-full w-full lg:px-36 lg:py-6 my-10 lg:my-0 flex items-center justify-center space-y-7 lg:space-y-0 flex-col"
         >
           <InputText
-            placeholder="نام کاربری"
+            placeholder="نام کاربری یا ایمیل"
             id="email"
             v-model="username"
             class="w-full rounded-lg h-11"
@@ -155,68 +155,68 @@
             <span class="text-2xl">{{ errorSignupMessage }}</span>
           </Message>
         </div>
-        <div
-          class="w-full flex flex-col items-end space-y-7 justify-end lg:px-36"
+      </div>
+      <div
+        class="w-full flex flex-col items-end space-y-7 justify-end lg:px-36"
+      >
+        <h3
+          class="text-lg text-mainRed place-self-end justify-self-end col-span-2 text-center"
         >
-          <h3
-            class="text-lg text-mainRed place-self-end justify-self-end col-span-2 text-center"
-          >
-            توجه : این تست
-            <span class=" ">حدودا '15' تا '20' دقیقه طول خواهد کشید</span>
-          </h3>
-          <!-- <h3
+          توجه : این تست
+          <span class=" ">حدودا '15' تا '20' دقیقه طول خواهد کشید</span>
+        </h3>
+        <!-- <h3
             class="text-lg text-blue-600 place-self-end justify-self-end col-span-2 text-center"
           >
             با انتخاب گزینه <span class="text-mainRed">"هر سه مورد"</span> یک کد
             تخفیف ده درصدی به شما تعلق میگیره
           </h3> -->
-          <h3
-            v-if="showCode"
-            class="text-lg text-darkBlue p-2 border-2 border-dashed border-mainRed rounded-md place-self-end justify-self-end col-span-2 text-center"
-          >
-            ❤ متشکر از انتخاب شما
-          </h3>
-          <div
-            class="w-44 h-20 bg-mainYellow rounded-md justify-start flex items-center border-4 border-yellow-700 border-dashed"
-          >
-            <div
-              class="w-16 h-16 bg-mainWhite rounded-full -translate-x-7 border-r-4 border-yellow-700 border-dashed"
-            ></div>
-            <h2
-              v-if="showCode"
-              class="text-black text-center justify-center font-bold text-2xl font-sans"
-            >
-              {{ discountCode }}
-            </h2>
-          </div>
-          <h3
-            v-if="showCode"
-            class="text-lg text-darkBlue p-2 border-2 border-dashed border-mainRed rounded-md place-self-end justify-self-end col-span-2 text-center"
-          >
-            این شماره رو یادداشت کنید و زمان ثبت نام به ما تحویل بدید
-          </h3>
-          <h3 v-if="!isLogged" class="text-xl text-blue-500 text-center">
-            لطفا برای شروع آزمون اطلاعات مورد نیاز رو وارد کنید*
-          </h3>
-          <h3 v-if="isLogged" class="text-xl text-blue-500 text-center">
-            شما وارد سایت شده اید
-          </h3>
-        </div>
-      </div>
-      <div v-show="!isLogged" class="flex items-center space-x-5">
-        <button
-          @click="handleSignup()"
-          class="px-12 py-3 lg:my-0 text-lg border-2 items-center border-mainYellow text-md active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-darkBlue shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
+        <h3
+          v-if="showCode"
+          class="text-lg text-darkBlue p-2 border-2 border-dashed border-mainRed rounded-md place-self-end justify-self-end col-span-2 text-center"
         >
-          <span>ثبت نام و شروع آزمون</span>
-        </button>
-        <h3 class="text-xl">یا</h3>
-        <LazyLoginExam class="flex" />
+          ❤ متشکر از انتخاب شما
+        </h3>
+        <div
+          class="w-44 h-20 bg-mainYellow rounded-md justify-start flex items-center border-4 border-yellow-700 border-dashed"
+        >
+          <div
+            class="w-16 h-16 bg-mainWhite rounded-full -translate-x-7 border-r-4 border-yellow-700 border-dashed"
+          ></div>
+          <h2
+            v-if="showCode"
+            class="text-black text-center justify-center font-bold text-2xl font-sans"
+          >
+            {{ discountCode }}
+          </h2>
+        </div>
+        <h3
+          v-if="showCode"
+          class="text-lg text-darkBlue p-2 border-2 border-dashed border-mainRed rounded-md place-self-end justify-self-end col-span-2 text-center"
+        >
+          این شماره رو یادداشت کنید و زمان ثبت نام به ما تحویل بدید
+        </h3>
+        <h3 v-if="!isLogged" class="text-xl text-blue-500 text-center">
+          لطفا برای شروع آزمون اطلاعات مورد نیاز رو وارد کنید*
+        </h3>
+        <h3 v-if="isLogged" class="text-xl text-blue-500 text-center">
+          شما وارد سایت شده اید
+        </h3>
       </div>
-      <Message class="w-full" v-show="message" severity="success">
-        <span class="text-2xl">ثبت نام موفقیت آمیز بود</span>
-      </Message>
     </div>
+    <div
+      class="flex items-center justify-center lg:flex-row flex-col lg:space-y-0 space-y-4 lg:space-x-5"
+    >
+      <button
+        @click="handleSignup()"
+        class="px-12 py-3 lg:my-0 text-lg border-2 items-center border-mainYellow text-md active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-darkBlue shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
+      >
+        <span>ثبت نام و شروع آزمون</span>
+      </button>
+      <h3 class="text-xl">یا</h3>
+      <LazyLoginExam class="flex" />
+    </div>
+
     <div class="h-full w-full bg-mainWhite">
       <img
         ref="ExamStart"
@@ -278,7 +278,9 @@ const selectedCity = ref();
 const errorMessage = ref("شماره واقعی خود را وارد کنید");
 const errorSignupMessage = ref("");
 const signupError = ref(false);
+
 const loading = ref(false);
+
 // register user store
 
 const userStore = useUserStore();
@@ -353,21 +355,20 @@ const handleSignup = async function () {
     .then((response, error) => {
       loginFunction();
       message.value = true;
-
+      StartExam();
       setTimeout(() => {
         message.value = false;
       }, 5000);
-      StartExam();
     })
     .catch((error) => {
       signupError.value = true;
       errorSignupMessage.value = error.data.message;
-      loading.value = false;
 
       setTimeout(() => {
         signupError.value = false;
-      }, 5000);
+      }, 3000);
     });
+  loading.value = false;
 };
 
 async function loginFunction() {
@@ -407,11 +408,11 @@ watchEffect(() => {
 watch(phoneNumberErr, (current, old) => {
   if (phoneNumberErr.value === true) {
     signupError.value = true;
-    setTimeout(() => {
-      signupError.value = false;
-    }, 3000);
     errorSignupMessage.value = "شماره همراه خود را چک کنید";
   }
+  setTimeout(() => {
+    signupError.value = false;
+  }, 3000);
 });
 
 const validateNumber = function () {};

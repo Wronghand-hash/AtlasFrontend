@@ -81,13 +81,13 @@
         </Message>
         <div
           v-if="!message"
-          class="h-full justify-center w-full flex items-center self-center space-x-5"
+          class="h-full lg:flex-row flex-col-reverse justify-center w-full flex items-center self-center lg:space-x-5"
         >
           <LazySignUp />
           <button
             label="Show"
             @click="formSubmit()"
-            class="text-xl bg-mainYellow active:text-darkPurple active:bg-mainBlue flex items-center space-x-2 px-10 py-2 transition duration-150 ease-in-out border-2 border-dashed border-mainBlue rounded-sm shadow-md shadow-transparent hover:shadow-mainBlue hover:text-darkBlue text-darkBlue"
+            class="text-xl bg-mainYellow lg:my-0 my-4 active:text-darkPurple active:bg-mainBlue flex items-center space-x-2 px-10 py-2 transition duration-150 ease-in-out border-2 border-dashed border-mainBlue rounded-sm shadow-md shadow-transparent hover:shadow-mainBlue hover:text-darkBlue text-darkBlue"
           >
             <span> ورود </span>
             <PhKeyhole :size="25" />
@@ -104,11 +104,13 @@ import { PhLockKey, PhKeyhole, PhUser } from "@phosphor-icons/vue";
 import { useUserStore } from "../stores/user";
 import { storeToRefs } from "pinia";
 
-
 const userStore = useUserStore();
 const visible = ref(false);
 
+// log state
+
 const { isLogged } = storeToRefs(userStore);
+
 const errorLogin = ref(false);
 const errorLoginMessage = ref("");
 
@@ -146,7 +148,6 @@ async function formSubmit() {
     withCredentials: true,
   })
     .then(function (response) {
-      console.log(response);
       if (response) {
         userStore.setLogState();
         message.value = true;
