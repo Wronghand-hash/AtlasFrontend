@@ -55,7 +55,11 @@
             <PhKeyhole :size="25" />
           </label>
           <input
-            @change="uploadImage"
+            @change="
+              (event) => {
+                eventFile = event.target.files[0];
+              }
+            "
             type="file"
             class="hidden"
             id="articleImage"
@@ -193,6 +197,14 @@
 <script setup>
 import { ref } from "vue";
 import { PhArticle } from "@phosphor-icons/vue";
+import { useManagementStore } from "../stores/management";
+
+// asign store
+
+const managementStore = useManagementStore();
+
+// defults
+
 const visible = ref(false);
 const loading = ref(false);
 const message = ref(false);
@@ -202,6 +214,8 @@ const errorMessage = ref("");
 
 const articleImage = ref(null);
 
+const articleId = ref(null);
+
 const articleTitle = ref("");
 const articleFirstBody = ref("");
 const articleFirstHeader = ref("");
@@ -210,6 +224,8 @@ const articleSecondBody = ref("");
 const articleThirdHeader = ref("");
 const articleThirdBody = ref("");
 const articleAuthur = ref("");
+
+const eventFile = ref(null);
 
 // add article to DB
 
@@ -226,7 +242,7 @@ const addArticle = async function () {
     authur: articleAuthur.value,
   });
 
-  await $fetch("http://localhost:3333/management/addarticle", {
+  await $fetch("https://auth.atlasacademy.ir/management/addarticle", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -236,6 +252,11 @@ const addArticle = async function () {
     .then((response, error) => {
       message.value = true;
       console.log(response);
+      articleId.value = response.article.id;
+      if (response.article) {
+        uploadImage();
+        managementStore.changeState();
+      }
     })
     .catch((error) => {
       addArticleError.value = true;
@@ -251,25 +272,27 @@ const addArticle = async function () {
 
 // uploading image
 
+const imageUploadError = ref(false);
+const uploadErrorMessage = ref("");
+
 const uploadImage = async function (event) {
   const formData = new FormData();
-  formData.append("file", event.target.files[0]);
 
-  console.log(event.target.files[0]);
-  console.log(formData.entries);
-  await $fetch("http://localhost:3333/management/articleimage", {
+  formData.append("file", eventFile.value);
+  formData.append("articleId", articleId.value);
+  console.log(eventFile.value);
+  console.log(articleId.value);
+  await $fetch("https://auth.atlasacademy.ir/management/articleimage", {
     method: "POST",
-    headers: {
-      "Content-Type":
-        "multipart/form-data; boundary=---011000010111000001101001",
-    },
-    data: formData,
+
+    body: formData,
   })
     .then((response) => {
       console.log(response);
     })
     .catch((error) => {
-      // Handle errors
+      imageUploadError.value = true;
+      uploadErrorMessage.value = error.data.message;
     });
 };
 </script>

@@ -18,14 +18,16 @@
       >
         <div
           class="lg:w-1/2 w-full h-96 lg:h-full bg-white rounded-lg shadow-lg shadow-mainYellow"
-        ></div>
+        >
+          <img :src="latestArticleImage" alt="" />
+        </div>
         <div
           class="lg:w-1/2 w-full h-96 lg:h-full flex flex-col items-end justify-center p-10 space-y-6"
         >
           <h2
             class="lg:text-4xl text-2xl lg:my-0 font-bold text-darkBlue leading-snug text-right"
           >
-            شروع سال تحصیلی از شهریور امسال
+            {{ latestarticle.title }}
           </h2>
           <h3 class="lg:text-lg text-md text-right">
             لوزم ایپسوم متنی است که اختراع شده تا جاهای خالی در طراحی گرافیک پر
@@ -67,14 +69,16 @@
         >
           <div
             class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-white relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-lg"
-          ></div>
+          >
+            <ArticleImage :articleId="article.ArticleImage" alt="" />
+          </div>
           <h2 class="text-2xl font-bold text-darkBlue leading-snug text-right">
             {{ article.title }}
           </h2>
           <h3 class="text-lg text-right">
             {{ article.first_header }}
           </h3>
-          <NuxtLink to="/articleDetail">
+          <NuxtLink :to="'articledetail/' + article.id">
             <button
               class="px-12 py-3 lg:my-0 text-xl font-bold border-2 items-center border-mainYellow active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-darkBlue shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-md"
             >
@@ -93,6 +97,9 @@ import { ref, onMounted } from "vue";
 import { PhArticle } from "@phosphor-icons/vue";
 const articles = ref([]);
 const loading = ref(false);
+const latestarticle = ref([]);
+
+const latestArticleImage = ref("");
 
 const getArticles = async () => {
   loading.value = true;
@@ -105,10 +112,33 @@ const getArticles = async () => {
       console.log(response.articles);
       articles.value = response.articles;
       loading.value = false;
+
+      latestarticle.value = response.articles.slice(-1)[0];
+
+      getArticleImage();
     })
     .catch(function (error) {
       console.error(error);
       loading.value = false;
+    });
+};
+
+const getArticleImage = async () => {
+  console.log("see me ", latestarticle.value.ArticleImage[0].id);
+  const { data } = await $fetch(
+    `https://auth.atlasacademy.ir/articles/image/${latestarticle.value.ArticleImage[0].id}`,
+    {
+      headers: {},
+      withCredentials: true,
+      credentials: "include",
+    }
+  )
+    .then(function (response) {
+      console.log(response);
+      latestArticleImage.value = response.image;
+    })
+    .catch(function (error) {
+      console.error(error);
     });
 };
 
