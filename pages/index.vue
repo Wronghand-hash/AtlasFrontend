@@ -52,74 +52,82 @@
       <div
         class="h-full w-full flex items-center justify-center space-x-0 space-y-12 lg:space-y-0 lg:flex-row flex-col lg:space-x-16"
       >
-        <div
-          @mouseenter="startAnimation"
-          @mouseleave="resetAnimation"
-          class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-mainWhite relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-md p-6"
-        >
-          <img
-            src="../assets/images/Exam.webp"
-            class="w-36 object-contain opacity-100 backdrop-blur-3xl"
-            alt=""
-          />
+        <NuxtLink to="/articles">
           <div
-            class="absolute w-44 rounded-md flex items-center justify-center bottom-0 h-16 top-52 Blue bg-mainBlue"
+            @mouseenter="startAnimation"
+            @mouseleave="resetAnimation"
+            class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-mainWhite relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-md p-6"
           >
-            <h2 class="text-lg text-mainWhite">آزمون تعیین سطح</h2>
+            <img
+              src="../assets/images/Exam.webp"
+              class="w-36 object-contain opacity-100 backdrop-blur-3xl"
+              alt=""
+            />
+            <div
+              class="absolute w-44 rounded-md flex items-center justify-center bottom-0 h-16 top-52 Blue bg-mainBlue"
+            >
+              <h2 class="text-lg text-mainWhite">مقالات اطلس</h2>
+            </div>
           </div>
-        </div>
-        <div
-          @mouseenter="startAnimation"
-          @mouseleave="resetAnimation"
-          class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-mainWhite relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-md p-6"
-        >
-          <img
-            src="../assets/images/Learning.webp"
-            class="w-44 object-contain opacity-100 backdrop-blur-3xl"
-            alt=""
-          />
+        </NuxtLink>
+        <NuxtLink to="/videoPlayer">
           <div
-            class="absolute w-44 rounded-md flex items-center justify-center bottom-0 h-16 top-52 Blue bg-mainBlue"
+            @mouseenter="startAnimation"
+            @mouseleave="resetAnimation"
+            class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-mainWhite relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-md p-6"
           >
-            <h2 class="text-lg text-mainWhite">دوره های آموزشی</h2>
+            <img
+              src="../assets/images/Learning.webp"
+              class="w-44 object-contain opacity-100 backdrop-blur-3xl"
+              alt=""
+            />
+            <div
+              class="absolute w-44 rounded-md flex items-center justify-center bottom-0 h-16 top-52 Blue bg-mainBlue"
+            >
+              <h2 class="text-lg text-mainWhite">ویدیوهای آموزشی</h2>
+            </div>
           </div>
-        </div>
-        <div
-          @mouseenter="startAnimation"
-          @mouseleave="resetAnimation"
-          class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-mainWhite relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-md p-14"
-        >
-          <img
-            src="../assets/images/IQTest.webp"
-            class="w-full object-contain opacity-100 backdrop-blur-3xl"
-            alt=""
-          />
+        </NuxtLink>
+        <NuxtLink to="/schedule">
           <div
-            ref="Blue"
-            class="absolute w-44 rounded-md flex items-center justify-center bottom-0 h-16 top-52 Blue bg-mainBlue"
+            @mouseenter="startAnimation"
+            @mouseleave="resetAnimation"
+            class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-mainWhite relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-md p-6"
           >
-            <h2 class="text-sm px-3 text-center text-mainWhite">
-              آزمون اولیه خلاقیت برای فرزندان شما
-            </h2>
-            {{ exam }}
+            <img
+              src="../assets/images/Calender.webp"
+              class="w-full object-contain opacity-100 backdrop-blur-3xl"
+              alt=""
+            />
+            <div
+              class="absolute w-44 rounded-md flex items-center justify-center bottom-0 h-16 top-52 Blue bg-mainBlue"
+            >
+              <h2 class="text-lg text-mainWhite">برنامه کلاسی</h2>
+            </div>
           </div>
-        </div>
-        <div
-          @mouseenter="startAnimation"
-          @mouseleave="resetAnimation"
-          class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-mainWhite relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-md p-6"
-        >
-          <img
-            src="../assets/images/Calender.webp"
-            class="w-full object-contain opacity-100 backdrop-blur-3xl"
-            alt=""
-          />
+        </NuxtLink>
+        <NuxtLink to="/exam">
           <div
-            class="absolute w-44 rounded-md flex items-center justify-center bottom-0 h-16 top-52 Blue bg-mainBlue"
+            @mouseenter="startAnimation"
+            @mouseleave="resetAnimation"
+            class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-mainWhite relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-md p-14"
           >
-            <h2 class="text-lg text-mainWhite">تقویم آموزشی</h2>
+            <img
+              src="../assets/images/IQTest.webp"
+              class="w-full object-contain opacity-100 backdrop-blur-3xl"
+              alt=""
+            />
+            <div
+              ref="Blue"
+              class="absolute w-44 rounded-md flex items-center justify-center bottom-0 h-16 top-52 Blue bg-mainBlue"
+            >
+              <h2 class="text-sm px-3 text-center text-mainWhite">
+                آزمون اولیه خلاقیت برای فرزندان شما
+              </h2>
+              {{ exam }}
+            </div>
           </div>
-        </div>
+        </NuxtLink>
       </div>
     </div>
     <div
@@ -146,7 +154,7 @@
       </h2>
       <h2 class="text-xl text-right self-end">
         میخواهیم فرزندانمان را با مهارت های کاربری و اساسی برای داشتن زندگی
-        اجتماعی موفق و آینده ی مالی و تحیصیلی شایسته پرورش دهیم
+        اجتماعی موفق و آینده ی مالی و تحصیلی شایسته پرورش دهیم
       </h2>
       <h2
         class="lg:text-4xl text-2xl text-darkBlue font-bold text-right self-end"
@@ -209,28 +217,34 @@
         </h2>
       </div>
       <div
-        class="h-full lg:flex-row flex-col space-y-12 lg:space-y-0 space-x-0 my-20 w-full flex items-center justify-center lg:space-x-16"
+        class="h-full lg:flex-row flex-col space-y-12 lg:space-y-0 space-x-0 w-full flex items-center justify-center lg:space-x-16"
       >
         <div
-          @mouseenter="startAnimation"
-          @mouseleave="resetAnimation"
-          class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-mainWhite relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-md p-6"
-        ></div>
-        <div
-          @mouseenter="startAnimation"
-          @mouseleave="resetAnimation"
-          class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-mainWhite relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-md p-6"
-        ></div>
-        <div
-          @mouseenter="startAnimation"
-          @mouseleave="resetAnimation"
-          class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-mainWhite relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-md p-14"
-        ></div>
-        <div
-          @mouseenter="startAnimation"
-          @mouseleave="resetAnimation"
-          class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-mainWhite relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-md p-6"
-        ></div>
+          v-for="article in articles"
+          :key="article.id"
+          :article="article"
+          class="flex w-64 h-full flex-col items-center space-y-6"
+        >
+          <div
+            class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-white relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-lg"
+          >
+            <ArticleImage :articleId="article.ArticleImage" alt="" />
+          </div>
+          <h2 class="text-2xl font-bold text-darkBlue leading-snug text-right">
+            {{ article.title }}
+          </h2>
+          <h3 class="text-lg text-right">
+            {{ article.first_header }}
+          </h3>
+          <NuxtLink :to="'articleDetail/' + article.id">
+            <button
+              class="px-12 py-3 lg:my-0 text-xl font-bold border-2 items-center border-mainYellow active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-darkBlue shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-md"
+            >
+              <PhArticle :size="29" />
+              <span> ادامه ی مقاله </span>
+            </button>
+          </NuxtLink>
+        </div>
       </div>
     </div>
     <Footer />
@@ -240,7 +254,30 @@
 const { $gsap } = useNuxtApp();
 const TM = $gsap.timeline();
 
+const loading = ref(false);
+const articles = ref(false);
+const getArticles = async () => {
+  loading.value = true;
+  const { data } = await $fetch("https://auth.atlasacademy.ir/articles", {
+    headers: {},
+    withCredentials: true,
+    credentials: "include",
+  })
+    .then(function (response) {
+      console.log(response.articles);
+      articles.value = response.articles;
+      loading.value = false;
+
+      getArticleImage();
+    })
+    .catch(function (error) {
+      console.error(error);
+      loading.value = false;
+    });
+};
+
 onMounted(() => {
+  getArticles();
   TM.to(window, {
     scrollTo: {
       top: 0,

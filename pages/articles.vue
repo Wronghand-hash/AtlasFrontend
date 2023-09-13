@@ -7,7 +7,7 @@
       >
         <h2 class="text-4xl text-darkBlue">اطلس</h2>
         <h2
-          class="text-7xl lg:my-0 my-5 font-bold text-yellow-500 border-b-8 rounded-3xl pb-4 border-darkBlue"
+          class="text-5xl lg:my-0 my-5 font-bold text-yellow-500 border-b-8 rounded-3xl pb-2 border-darkBlue"
         >
           مقالات
         </h2>
@@ -33,12 +33,14 @@
             لوزم ایپسوم متنی است که اختراع شده تا جاهای خالی در طراحی گرافیک پر
             شود و خالی نمایند متشکرم ازتون
           </h3>
-          <button
-            class="px-12 py-3 lg:my-0 text-xl font-bold border-2 items-center border-mainYellow active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-darkBlue shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-md"
-          >
-            <PhArticle :size="29" />
-            <span> ادامه ی مقاله </span>
-          </button>
+          <NuxtLink :to="'articledetail/' + latestarticle.id">
+            <button
+              class="px-12 py-3 lg:my-0 text-xl font-bold border-2 items-center border-mainYellow active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-darkBlue shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-md"
+            >
+              <PhArticle :size="29" />
+              <span> ادامه ی مقاله </span>
+            </button>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -56,7 +58,12 @@
         </h2>
       </div>
       <div v-show="loading" class="flex justify-center align-center">
-        <ProgressSpinner></ProgressSpinner>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 place-items-center">
+          <Skeleton width="18rem" height="17rem"></Skeleton>
+          <Skeleton width="18rem" height="17rem"></Skeleton>
+          <Skeleton width="18rem" height="17rem"></Skeleton>
+          <Skeleton width="18rem" height="17rem"></Skeleton>
+        </div>
       </div>
       <div
         class="h-full lg:flex-row flex-col space-y-12 lg:space-y-0 space-x-0 w-full flex items-center justify-center lg:space-x-16"
