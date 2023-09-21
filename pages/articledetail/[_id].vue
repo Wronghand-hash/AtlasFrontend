@@ -11,63 +11,30 @@
         {{ article.title }}
       </h2>
       <div class="h-dialog w-full bg-white shadow-lg shadow-mainBlue my-10">
-        <img :src="image" alt="" />
+        <img class="w-full object-contain" :src="image" alt="" />
       </div>
       <div class="w-full h-full flex flex-col items-end text-right space-y-5">
         <h2 class="text-5xl font-bold text-darkBlue leading-snug text-right">
           {{ article.first_header }}
         </h2>
         <h3 class="text-lg text-right">
-          لوزم ایپسوم متنی است که اختراع شده تا جاهای خالی در طراحی گرافیک پر
-          شود و خالی نمایند متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا
-          جاهای خالی در طراحی گرافیک پر شود و خالی نمایند متشکرم ازتون لوزم
-          ایپسوم متنی است که اختراع شده تا جاهای خالی در طراحی گرافیک پر شود و
-          خالی نمایند متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا جاهای
-          خالی در طراحی گرافیک پر شود و خالی نمایند متشکرم ازتون لوزم ایپسوم
-          متنی است که اختراع شده تا جاهای خالی در طراحی گرافیک پر شود و خالی
-          نمایند متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا جاهای خالی
-          در طراحی گرافیک پر شود و خالی نمایند متشکرم ازتون لوزم ایپسوم متنی است
-          که اختراع شده تا جاهای خالی در طراحی گرافیک پر شود و خالی نمایند
-          متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا جاهای خالی در طراحی
-          گرافیک پر شود و خالی نمایند متشکرم ازتون
+          {{ article.first_body }}
         </h3>
       </div>
       <div class="w-full h-full flex flex-col items-end text-right space-y-5">
         <h2 class="text-5xl font-bold text-darkBlue leading-snug text-right">
-          پاراگراف دوم
+          {{ article.second_header }}
         </h2>
         <h3 class="text-lg text-right">
-          لوزم ایپسوم متنی است که اختراع شده تا جاهای خالی در طراحی گرافیک پر
-          شود و خالی نمایند متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا
-          جاهای خالی در طراحی گرافیک پر شود و خالی نمایند متشکرم ازتون لوزم
-          ایپسوم متنی است که اختراع شده تا جاهای خالی در طراحی گرافیک پر شود و
-          خالی نمایند متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا جاهای
-          خالی در طراحی گرافیک پر شود و خالی نمایند متشکرم ازتون لوزم ایپسوم
-          متنی است که اختراع شده تا جاهای خالی در طراحی گرافیک پر شود و خالی
-          نمایند متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا جاهای خالی
-          در طراحی گرافیک پر شود و خالی نمایند متشکرم ازتون لوزم ایپسوم متنی است
-          که اختراع شده تا جاهای خالی در طراحی گرافیک پر شود و خالی نمایند
-          متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا جاهای خالی در طراحی
-          گرافیک پر شود و خالی نمایند متشکرم ازتون
+          {{ article.second_body }}
         </h3>
       </div>
       <div class="w-full h-full flex flex-col items-end text-right space-y-5">
         <h2 class="text-5xl font-bold text-darkBlue leading-snug text-right">
-          پاراگراف سوم
+          {{ article.third_header }}
         </h2>
         <h3 class="text-lg text-right">
-          لوزم ایپسوم متنی است که اختراع شده تا جاهای خالی در طراحی گرافیک پر
-          شود و خالی نمایند متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا
-          جاهای خالی در طراحی گرافیک پر شود و خالی نمایند متشکرم ازتون لوزم
-          ایپسوم متنی است که اختراع شده تا جاهای خالی در طراحی گرافیک پر شود و
-          خالی نمایند متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا جاهای
-          خالی در طراحی گرافیک پر شود و خالی نمایند متشکرم ازتون لوزم ایپسوم
-          متنی است که اختراع شده تا جاهای خالی در طراحی گرافیک پر شود و خالی
-          نمایند متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا جاهای خالی
-          در طراحی گرافیک پر شود و خالی نمایند متشکرم ازتون لوزم ایپسوم متنی است
-          که اختراع شده تا جاهای خالی در طراحی گرافیک پر شود و خالی نمایند
-          متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا جاهای خالی در طراحی
-          گرافیک پر شود و خالی نمایند متشکرم ازتون
+          {{ article.third_body }}
         </h3>
       </div>
     </div>
@@ -97,7 +64,11 @@
           <div
             class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-white relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-lg"
           >
-            <ArticleImage :articleId="article.ArticleImage" alt="" />
+            <ArticleImage
+              class="object-contain h-full"
+              :articleId="article.ArticleImage"
+              alt=""
+            />
           </div>
           <h2 class="text-2xl font-bold text-darkBlue leading-snug text-right">
             {{ article.title }}
@@ -177,13 +148,16 @@ const getArticleImage = async () => {
 };
 
 const articles = ref(false);
-const getArticles = async () => {
+const getLastFour = async () => {
   loading.value = true;
-  const { data } = await $fetch("https://auth.atlasacademy.ir/articles", {
-    headers: {},
-    withCredentials: true,
-    credentials: "include",
-  })
+  const { data } = await $fetch(
+    "https://auth.atlasacademy.ir/articles/fourarticle",
+    {
+      headers: {},
+      withCredentials: true,
+      credentials: "include",
+    }
+  )
     .then(function (response) {
       console.log(response.articles);
       articles.value = response.articles;
@@ -198,7 +172,7 @@ const getArticles = async () => {
 };
 
 onMounted(() => {
-  getArticles();
+  getLastFour();
 
   getArticle();
 });

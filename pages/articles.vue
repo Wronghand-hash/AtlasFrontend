@@ -19,7 +19,7 @@
         <div
           class="lg:w-1/2 w-full h-96 lg:h-full bg-white rounded-lg shadow-lg shadow-mainYellow"
         >
-          <img :src="latestArticleImage" alt="" />
+          <img class="w-full h-full" :src="latestArticleImage" alt="" />
         </div>
         <div
           class="lg:w-1/2 w-full h-96 lg:h-full flex flex-col items-end justify-center p-10 space-y-6"
@@ -102,25 +102,31 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { PhArticle } from "@phosphor-icons/vue";
+const { $gsap } = useNuxtApp();
+const TM = $gsap.timeline();
+
 const articles = ref([]);
 const loading = ref(false);
 const latestarticle = ref([]);
 
 const latestArticleImage = ref("");
 
-const getArticles = async () => {
+const getLastFour = async () => {
   loading.value = true;
-  const { data } = await $fetch("https://auth.atlasacademy.ir/articles", {
-    headers: {},
-    withCredentials: true,
-    credentials: "include",
-  })
+  const { data } = await $fetch(
+    "https://auth.atlasacademy.ir/articles/fourarticle",
+    {
+      headers: {},
+      withCredentials: true,
+      credentials: "include",
+    }
+  )
     .then(function (response) {
       console.log(response.articles);
       articles.value = response.articles;
       loading.value = false;
 
-      latestarticle.value = response.articles.slice(-1)[0];
+      latestarticle.value = response.articles[0];
 
       getArticleImage();
     })
@@ -150,6 +156,14 @@ const getArticleImage = async () => {
 };
 
 onMounted(() => {
-  getArticles();
+  TM.to(window, {
+    scrollTo: {
+      top: 0,
+    },
+    duration: 0.01,
+    ease: "easeInOutQuart",
+  });
+
+  getLastFour();
 });
 </script>

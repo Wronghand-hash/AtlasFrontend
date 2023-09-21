@@ -18,7 +18,13 @@
       >
         <div
           class="lg:w-1/2 w-full h-96 lg:h-full bg-white rounded-lg shadow-lg shadow-mainYellow"
-        ></div>
+        >
+          <video class="w-full h-full" controls>
+            <source
+              src="../assets/luffy_sing_a_new_song_at_wano_with_arrival_of_jimbei_GDgl4g1pM5o_133.mp4"
+            />
+          </video>
+        </div>
         <div
           class="lg:w-1/2 w-full h-96 lg:h-full flex flex-col items-end justify-center p-10 space-y-6"
         >
@@ -56,7 +62,14 @@
         </h2>
       </div>
       <div v-show="loading" class="flex justify-center align-center">
-        <ProgressSpinner></ProgressSpinner>
+        <div v-show="loading" class="flex justify-center align-center">
+          <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 place-items-center">
+            <Skeleton width="18rem" height="17rem"></Skeleton>
+            <Skeleton width="18rem" height="17rem"></Skeleton>
+            <Skeleton width="18rem" height="17rem"></Skeleton>
+            <Skeleton width="18rem" height="17rem"></Skeleton>
+          </div>
+        </div>
       </div>
       <div
         class="h-full lg:flex-row flex-col space-y-12 lg:space-y-0 space-x-0 w-full flex items-center justify-center lg:space-x-16"
@@ -96,13 +109,16 @@ import { PhVideo } from "@phosphor-icons/vue";
 const articles = ref([]);
 const loading = ref(false);
 
-const getArticles = async () => {
+const getLastFour = async () => {
   loading.value = true;
-  const { data } = await $fetch("http://localhost:3333/articles", {
-    headers: {},
-    withCredentials: true,
-    credentials: "include",
-  })
+  const { data } = await $fetch(
+    "https://auth.atlasacademy.ir/articles/fourarticle",
+    {
+      headers: {},
+      withCredentials: true,
+      credentials: "include",
+    }
+  )
     .then(function (response) {
       console.log(response.articles);
       articles.value = response.articles;
@@ -115,6 +131,6 @@ const getArticles = async () => {
 };
 
 onMounted(() => {
-  getArticles();
+  getLastFour();
 });
 </script>
