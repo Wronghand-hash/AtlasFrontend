@@ -8,55 +8,46 @@
       <div
         class="text-lg flex p-2 border-2 border-dashed cursor-pointer transition duration-200 ease-in hover:bg-mainRed hover:text-mainWhite border-mainRed rounded-md items-center text-red-500"
       >
-        <PhTrash
-          @click="removeArticleImage"
-          :size="20"
-          weight="fill"
-          class=""
-        />
+        <PhTrash @click="removeVIdeo()" :size="20" weight="fill" class="" />
       </div>
       <h2 class="text-lg">دوشنبه 19 تیر 1402</h2>
-      <h2 class="text-lg">{{ article.authur }}</h2>
+      <h2 class="text-lg">{{ video.description }}</h2>
 
-      <h2 class="text-sm">{{ article.title }}</h2>
+      <h2 class="text-sm">{{ video.title }}</h2>
     </div>
   </div>
 </template>
 
 <script setup>
-const props = defineProps(["article"]);
+const props = defineProps(["video"]);
 import { ref, onMounted } from "vue";
 import { PhTrash } from "@phosphor-icons/vue";
 import { useManagementStore } from "../stores/management";
 
 const managementStore = useManagementStore();
 
-const removeArticleImage = async function () {
-  if (props.article.ArticleImage.length) {
-    await $fetch(
-      `https://auth.atlasacademy.ir/management/articleimageremove/${props.article.ArticleImage[0].id}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }
-    )
-      .then((response, error) => {
-        alert("deleted image");
-        removeArticle();
-      })
-      .catch((error) => {
-        console.log(error.data);
-      });
-  } else {
-    removeArticle();
-  }
-};
+// const removeArticleImage = async function () {
+//   await $fetch(
+//     `http://localhost:3333/management/articleimageremove/${props.article.ArticleImage[0].id}`,
+//     {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/x-www-form-urlencoded",
+//       },
+//     }
+//   )
+//     .then((response, error) => {
+//       alert("deleted image");
+//       removeArticle();
+//     })
+//     .catch((error) => {
+//       console.log(error.data);
+//     });
+// };
 
-const removeArticle = async function () {
+const removeVIdeo = async function () {
   await $fetch(
-    `https://auth.atlasacademy.ir/management/articleremove/${props.article.id}`,
+    `https://auth.atlasacademy.ir/management/videoremove/${props.video.id}`,
     {
       method: "POST",
       headers: {
