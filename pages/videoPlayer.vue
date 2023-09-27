@@ -20,11 +20,21 @@
           class="lg:w-1/2 w-full h-96 lg:h-full bg-white rounded-lg shadow-lg shadow-mainYellow"
         >
           <video
+            v-show="!loading"
             type="video/mp4"
             class="w-full h-full"
             controls
             :src="latestVideoFile"
           ></video>
+
+          <ProgressSpinner
+            v-show="loading"
+            style="width: 50px; height: 50px"
+            strokeWidth="8"
+            fill="var(--surface-ground)"
+            animationDuration=".5s"
+            aria-label="Custom ProgressSpinner"
+          />
         </div>
         <div
           v-if="latestVideo"
@@ -38,7 +48,7 @@
           <h3 class="lg:text-lg text-md text-right">
             {{ latestVideo.description }}
           </h3>
-          <NuxtLink to="/videoDetail">
+          <NuxtLink :to="'videodetail/' + latestVideo.id">
             <button
               class="px-12 py-3 lg:my-0 text-xl font-bold border-2 items-center border-mainYellow active:bg-mainYellow active:text-white bg-mainYellow hover:bg-white hover:text-darkBlue shadow-md shadow-transparent hover:shadow-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-md"
             >
@@ -75,6 +85,12 @@
       <div
         class="h-full lg:flex-row flex-col space-y-12 lg:space-y-0 space-x-0 w-full flex items-center justify-center lg:space-x-16"
       >
+        <div
+          v-show="video.length === 0"
+          class="flex justify-center items-center"
+        >
+          <h2>ویدیو ای برای نمایش وجود ندارد</h2>
+        </div>
         <div
           v-for="video in videos"
           :key="video.id"

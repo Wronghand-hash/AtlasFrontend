@@ -1,6 +1,20 @@
 <template>
   <div class="flex justify-center align-center">
-    <video type="video/mp4" class="w-full h-full" controls :src="video"></video>
+    <video
+      v-show="!loading"
+      type="video/mp4"
+      class="w-full h-full"
+      controls
+      :src="video"
+    ></video>
+    <ProgressSpinner
+      v-show="loading"
+      style="width: 50px; height: 50px"
+      strokeWidth="8"
+      fill="var(--surface-ground)"
+      animationDuration=".5s"
+      aria-label="Custom ProgressSpinner"
+    />
   </div>
 </template>
 
@@ -27,11 +41,13 @@ const getVideo = async () => {
       const blob = new Blob([uint8Array], { type: "video/mp4" });
       video.value = URL.createObjectURL(blob);
       console.log(video.value);
+      loading.value = false;
     })
     .catch(function (error) {
       console.error(error);
       loading.value = false;
     });
+  loading.value = false;
 };
 onMounted(() => {
   getVideo();

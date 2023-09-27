@@ -105,7 +105,7 @@ const getVideo = async () => {
   console.log(router);
   loading.value = true;
   const { data } = await $fetch(
-    `https://auth.atlasacademy.ir/${router.params._id}`,
+    `https://auth.atlasacademy.ir/videos/${router.params._id}`,
     {
       headers: {},
       withCredentials: true,

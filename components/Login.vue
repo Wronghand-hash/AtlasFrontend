@@ -79,7 +79,6 @@
           <span class="text-2xl">ورود موفقیت آمیز بود</span>
         </Message>
         <div
-          v-if="!message"
           class="h-full lg:flex-row flex-col-reverse justify-center w-full flex items-center self-center lg:space-x-5"
         >
           <LazySignUp />
@@ -120,12 +119,18 @@ const loginPassword = ref(null);
 const loginUsername = ref("");
 
 async function testFunction() {
-  await $fetch("http://localhost:3333/test", {
+  await $fetch("https://auth.atlasacademy.ir/ischeck", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      credentials: "include",
     },
+    credentials: "include",
+    withCredentials: true,
+  }).then(function (response) {
+    console.log(response);
+    if (response.check) {
+      userStore.setManager();
+    }
   });
 }
 
@@ -150,6 +155,7 @@ async function formSubmit() {
       if (response) {
         userStore.setLogState();
         message.value = true;
+        testFunction();
       }
     })
     .catch((error) => {
