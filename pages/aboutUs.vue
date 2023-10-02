@@ -6,7 +6,7 @@
     >
       <img
         src="../assets/images/aboutUsBg.webp"
-        class="lg:h-dialog h-full shadow-lg shadow-mainBlue mt-5 object-contain"
+        class="lg:h-dialog h-full mt-5 object-contain"
         alt=""
       />
       <div class="h-full w-full pt-8 flex flex-col items-center justify-center">
@@ -24,7 +24,7 @@
             تاریخچه اصلس
           </h1>
           <div
-            class="w-full h-auto py-6 bg-white rounded-md text-right flex items-center justify-center p-4 text-2xl text-md shadow-sm shadow-mainYellow"
+            class="w-full h-auto py-6 bg-white rounded-md text-right flex items-center justify-center p-4 text-lg text-md shadow-sm shadow-mainYellow"
           >
             لوزم ایپسوم متنی است که اختراع شده تا جاهای خالی در طراحی گرافیک پر
             شود و خالی نمایند متشکرم ازتون لوزم ایپسوم متنی است که اختراع شده تا
