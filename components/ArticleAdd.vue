@@ -2,7 +2,7 @@
   <div>
     <div
       @click="visible = true"
-      class="w-64 rounded-md cursor-pointer transition text-mainWhite shadow-lg shadow-transparent hover:shadow-mainBlue duration-200 ease-in hover:bg-mainWhite hover:text-mainBlue h-28 bg-mainBlue flex items-center justify-center"
+      class="w-64 rounded-md cursor-pointer transition text-mainWhite shadow-lg shadow-transparent hover:shadow-mainBlue duration-200 ease-in hover:bg-mainWhite hover:text-mainBlue h-20 bg-mainBlue flex items-center justify-center"
     >
       <h2 class="text-2xl flex items-center space-x-3">
         <span> اضافه کردن مقاله </span>
@@ -247,6 +247,8 @@ const addArticle = async function () {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
+    credentials: "include",
+    withCredentials: true,
     body: data,
   })
     .then((response, error) => {
@@ -280,16 +282,14 @@ const uploadImage = async function (event) {
 
   formData.append("file", eventFile.value);
   formData.append("articleId", articleId.value);
-  console.log(eventFile.value);
-  console.log(articleId.value);
+
   await $fetch("https://auth.atlasacademy.ir/management/articleimage", {
     method: "POST",
-
+    credentials: "include",
+    withCredentials: true,
     body: formData,
   })
-    .then((response) => {
-      console.log(response);
-    })
+    .then((response) => {})
     .catch((error) => {
       imageUploadError.value = true;
       uploadErrorMessage.value = error.data.message;

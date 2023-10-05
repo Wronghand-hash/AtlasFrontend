@@ -2,7 +2,7 @@
   <div>
     <div
       @click="visible = true"
-      class="w-64 rounded-md cursor-pointer transition text-mainWhite shadow-lg shadow-transparent hover:shadow-mainBlue duration-200 ease-in hover:bg-mainWhite hover:text-mainBlue h-28 bg-mainBlue flex items-center justify-center"
+      class="w-64 rounded-md cursor-pointer transition text-mainWhite shadow-lg shadow-transparent hover:shadow-mainBlue duration-200 ease-in hover:bg-mainWhite hover:text-mainBlue h-20 bg-mainBlue flex items-center justify-center"
     >
       <h2 class="text-2xl flex items-center space-x-3">
         <span> مدیریت مقالات </span>
@@ -13,7 +13,7 @@
       :breakpoints="{ '960px': '75vh', '641px': '100vh' }"
       v-model:visible="visible"
       modal
-      :style="{ width: '70vw', backgroundColor: '#f9f5ff', height: '100vw' }"
+      :style="{ width: '70vw', backgroundColor: '#f9f5ff', height: 'auto' }"
       dismissableMask
       :contentStyle="{ backgroundColor: '#f9f5ff' }"
     >
@@ -26,15 +26,47 @@
           مدیریت مقالات
         </h2>
         <div
-          class="w-full h-full grid grid-rows-4 lg:grid-cols-4 place-items-end lg:place-items-center border-b pb-3 border-mainRed"
+          class="w-full h-full grid grid-cols-4 place-items-end lg:place-items-center border-b pb-3 border-mainBlue"
         >
-          <h2 class="text-darkBlue font-bold text-lg">تغییرات</h2>
-          <h2 class="text-darkBlue font-bold text-lg">تاریخ آپلود</h2>
-          <h2 class="text-darkBlue font-bold text-lg">نام نویسنده</h2>
-          <h2 class="text-darkBlue font-bold text-lg">عنوان مقاله</h2>
+          <h2 class="text-darkBlue font-bold text-xs lg:text-lg">تغییرات</h2>
+          <h2 class="text-darkBlue font-bold text-xs lg:text-lg">
+            تاریخ آپلود
+          </h2>
+          <h2 class="text-darkBlue font-bold text-xs lg:text-lg">
+            نام نویسنده
+          </h2>
+          <h2 class="text-darkBlue font-bold text-xs lg:text-lg">
+            عنوان مقاله
+          </h2>
         </div>
-        <div v-show="loading" class="flex justify-center align-center">
-          <ProgressSpinner></ProgressSpinner>
+        <div
+          v-if="loading"
+          class="w-full h-full flex flex-col items-center space-y-5"
+        >
+          <div
+            class="w-full h-full grid grid-cols-4 gap-7 place-items-center text-center text-darkBlue"
+          >
+            <Skeleton height="3rem" class="mb-2"></Skeleton>
+            <Skeleton height="3rem" class="mb-2"></Skeleton>
+            <Skeleton height="3rem" class="mb-2"></Skeleton>
+            <Skeleton height="3rem" class="mb-2"></Skeleton>
+          </div>
+          <div
+            class="w-full h-full grid grid-cols-4 gap-7 place-items-center text-center text-darkBlue"
+          >
+            <Skeleton height="3rem" class="mb-2"></Skeleton>
+            <Skeleton height="3rem" class="mb-2"></Skeleton>
+            <Skeleton height="3rem" class="mb-2"></Skeleton>
+            <Skeleton height="3rem" class="mb-2"></Skeleton>
+          </div>
+          <div
+            class="w-full h-full grid grid-cols-4 gap-7 place-items-center text-center text-darkBlue"
+          >
+            <Skeleton height="3rem" class="mb-2"></Skeleton>
+            <Skeleton height="3rem" class="mb-2"></Skeleton>
+            <Skeleton height="3rem" class="mb-2"></Skeleton>
+            <Skeleton height="3rem" class="mb-2"></Skeleton>
+          </div>
         </div>
         <LazyArticleAdmin
           v-for="article in articles"
@@ -66,6 +98,7 @@ watch(stateChange, (old, cur) => {
 
 const getArticles = async () => {
   loading.value = true;
+  managementStore.setLoading();
   const { data } = await $fetch("https://auth.atlasacademy.ir/articles", {
     headers: {},
     withCredentials: true,
@@ -76,6 +109,7 @@ const getArticles = async () => {
       articles.value = response.articles;
       loading.value = false;
       managementStore.setArticleLength(articles.value.length);
+      managementStore.falseLoading();
     })
     .catch(function (error) {
       console.error(error);
