@@ -89,7 +89,7 @@
           <div
             class="w-64 h-64 Card transition border-2 border-transparent ease-out duration-300 hover:border-mainBlue bg-white relative cursor-pointer shadow-lg flex items-center justify-center shadow-mainBlue rounded-lg"
           >
-            <VideoPlayerComponent :video="video"></VideoPlayerComponent>
+            <LazyVideoImage :videoImage="video.image_buffer" />
           </div>
           <h2
             v-show="video"
@@ -131,7 +131,7 @@ const getVideo = async () => {
   console.log(router);
   loading.value = true;
   const { data } = await $fetch(
-    `http://localhost:3333/videos/${router.params._id}`,
+    `https://auth.atlasacademy.ir/videos/${router.params._id}`,
     {
       headers: {},
       withCredentials: true,
@@ -141,7 +141,7 @@ const getVideo = async () => {
     .then(function (response) {
       video.value = response.video;
       loading.value = false;
-      const uint8Array = new Uint8Array(response.file.data);
+      const uint8Array = new Uint8Array(response.video.file.data);
       const blob = new Blob([uint8Array], { type: "video/mp4" });
       videoFile.value = URL.createObjectURL(blob);
       console.log(video.value);
@@ -181,7 +181,7 @@ const videos = ref();
 
 const getVideos = async () => {
   loading.value = true;
-  const { data } = await $fetch("http://localhost:3333/videos", {
+  const { data } = await $fetch("https://auth.atlasacademy.ir/videos", {
     headers: {},
     withCredentials: true,
     credentials: "include",

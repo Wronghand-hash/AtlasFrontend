@@ -151,7 +151,7 @@
           <div
             class="w-64 h-64 Card transition border border-transparent border-b-mainRed border-b-8 bg-white ease-in duration-100 hover:border-mainBlue relative cursor-pointer flex items-center justify-center shadow-transparent rounded-sm"
           >
-            <VideoPlayerComponent :video="video"></VideoPlayerComponent>
+            <LazyVideoImage :videoImage="video.image_buffer" />
           </div>
           <h2 class="text-2xl font-bold text-darkBlue leading-snug text-right">
             {{ video.title }}
@@ -180,24 +180,6 @@ const loading = ref(true);
 
 const video = ref("");
 const noVideo = ref(false);
-
-const getVideo = async () => {
-  const { data } = await $fetch("https://auth.atlasacademy.ir/videos/4", {
-    headers: {},
-    withCredentials: true,
-    credentials: "include",
-  })
-    .then(function (response) {
-      const uint8Array = new Uint8Array(response.file.data);
-      const blob = new Blob([uint8Array], { type: "video/mp4" });
-      video.value = URL.createObjectURL(blob);
-      console.log(video.value);
-    })
-    .catch(function (error) {
-      console.error(error);
-      getVideos();
-    });
-};
 
 const videos = ref();
 const latestVideo = ref();
@@ -228,6 +210,6 @@ const getVideos = async () => {
     });
 };
 onMounted(() => {
-  getVideo();
+  getVideos();
 });
 </script>
