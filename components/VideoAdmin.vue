@@ -64,6 +64,7 @@ const message = ref(false);
 // };
 
 const removeVIdeo = async function () {
+  loading.value = true;
   await $fetch(
     `https://auth.atlasacademy.ir/management/videoremove/${props.video.id}`,
     {
@@ -85,7 +86,9 @@ const removeVIdeo = async function () {
     })
     .catch((error) => {
       console.log(error.data);
+      loading.value = false;
     });
+  loading.value = false;
 };
 </script>
 
