@@ -210,7 +210,7 @@
 
         <h2
           v-if="!loading"
-          class="text-4xl pb-2 border-b-8 border-mainRed rounded-lg text-darkBlue font-bold flex items-center space-x-2"
+          class="text-lg lg:text-4xl pb-2 border-b-8 border-mainRed rounded-lg text-darkBlue font-bold flex items-center space-x-2"
         >
           <span>آخرین مقالات</span>
           <PhArticle />
@@ -344,5 +344,4 @@ import { ref } from "vue";
 // const resetAnimation = () => {
 //   TM.to(".Card", { y: 0, duration: 1 });
 // };
-
 </script>

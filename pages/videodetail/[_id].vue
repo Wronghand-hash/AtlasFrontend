@@ -145,6 +145,9 @@ const getVideo = async () => {
       const blob = new Blob([uint8Array], { type: "video/mp4" });
       videoFile.value = URL.createObjectURL(blob);
       console.log(video.value);
+      if (response.video) {
+        getArticleImage();
+      }
     })
     .catch(function (error) {
       console.error(error);
