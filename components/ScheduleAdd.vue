@@ -121,6 +121,8 @@ const addSchedule = async function () {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
+    credentials: "include",
+    withCredentials: true,
     body: data,
   })
     .then((response, error) => {
