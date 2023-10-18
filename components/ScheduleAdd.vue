@@ -161,7 +161,8 @@ const uploadImage = async function (event) {
   console.log(eventFile.value);
   await $fetch("https://auth.atlasacademy.ir/management/scheduleimage", {
     method: "POST",
-
+    credentials: "include",
+    withCredentials: true,
     body: formData,
   })
     .then((response) => {
