@@ -106,11 +106,14 @@ const videos = ref();
 const getVideos = async () => {
   managementStore.setLoading();
   loading.value = true;
-  const { data } = await $fetch("https://auth.atlasacademy.ir/videos", {
-    headers: {},
-    withCredentials: true,
-    credentials: "include",
-  })
+  const { data } = await $fetch(
+    "https://auth.atlasacademy.ir/management/videos",
+    {
+      headers: {},
+      withCredentials: true,
+      credentials: "include",
+    }
+  )
     .then(function (response) {
       console.log(response.videos);
       videos.value = response.videos;
