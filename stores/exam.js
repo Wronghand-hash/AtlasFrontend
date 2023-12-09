@@ -11,7 +11,7 @@ export const useExamStore = defineStore("exmaStore", {
       // const data = new URLSearchParams({
       //   torrenceResults: result,
       // });
-      // await $fetch("http://localhost:3333/user/submitresults", {
+      // await $fetch("https://auth.atlasacademy.ir/user/submitresults", {
       //   method: "POST",
       //   body: data,
       //   withCredentials: true,

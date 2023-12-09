@@ -2,9 +2,9 @@
   <div>
     <div
       @click="visible = true"
-      class="w-64 rounded-md cursor-pointer transition text-mainWhite shadow-lg shadow-transparent hover:shadow-mainBlue duration-200 ease-in hover:bg-mainWhite hover:text-mainBlue h-20 bg-mainBlue flex items-center justify-center"
+      class="w-64 rounded-md cursor-pointer transition text-mainWhite border-2 border-transparent hover:border-mainBlue duration-200 ease-in hover:bg-mainWhite hover:text-mainBlue h-14 bg-mainBlue flex items-center justify-center"
     >
-      <h2 class="text-2xl flex items-center space-x-3">
+      <h2 class="text-xl flex items-center space-x-3">
         <span> مدیریت ویدیوها </span>
         <PhArticle :size="25" weight="fill" />
       </h2>
@@ -106,14 +106,11 @@ const videos = ref();
 const getVideos = async () => {
   managementStore.setLoading();
   loading.value = true;
-  const { data } = await $fetch(
-    "https://auth.atlasacademy.ir/management/videos",
-    {
-      headers: {},
-      withCredentials: true,
-      credentials: "include",
-    }
-  )
+  const { data } = await $fetch("https://auth.atlasacademy.ir/management/videos", {
+    headers: {},
+    withCredentials: true,
+    credentials: "include",
+  })
     .then(function (response) {
       console.log(response.videos);
       videos.value = response.videos;

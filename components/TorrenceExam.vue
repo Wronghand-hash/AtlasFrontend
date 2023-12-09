@@ -486,7 +486,7 @@ const calculation = async (test) => {
     if (totalscore >= 100) {
       resultSentence.value = "فرزندتان بسیار خلاق است";
     } else if (totalscore >= 85 && totalscore < 100) {
-      resultSentence.value = "فرزندتان خیلی خلاق است";
+      resultSentence.value = "فرزندتان خلاق است";
     } else if (totalscore >= 75 && totalscore < 85) {
       resultSentence.value = "فرزندتان خلاقیتی متوسط دارد";
     } else if (totalscore >= 50 && totalscore < 75) {

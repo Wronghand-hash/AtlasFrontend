@@ -46,7 +46,7 @@ const loading = ref(false);
 const message = ref(false);
 // const removeArticleImage = async function () {
 //   await $fetch(
-//     `http://localhost:3333/management/articleimageremove/${props.article.ArticleImage[0].id}`,
+//     `https://auth.atlasacademy.ir/management/articleimageremove/${props.article.ArticleImage[0].id}`,
 //     {
 //       method: "POST",
 //       headers: {

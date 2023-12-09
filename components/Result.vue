@@ -52,20 +52,20 @@ import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 const torrenceResults = ref(null);
 const getTestResults = async () => {
-  const { data: me } = await $fetch(
-    "https://auth.atlasacademy.ir/user/myinfo",
-    {
-      headers: {},
-      withCredentials: true,
-      credentials: "include",
-    }
-  )
+  const { data: me } = await $fetch("https://auth.atlasacademy.ir/user/myinfo", {
+    headers: {},
+    withCredentials: true,
+    credentials: "include",
+  })
     .then(function (response) {
+      console.log("this is login response", response.TorrenceTestResult);
       torrenceResults.value = response.TorrenceTestResult;
     })
     .catch(function (error) {
       console.error(error);
     });
+
+  console.log(me);
 };
 
 onMounted(() => {

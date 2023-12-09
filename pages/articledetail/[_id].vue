@@ -206,14 +206,11 @@ const getArticleImage = async () => {
 const articles = ref(false);
 const getLastFour = async () => {
   loading.value = true;
-  const { data } = await $fetch(
-    "https://auth.atlasacademy.ir/articles/fourarticle",
-    {
-      headers: {},
-      withCredentials: true,
-      credentials: "include",
-    }
-  )
+  const { data } = await $fetch("https://auth.atlasacademy.ir/articles/fourarticle", {
+    headers: {},
+    withCredentials: true,
+    credentials: "include",
+  })
     .then(function (response) {
       console.log(response.articles);
       articles.value = response.articles;

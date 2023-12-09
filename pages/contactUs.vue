@@ -96,9 +96,9 @@ const scrollToExam = () => {
     ease: "power4.out",
   });
 };
-const { data: exam } = await useFetch("http://localhost:3333/exam/highschool");
+const { data: exam } = await useFetch("https://auth.atlasacademy.ir/exam/highschool");
 const clickTOGet = async () => {
-  const { data: me } = await $fetch("http://localhost:3333/user/me", {
+  const { data: me } = await $fetch("https://auth.atlasacademy.ir/user/me", {
     headers: {},
     withCredentials: true,
     credentials: "include",
@@ -117,7 +117,7 @@ const clickTOGet = async () => {
 const torrenceResults = ref(null);
 
 const getTestResults = async () => {
-  const { data: me } = await $fetch("http://localhost:3333/user/myinfo", {
+  const { data: me } = await $fetch("https://auth.atlasacademy.ir/user/myinfo", {
     headers: {},
     withCredentials: true,
     credentials: "include",
