@@ -9,6 +9,7 @@ module.exports = {
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
     "./app.vue",
+    "./node_modules/flowbite/**/*.{js,ts}",
   ],
   theme: {
     extend: {
@@ -58,8 +59,8 @@ module.exports = {
       // Build your palette here
       transparent: "transparent",
       current: "currentColor",
-      mainBlue: "#2667ff",
-      mainWhite: "#f7f7e1",
+      mainBlue: "#2B20A3",
+      mainWhite: "#FFFDF2",
       mainViolet: "#b5179e",
       mainRed: "#f72585",
       darkBlue: "#0e0e52",
@@ -89,5 +90,5 @@ module.exports = {
       Sky: colors.sky,
     },
   },
-  plugins: [],
+  plugins: [require("flowbite/plugin"), require("daisyui")],
 };
