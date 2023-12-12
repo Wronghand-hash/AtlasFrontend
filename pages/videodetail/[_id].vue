@@ -1,4 +1,9 @@
 <template>
+  <head>
+    <title>اطلس | {{ video.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
   <div class="w-screen h-full bg-mainWhite">
     <LazyNavbar />
     <div
@@ -16,6 +21,11 @@
         class="lg:text-5xl text-3xl font-bold text-darkBlue leading-snug text-center lg:text-right"
       >
         {{ video.title }}
+      </h2>
+      <h2
+        class="lg:text-md self-end text-md text-darkBlue leading-snug text-center lg:text-right"
+      >
+        تاریخ : 1402/05/29
       </h2>
       <div
         class="h-dialog w-full bg-white flex items-center justify-center my-10"

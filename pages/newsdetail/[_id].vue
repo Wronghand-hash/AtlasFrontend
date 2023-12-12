@@ -1,4 +1,9 @@
 <template>
+  <head>
+    <title>اطلس | {{ news.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
   <div class="w-screen h-full bg-mainWhite">
     <LazyNavbar />
     <div
@@ -26,6 +31,11 @@
         class="lg:text-5xl text-4xl rounded-md border-b-8 border-mainYellow p-4 font-bold text-darkBlue leading-snug text-center lg:text-right"
       >
         {{ news.title }}
+      </h2>
+      <h2
+        class="lg:text-md self-end text-md text-darkBlue leading-snug text-center lg:text-right"
+      >
+        تاریخ : 1402/05/29
       </h2>
       <div
         class="lg:h-dialog h-96 w-full bg-white flex items-center justify-center lg:my-10"

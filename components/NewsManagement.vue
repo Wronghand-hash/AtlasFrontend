@@ -95,7 +95,7 @@ watch(stateChange, (old, cur) => {
 const getNews = async () => {
   loading.value = true;
   managementStore.setLoading();
-  const { data } = await $fetch("https://auth.atlasacademy.ir/news", {
+  const { data } = await $fetch("https://auth.atlasacademy.ir/management/news", {
     headers: {},
     withCredentials: true,
     credentials: "include",
