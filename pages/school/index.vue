@@ -782,9 +782,7 @@ import { ref } from "vue";
 //   TM.to(".Card", { y: 0, duration: 1 });
 // };
 
-const { data: exam } = await useFetch(
-  "https://auth.atlasacademy.ir/exam/highschool"
-);
+const { data: exam } = await useFetch("https://auth.atlasacademy.ir/exam/highschool");
 console.log(exam);
 </script>
 <style>

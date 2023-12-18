@@ -19,28 +19,32 @@
       <div
         class="w-full h-full lg:absolute flex lg:flex-row flex-col items-center lg:items-end pb-14 justify-center lg:space-y-0 space-y-6 lg:space-x-10"
       >
-        <div
-          class="h-32 w-96 flex space-x-3 items-center justify-center p-5 cursor-pointer border-b-8 border-transparent hover:border-mainBlue transition rounded-md bg-mainBlue ease-linear duration-150 hover:bg-mainWhite text-mainWhite hover:text-mainBlue"
-        >
-          <div class="flex items-center justify-center space-x-3">
-            <div class="flex flex-col items-end justify-center space-y-1">
-              <h2 class="text-xl font-bold">موسسه زبان اطلس</h2>
-              <h2 class="text-lg">مجتمع فرهنگی و آموزشی</h2>
+        <NuxtLink class="z-30" to="/">
+          <div
+            class="h-32 w-96 flex space-x-3 items-center justify-center p-5 cursor-pointer border-b-8 border-transparent hover:border-mainBlue transition rounded-md bg-mainBlue ease-linear duration-150 hover:bg-mainWhite text-mainWhite hover:text-mainBlue"
+          >
+            <div class="flex items-center justify-center space-x-3">
+              <div class="flex flex-col items-end justify-center space-y-1">
+                <h2 class="text-xl font-bold">موسسه زبان اطلس</h2>
+                <h2 class="text-lg">مجتمع فرهنگی و آموزشی</h2>
+              </div>
             </div>
+            <PhBooks size="73" class=" " weight="thin" />
           </div>
-          <PhBooks size="73" class=" " weight="thin" />
-        </div>
-        <div
-          class="h-32 w-96 flex space-x-3 items-center justify-center p-5 cursor-pointer border-b-8 border-transparent hover:border-mainBlue transition rounded-md bg-mainBlue ease-linear duration-150 hover:bg-mainWhite text-mainWhite hover:text-mainBlue"
-        >
-          <div class="flex items-center justify-center space-x-3">
-            <div class="flex flex-col items-end justify-center space-y-1">
-              <h2 class="text-xl font-bold">دبستان دخترانه اطلس</h2>
-              <h2 class="text-lg">دبستان و پیش دبستان</h2>
+        </NuxtLink>
+        <NuxtLink class="z-30" to="/school">
+          <div
+            class="h-32 w-96 flex space-x-3 items-center justify-center p-5 cursor-pointer border-b-8 border-transparent hover:border-mainBlue transition rounded-md bg-mainBlue ease-linear duration-150 hover:bg-mainWhite text-mainWhite hover:text-mainBlue"
+          >
+            <div class="flex items-center justify-center space-x-3">
+              <div class="flex flex-col items-end justify-center space-y-1">
+                <h2 class="text-xl font-bold">دبستان دخترانه اطلس</h2>
+                <h2 class="text-lg">دبستان و پیش دبستان</h2>
+              </div>
             </div>
+            <PhBackpack size="73" class=" " weight="thin" />
           </div>
-          <PhBackpack size="73" class=" " weight="thin" />
-        </div>
+        </NuxtLink>
       </div>
     </div>
 
@@ -166,10 +170,11 @@
         برترین های منظومه ی آموزشی و فرهنگی اطلس
       </h1>
       <div
+        dir="rtl"
         class="h-full w-auto gap-10 grid grid-cols-1 lg:grid-cols-3 place-items-center content-center"
       >
         <div
-          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-dashed border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
         >
           <div class="flex flex-col items-end justify-center">
             <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
@@ -182,7 +187,7 @@
           />
         </div>
         <div
-          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-dashed border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
         >
           <div class="flex flex-col items-end justify-center">
             <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
@@ -195,7 +200,7 @@
           />
         </div>
         <div
-          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-dashed border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
         >
           <div class="flex flex-col items-end justify-center">
             <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
@@ -208,7 +213,7 @@
           />
         </div>
         <div
-          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-dashed border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
         >
           <div class="flex flex-col items-end justify-center">
             <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
@@ -539,9 +544,9 @@
       alt=""
     />
     <div
-      class="w-full mb-20 h-auto lg:h-screen flex lg:flex-row flex-col-reverse items-center justify-around lg:px-52 space-x-10 lg:py-14"
+      class="w-full mb-20 h-auto lg:h-screen flex lg:flex-row flex-col-reverse items-center px-7 justify-around lg:px-52 lg:space-x-10 lg:py-14"
     >
-      <div class="w-1/2 flex flex-col items-end space-y-4 h-full">
+      <div class="lg:w-1/2 w-full flex flex-col items-end space-y-4 h-full">
         <h2
           class="lg:text-lg p-2 text-2xl text-mainWhite border-r-8 bg-mainBlue bg-opacity-40 border-mainBlue pb-1 rounded-md text-center"
         >
@@ -569,7 +574,9 @@
           </button>
         </NuxtLink>
       </div>
-      <div class="w-1/2 flex items-center justify-center h-dialog py-10">
+      <div
+        class="lg:w-1/2 w-full flex items-center justify-center h-dialog py-10"
+      >
         <img
           src="../assets/images/mainPageContact.webp"
           class="h-full object-contain"
@@ -783,6 +790,9 @@ console.log(exam);
 <style>
 .p-timeline .p-timeline-event-marker {
   background-color: blue;
+}
+.p-timeline-event-opposite {
+  display: none;
 }
 .p-accordion
   .p-accordion-header

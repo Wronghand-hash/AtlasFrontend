@@ -1,6 +1,6 @@
 <template>
   <head>
-    <title v-if="!loading">اطلس | {{ video.title }}</title>
+    <title>اطلس | {{ video.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" />
   </head>
@@ -166,7 +166,7 @@ const videos = ref();
 
 const getVideos = async () => {
   loading.value = true;
-  const { data } = await $fetch("https://auth.atlasacademy.ir/videos/videos", {
+  const { data } = await $fetch("https://auth.atlasacademy.ir/videos", {
     headers: {},
     withCredentials: true,
     credentials: "include",
