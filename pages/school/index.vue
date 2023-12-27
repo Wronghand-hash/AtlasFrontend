@@ -22,7 +22,7 @@
     >
       <LazyMainPageCarousel />
       <div
-        class="w-full h-full lg:absolute flex lg:flex-row flex-col items-center lg:items-end pb-14 justify-center lg:space-y-0 space-y-6 lg:space-x-10"
+        class="w-full z-30 h-full lg:absolute flex lg:flex-row flex-col items-center lg:items-end pb-14 justify-center lg:space-y-0 space-y-6 lg:space-x-10"
       >
         <div
           class="h-32 w-96 flex space-x-3 items-center justify-center p-5 cursor-pointer border-b-8 border-transparent hover:border-mainBlue transition rounded-md bg-mainBlue ease-linear duration-150 hover:bg-mainWhite text-mainWhite hover:text-mainBlue"
@@ -98,71 +98,90 @@
       </div>
     </div>
     <div
-      class="grid lg:grid-cols-4 grid-cols-1 place-items-center gap-2 trigger my-24 w-auto lg:px-48 content-center h-screen lg:h-52"
+      class="flex items-center justify-center my-24 w-full bg-darkBlue lg:px-48 content-center h-screen lg:h-52"
     >
-      <div
-        class="lg:w-72 w-full h-40 lg:h-44 flex flex-col items-center space-y-3 justify-center Groups"
+      <button
+        class="px-3 py-1 items-center text-md active:bg-mainBlue active:text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
       >
-        <div class="flex items-center justify-center space-x-4">
-          <h2 class="font-bold text-6xl counts text-mainBlue">1532</h2>
-          <div
-            class="bg-mainBlue bg-opacity-10 rounded-3xl flex items-center justify-center p-3"
-          >
-            <PhStudent size="46" class="text-mainBlue" weight="light" />
-          </div>
-        </div>
-        <h2 class="text-lg text-mainBlue">دانش آموخته برتر</h2>
-      </div>
-      <div
-        class="lg:w-72 w-full h-40 lg:h-44 flex flex-col items-center space-y-3 justify-center Groups"
+        <PhCaretLeft :size="60" weight="fill" class="text-mainRed" />
+      </button>
+      <SchoolCarousel />
+      <button
+        class="px-3 py-1 items-center text-md active:bg-mainBlue active:text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
       >
-        <div class="flex items-center justify-center space-x-4">
-          <h2
-            data-number="1008.92"
-            class="font-bold counts text-6xl text-mainBlue"
-          >
-            433
-          </h2>
-          <div
-            class="bg-green-400 bg-opacity-10 rounded-3xl flex items-center justify-center p-3"
-          >
-            <PhIdentificationCard
-              size="46"
-              class="text-green-400"
-              weight="light"
-            />
-          </div>
-        </div>
-        <h2 class="text-lg text-mainBlue">دانش آموخته برتر</h2>
-      </div>
-      <div
-        class="lg:w-72 w-full h-40 lg:h-44 flex flex-col items-center space-y-3 justify-center Groups"
-      >
-        <div class="flex items-center justify-center space-x-4">
-          <h2 class="font-bold text-6xl counts text-mainBlue">212</h2>
-          <div
-            class="bg-mainRed bg-opacity-10 rounded-3xl flex items-center justify-center p-3"
-          >
-            <PhExam size="46" class="text-mainRed" weight="light" />
-          </div>
-        </div>
-        <h2 class="text-lg text-mainBlue">دانش آموخته برتر</h2>
-      </div>
-      <div
-        class="lg:w-72 w-full h-40 lg:h-44 flex flex-col items-center space-y-3 justify-center Groups"
-      >
-        <div class="flex items-center justify-center space-x-4">
-          <h2 class="font-bold text-6xl text-mainBlue counts">21</h2>
-          <div
-            class="bg-mainOrange bg-opacity-10 rounded-3xl flex items-center justify-center p-3"
-          >
-            <PhMedalMilitary size="46" class="text-mainOrange" weight="light" />
-          </div>
-        </div>
-        <h2 class="text-lg text-mainBlue">دانش آموخته برتر</h2>
-      </div>
+        <PhCaretRight :size="60" weight="fill" class="text-mainRed" />
+      </button>
     </div>
     <div
+      class="w-screen h-full space-y-10 lg:space-y-6 flex flex-col items-center justify-around p-10 lg:p-20"
+    >
+      <h1
+        class="lg:text-2xl thirdTrig text-2xl text-darkBlue border-b-8 border-mainYellow pb-1 rounded-md text-center"
+      >
+        اخبار دبستان اطلس
+      </h1>
+      <div
+        class="h-full w-full grid place-items-center mt-12 lg-mt-0 lg:grid-cols-3 grid-cols-1 gap-8"
+      >
+        <NuxtLink class="third" to="/articles">
+          <div
+            class="w-96 h-64 Card transition border-4 hover:border-mainRed border-dashed ease-out duration-300 border-mainBlue bg-mainWhite relative cursor-pointer flex items-center justify-center rounded-md p-6"
+          >
+            <img
+              src="@/assets/images/Grades.webp"
+              class="w-52 object-contain opacity-100 backdrop-blur-3xl"
+              alt=""
+            />
+            <div
+              class="absolute w-44 rounded-md flex items-center justify-center bottom-0 h-10 top-56 Blue bg-mainBlue"
+            >
+              <h2 class="text-md text-mainWhite">جشن قرآن پایه پنجم</h2>
+            </div>
+          </div>
+        </NuxtLink>
+        <NuxtLink class="third" to="/articles">
+          <div
+            class="w-96 h-64 Card transition border-4 hover:border-mainRed border-dashed ease-out duration-300 border-mainBlue bg-mainWhite relative cursor-pointer flex items-center justify-center rounded-md p-6"
+          >
+            <img
+              src="@/assets/images/Grades.webp"
+              class="w-52 bgmain object-contain opacity-100 backdrop-blur-3xl"
+              alt=""
+            />
+            <div
+              class="absolute w-44 rounded-md flex items-center justify-center bottom-0 h-10 top-56 Blue bg-mainBlue"
+            >
+              <h2 class="text-md text-mainWhite">جشن قرآن پایه پنجم</h2>
+            </div>
+          </div>
+        </NuxtLink>
+        <NuxtLink class="third" to="/articles">
+          <div
+            class="w-96 h-64 Card transition border-4 hover:border-mainRed border-dashed ease-out duration-300 border-mainBlue bg-mainWhite relative cursor-pointer flex items-center justify-center rounded-md p-6"
+          >
+            <img
+              src="@/assets/images/Grades.webp"
+              class="w-52 object-contain opacity-100 backdrop-blur-3xl"
+              alt=""
+            />
+            <div
+              class="absolute w-44 rounded-md flex items-center justify-center bottom-0 h-10 top-56 Blue bg-mainBlue"
+            >
+              <h2 class="text-md text-mainWhite">جشن قرآن پایه پنجم</h2>
+            </div>
+          </div>
+        </NuxtLink>
+      </div>
+      <NuxtLink to="/news">
+        <button
+          class="px-5 py-2 lg:my-10 text-md items-center border-mainYellow text-md active:bg-mainYellow active:text-white bg-mainYellow hover:bg-mainBlue hover:text-mainYellow text-darkBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
+        >
+          <span>مشاهده اخبار بیشتر</span>
+          <PhArticle :size="20" weight="fill" />
+        </button>
+      </NuxtLink>
+    </div>
+    <!-- <div
       class="w-screen h-full space-y-10 lg:space-y-6 flex flex-col items-center justify-around p-10 lg:p-20"
     >
       <h1
@@ -171,63 +190,93 @@
         برترین های منظومه ی آموزشی و فرهنگی اطلس
       </h1>
       <div
-        class="h-full w-auto gap-10 grid grid-cols-1 lg:grid-cols-3 place-items-center content-center"
+        class="w-screen h-full bg-darkBlue flex items-center justify-center py-10 px-44"
       >
         <div
-          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-dashed border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          class="h-full w-auto gap-10 grid grid-cols-1 lg:grid-cols-3 place-items-center content-center"
         >
-          <div class="flex flex-col items-end justify-center">
-            <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-            <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+          <div
+            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
+              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+            </div>
+            <img
+              src="../../assets/images/Grad.webp"
+              class="w-20 object-contain"
+              alt=""
+            />
           </div>
-          <img
-            src="../../assets/images/Grad.webp"
-            class="w-20 object-contain"
-            alt=""
-          />
-        </div>
-        <div
-          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-dashed border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-        >
-          <div class="flex flex-col items-end justify-center">
-            <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-            <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+          <div
+            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
+              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+            </div>
+            <img
+              src="../../assets/images/Grad.webp"
+              class="w-20 object-contain"
+              alt=""
+            />
           </div>
-          <img
-            src="../../assets/images/Grad.webp"
-            class="w-20 object-contain"
-            alt=""
-          />
-        </div>
-        <div
-          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-dashed border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-        >
-          <div class="flex flex-col items-end justify-center">
-            <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-            <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+          <div
+            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
+              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+            </div>
+            <img
+              src="../../assets/images/Grad.webp"
+              class="w-20 object-contain"
+              alt=""
+            />
           </div>
-          <img
-            src="../../assets/images/Grad.webp"
-            class="w-20 object-contain"
-            alt=""
-          />
-        </div>
-        <div
-          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-dashed border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-        >
-          <div class="flex flex-col items-end justify-center">
-            <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-            <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+          <div
+            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
+              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+            </div>
+            <img
+              src="../../assets/images/Grad.webp"
+              class="w-20 object-contain"
+              alt=""
+            />
           </div>
-          <img
-            src="../../assets/images/Grad.webp"
-            class="w-20 object-contain"
-            alt=""
-          />
+          <div
+            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
+              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+            </div>
+            <img
+              src="../../assets/images/Grad.webp"
+              class="w-20 object-contain"
+              alt=""
+            />
+          </div>
+          <div
+            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
+              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+            </div>
+            <img
+              src="../../assets/images/Grad.webp"
+              class="w-20 object-contain"
+              alt=""
+            />
+          </div>
         </div>
       </div>
-    </div>
-    <div
+    </div> -->
+    <!-- <div
       class="w-screen h-full space-y-10 lg:space-y-6 flex flex-col items-center justify-around p-10 lg:p-20"
     >
       <h1
@@ -306,8 +355,8 @@
           </div>
         </NuxtLink>
       </div>
-    </div>
-    <div
+    </div> -->
+    <!-- <div
       class="h-auto lg:my-10 w-full flex items-center flex-col justify-start space-y-4 px-14 lg:px-40 py-20"
     >
       <h2
@@ -368,7 +417,7 @@
           <span> عقد قرارداد و استخدام </span> <span>.8</span>
         </h2>
       </div>
-    </div>
+    </div> -->
     <div
       class="w-screen h-full space-y-10 lg:space-y-6 flex flex-col items-center justify-around p-10 lg:p-20"
     >
@@ -454,7 +503,7 @@
       class="w-full h-full lg:mb-12 mb-12 lg:h-full mt-5 mb px-14 lg:px-44 flex flex-col items-center justify-start space-y-10"
     >
       <div
-        class="w-screen flex bg-mainRed lg:px-60 p-6 rounded-md items-center lg:flex-row flex-col-reverse justify-end"
+        class="w-screen flex bg-mainBlue lg:px-60 p-6 rounded-md items-center lg:flex-row flex-col-reverse justify-end"
       >
         <Skeleton
           v-if="loading"
@@ -465,7 +514,7 @@
 
         <h2
           v-if="!loading"
-          class="text-lg lg:text-2xl bg-mainRed rounded-lg text-darkBlue flex items-center space-x-2"
+          class="text-lg lg:text-2xl bg-mainBlue rounded-lg text-darkBlue flex items-center space-x-2"
         >
           <span>آخرین مقالات</span>
           <PhArticle />
@@ -595,6 +644,8 @@ import {
   PhTranslate,
   PhBooks,
   PhBackpack,
+  PhCaretRight,
+  PhCaretLeft,
 } from "@phosphor-icons/vue";
 const { $gsap } = useNuxtApp();
 const TM = $gsap.timeline();
@@ -757,20 +808,7 @@ onMounted(() => {
     ease: "easeInOutQuart",
   });
 });
-useHead({
-  title: "  منظومه آموزشی و فرهنگی اطلس  ",
-  meta: [
-    {
-      name: "منظومه آموزشی و فرهنگی اطلس در ارومیه، رسالت ما آموزش مهارت های ضروری، علوم و دانش های روز به فرزندان شماست",
-      content:
-        "منظومه آموزشی و فرهنگی اطلس در ارومیه، رسالت ما آموزش مهارت های ضروری، علوم و دانش های روز به فرزندان شماست",
-    },
-  ],
-  bodyAttrs: {
-    class: "test",
-  },
-  script: [{ innerHTML: "console.log('Hello world')" }],
-});
+
 import { PhArticle } from "@phosphor-icons/vue";
 import { ref } from "vue";
 // const { $gsap } = useNuxtApp();
@@ -786,6 +824,9 @@ const { data: exam } = await useFetch("https://auth.atlasacademy.ir/exam/highsch
 console.log(exam);
 </script>
 <style>
+.p-timeline-event-opposite {
+  display: none;
+}
 .p-timeline .p-timeline-event-marker {
   background-color: blue;
 }

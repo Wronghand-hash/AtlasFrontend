@@ -8,7 +8,7 @@
     <LazyNavbar />
     <div class="w-screen h-auto flex flex-col items-center px-5 lg:px-60 pt-12">
       <div
-        class="h-auto w-full bg-mainRed bg-opacity-80 text-mainYellow p-5 rounded-md flex lg:flex-row flex-col-reverse items-center justify-center space-x-0 lg:space-y-0 lg:space-x-4"
+        class="h-auto w-full bg-mainBlue text-mainYellow p-5 rounded-md flex lg:flex-row flex-col-reverse items-center justify-center space-x-0 lg:space-y-0 lg:space-x-4"
       >
         <h2
           class="text-5xl lg:my-0 my-5 font-bold border-b-8 rounded-lg pb-2 border-darkBlue"
@@ -23,8 +23,7 @@
         <div
           class="h-full w-full grid place-items-center mt-12 lg-mt-0 lg:grid-cols-3 grid-cols-1 gap-8"
         >
-          <LazyBookCard /> <LazyBookCard />
-          <LazyBookCard />
+          <LazyBookCard v-for="book in books" :key="book.id" :book="book" />
         </div>
 
         <div
@@ -60,9 +59,34 @@ import { PhArticle, PhBook } from "@phosphor-icons/vue";
 const { $gsap } = useNuxtApp();
 const TM = $gsap.timeline();
 
+const books = ref([]);
+const latestBook = ref();
+
+const getBooks = async () => {
+  loading.value = true;
+  const { data } = await $fetch("https://auth.atlasacademy.ir/books/", {
+    headers: {},
+    withCredentials: true,
+    credentials: "include",
+  })
+    .then(function (response) {
+      console.log(response);
+      books.value = response.books;
+
+      latestBook.value = response.books[0];
+
+      getArticleImage();
+      loading.value = false;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+
 const loading = ref(true);
 
 onMounted(() => {
+  getBooks();
   TM.to(window, {
     scrollTo: {
       top: 0,

@@ -17,34 +17,30 @@
     >
       <LazyMainPageCarousel />
       <div
-        class="w-full h-full lg:absolute flex lg:flex-row flex-col items-center lg:items-end pb-14 justify-center lg:space-y-0 space-y-6 lg:space-x-10"
+        class="w-full h-full z-30 lg:absolute flex lg:flex-row flex-col items-center lg:items-end pb-14 justify-center lg:space-y-0 space-y-6 lg:space-x-10"
       >
-        <NuxtLink class="z-30" to="/">
-          <div
-            class="h-32 w-96 flex space-x-3 items-center justify-center p-5 cursor-pointer border-b-8 border-transparent hover:border-mainBlue transition rounded-md bg-mainBlue ease-linear duration-150 hover:bg-mainWhite text-mainWhite hover:text-mainBlue"
-          >
-            <div class="flex items-center justify-center space-x-3">
-              <div class="flex flex-col items-end justify-center space-y-1">
-                <h2 class="text-xl font-bold">موسسه زبان اطلس</h2>
-                <h2 class="text-lg">مجتمع فرهنگی و آموزشی</h2>
-              </div>
+        <div
+          class="h-32 w-96 flex space-x-3 items-center justify-center p-5 cursor-pointer border-b-8 border-transparent hover:border-mainBlue transition rounded-md bg-mainBlue ease-linear duration-150 hover:bg-mainWhite text-mainWhite hover:text-mainBlue"
+        >
+          <div class="flex items-center justify-center space-x-3">
+            <div class="flex flex-col items-end justify-center space-y-1">
+              <h2 class="text-xl font-bold">موسسه زبان اطلس</h2>
+              <h2 class="text-lg">مجتمع فرهنگی و آموزشی</h2>
             </div>
-            <PhBooks size="73" class=" " weight="thin" />
           </div>
-        </NuxtLink>
-        <NuxtLink class="z-30" to="/school">
-          <div
-            class="h-32 w-96 flex space-x-3 items-center justify-center p-5 cursor-pointer border-b-8 border-transparent hover:border-mainBlue transition rounded-md bg-mainBlue ease-linear duration-150 hover:bg-mainWhite text-mainWhite hover:text-mainBlue"
-          >
-            <div class="flex items-center justify-center space-x-3">
-              <div class="flex flex-col items-end justify-center space-y-1">
-                <h2 class="text-xl font-bold">دبستان دخترانه اطلس</h2>
-                <h2 class="text-lg">دبستان و پیش دبستان</h2>
-              </div>
+          <PhBooks size="73" class=" " weight="thin" />
+        </div>
+        <div
+          class="h-32 w-96 flex space-x-3 items-center justify-center p-5 cursor-pointer border-b-8 border-transparent hover:border-mainBlue transition rounded-md bg-mainBlue ease-linear duration-150 hover:bg-mainWhite text-mainWhite hover:text-mainBlue"
+        >
+          <div class="flex items-center justify-center space-x-3">
+            <div class="flex flex-col items-end justify-center space-y-1">
+              <h2 class="text-xl font-bold">دبستان دخترانه اطلس</h2>
+              <h2 class="text-lg">دبستان و پیش دبستان</h2>
             </div>
-            <PhBackpack size="73" class=" " weight="thin" />
           </div>
-        </NuxtLink>
+          <PhBackpack size="73" class=" " weight="thin" />
+        </div>
       </div>
     </div>
 
@@ -170,60 +166,89 @@
         برترین های منظومه ی آموزشی و فرهنگی اطلس
       </h1>
       <div
-        dir="rtl"
-        class="h-full w-auto gap-10 grid grid-cols-1 lg:grid-cols-3 place-items-center content-center"
+        class="w-screen h-full bg-darkBlue flex items-center justify-center py-10 px-44"
       >
         <div
-          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          class="h-full w-auto gap-10 grid grid-cols-1 lg:grid-cols-3 place-items-center content-center"
         >
-          <div class="flex flex-col items-end justify-center">
-            <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-            <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+          <div
+            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
+              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+            </div>
+            <img
+              src="../assets/images/Grad.webp"
+              class="w-20 object-contain"
+              alt=""
+            />
           </div>
-          <img
-            src="../assets/images/Grad.webp"
-            class="w-20 object-contain"
-            alt=""
-          />
-        </div>
-        <div
-          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-        >
-          <div class="flex flex-col items-end justify-center">
-            <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-            <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+          <div
+            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
+              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+            </div>
+            <img
+              src="../assets/images/Grad.webp"
+              class="w-20 object-contain"
+              alt=""
+            />
           </div>
-          <img
-            src="../assets/images/Grad.webp"
-            class="w-20 object-contain"
-            alt=""
-          />
-        </div>
-        <div
-          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-        >
-          <div class="flex flex-col items-end justify-center">
-            <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-            <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+          <div
+            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
+              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+            </div>
+            <img
+              src="../assets/images/Grad.webp"
+              class="w-20 object-contain"
+              alt=""
+            />
           </div>
-          <img
-            src="../assets/images/Grad.webp"
-            class="w-20 object-contain"
-            alt=""
-          />
-        </div>
-        <div
-          class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-        >
-          <div class="flex flex-col items-end justify-center">
-            <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-            <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+          <div
+            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
+              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+            </div>
+            <img
+              src="../assets/images/Grad.webp"
+              class="w-20 object-contain"
+              alt=""
+            />
           </div>
-          <img
-            src="../assets/images/Grad.webp"
-            class="w-20 object-contain"
-            alt=""
-          />
+          <div
+            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
+              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+            </div>
+            <img
+              src="../assets/images/Grad.webp"
+              class="w-20 object-contain"
+              alt=""
+            />
+          </div>
+          <div
+            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
+              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+            </div>
+            <img
+              src="../assets/images/Grad.webp"
+              class="w-20 object-contain"
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -308,33 +333,35 @@
       </div>
     </div>
     <div
-      class="h-auto lg:my-10 w-full flex items-center flex-col justify-start space-y-4 px-14 lg:px-40 py-20"
+      class="h-auto lg:my-10 w-full space-y-24 flex items-center flex-col justify-start px-14 lg:px-40 py-20"
     >
-      <h2
-        class="lg:text-2xl text-2xl mb-5 rounded-lg text-center border-b-8 border-mainYellow pb-4 text-darkBlue"
-      >
-        رسالت ما آموزش مهارت های ضروری، علوم و دانش های روز به فرزندان شماست
-      </h2>
-      <h2 class="lg:text-2xl text-2xl text-darkBlue text-right lg:self-end">
-        درباره ی منظومه آموزشی و فرهنگی اطلس
-      </h2>
-      <h2 class="text-lg text-right self-end text-gray-500">
-        اطلس را تاسیس کردیم تا محیطی آموزشی و پرورشی سالم، شاد، صمیمی و خلاق
-        ایجاد کنیم
-      </h2>
-      <h2 class="lg:text-2xl text-2xl text-darkBlue text-right lg:self-end">
-        فرزندانی خلاق، پویا، شریف، مسئولیت پذیر و توانمند
-      </h2>
-      <h2 class="text-lg text-right self-end text-gray-500">
-        میخواهیم فرزندانمان را با مهارت های کاربری و اساسی برای داشتن زندگی
-        اجتماعی موفق و آینده ی مالی و تحصیلی شایسته پرورش دهیم
-      </h2>
-      <h2 class="lg:text-2xl text-2xl text-darkBlue text-right self-end">
-        مدرسان اطلس
-      </h2>
-      <h2 class="text-lg text-right self-end text-gray-500">
-        جوان، پرانرژی، خلاق و مجرب
-      </h2>
+      <div class="items-center flex-col justify-start w-full space-y-4">
+        <h2
+          class="lg:text-2xl text-2xl rounded-md mb-11 text-center border-b-8 border-mainYellow pb-2 text-darkBlue"
+        >
+          رسالت ما آموزش مهارت های ضروری، علوم و دانش های روز به فرزندان شماست
+        </h2>
+        <h2 class="lg:text-2xl text-2xl text-darkBlue text-right lg:self-end">
+          درباره ی منظومه آموزشی و فرهنگی اطلس
+        </h2>
+        <h2 class="text-lg text-right self-end text-gray-500">
+          اطلس را تاسیس کردیم تا محیطی آموزشی و پرورشی سالم، شاد، صمیمی و خلاق
+          ایجاد کنیم
+        </h2>
+        <h2 class="lg:text-2xl text-2xl text-darkBlue text-right lg:self-end">
+          فرزندانی خلاق، پویا، شریف، مسئولیت پذیر و توانمند
+        </h2>
+        <h2 class="text-lg text-right self-end text-gray-500">
+          میخواهیم فرزندانمان را با مهارت های کاربری و اساسی برای داشتن زندگی
+          اجتماعی موفق و آینده ی مالی و تحصیلی شایسته پرورش دهیم
+        </h2>
+        <h2 class="lg:text-2xl text-2xl text-darkBlue text-right self-end">
+          مدرسان اطلس
+        </h2>
+        <h2 class="text-lg text-right self-end text-gray-500">
+          جوان، پرانرژی، خلاق و مجرب
+        </h2>
+      </div>
       <div class="flex flex-col self-end justify-end space-y-4 text-gray-500">
         <h2
           class="lg:text-2xl text-2xl text-darkBlue lg:text-right text-right lg:self-end"
@@ -454,7 +481,7 @@
       class="w-full h-full lg:mb-12 mb-12 lg:h-full mt-5 mb px-14 lg:px-44 flex flex-col items-center justify-start space-y-10"
     >
       <div
-        class="w-screen flex bg-mainRed lg:px-60 p-6 rounded-md items-center lg:flex-row flex-col-reverse justify-end"
+        class="w-screen flex bg-mainBlue lg:px-60 p-6 rounded-md items-center lg:flex-row flex-col-reverse justify-end"
       >
         <Skeleton
           v-if="loading"
@@ -465,7 +492,7 @@
 
         <h2
           v-if="!loading"
-          class="text-lg lg:text-2xl bg-mainRed rounded-lg text-darkBlue flex items-center space-x-2"
+          class="text-lg lg:text-2xl bg-mainBlue rounded-lg text-darkBlue flex items-center space-x-2"
         >
           <span>آخرین مقالات</span>
           <PhArticle />
@@ -544,9 +571,9 @@
       alt=""
     />
     <div
-      class="w-full mb-20 h-auto lg:h-screen flex lg:flex-row flex-col-reverse items-center px-7 justify-around lg:px-52 lg:space-x-10 lg:py-14"
+      class="w-full mb-20 h-auto lg:h-screen flex lg:flex-row flex-col-reverse items-center justify-around lg:px-52 space-x-10 lg:py-14"
     >
-      <div class="lg:w-1/2 w-full flex flex-col items-end space-y-4 h-full">
+      <div class="w-1/2 flex flex-col items-end space-y-4 h-full">
         <h2
           class="lg:text-lg p-2 text-2xl text-mainWhite border-r-8 bg-mainBlue bg-opacity-40 border-mainBlue pb-1 rounded-md text-center"
         >
@@ -561,7 +588,7 @@
             :key="tab.title"
             :header="tab.title"
           >
-            <p class="m-0">{{ tab.content }}</p>
+            <p dir="rtl" class="m-0">{{ tab.content }}</p>
           </AccordionTab>
         </Accordion>
 
@@ -574,9 +601,7 @@
           </button>
         </NuxtLink>
       </div>
-      <div
-        class="lg:w-1/2 w-full flex items-center justify-center h-dialog py-10"
-      >
+      <div class="w-1/2 flex items-center justify-center h-dialog py-10">
         <img
           src="../assets/images/mainPageContact.webp"
           class="h-full object-contain"
@@ -604,9 +629,13 @@ const tabs = ref([
   {
     title: "واحد آموزشگاه",
     content:
-      "شماره تلفن : 33661029 - 33661021 آدرس : خیابان سعدی - خیابان باباطاهر - پلاک 88",
+      "شماره تلفن : 04433661021 -  آدرس : خیابان سعدی(رودکی) - خیابان باباطاهر - پلاک 88",
   },
-  { title: "واحد دبستان دخترانه", content: "Content 2" },
+  {
+    title: "واحد دبستان دخترانه",
+    content:
+      "شماره تلفن : 04433661021 - آدرس  : خیابان سعدی(رودکی) - خیابان باباطاهر - پلاک 88",
+  },
 ]);
 const events = ref([
   {

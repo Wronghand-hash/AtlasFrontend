@@ -6,9 +6,9 @@
   </head>
   <div class="w-screen h-full bg-mainWhite">
     <LazyNavbar />
-    <div class="w-screen h-auto flex flex-col items-center px-5 lg:px-60 pt-12">
+    <div class="w-screen h-auto flex flex-col items-center px-5 lg:px-44 pt-12">
       <div
-        class="h-auto w-full bg-mainRed bg-opacity-80 text-mainYellow p-5 rounded-md flex lg:flex-row flex-col-reverse items-center justify-center space-x-0 lg:space-y-0 lg:space-x-4"
+        class="h-auto w-full bg-mainBlue text-mainYellow p-5 rounded-md flex lg:flex-row flex-col-reverse items-center justify-center space-x-0 lg:space-y-0 lg:space-x-4"
       >
         <h2
           class="text-5xl lg:my-0 my-5 font-bold border-b-8 rounded-lg pb-2 border-darkBlue"
@@ -23,9 +23,11 @@
         <div
           class="lg:grid lg:grid-cols-4 lg:place-items-end lg:gap-5 h-full w-full lg:p-10 my-10 lg:my-0 flex items-center justify-center space-y-7 lg:space-y-0 flex-col"
         >
-          <LazyGalleryCard /> <LazyGalleryCard />
-          <LazyGalleryCard />
-          <LazyGalleryCard />
+          <LazyGalleryCard
+            v-for="gallery in imageGalleries"
+            :key="gallery.id"
+            :gallery="gallery"
+          />
         </div>
       </div>
     </div>
@@ -40,7 +42,28 @@ const TM = $gsap.timeline();
 
 const loading = ref(true);
 
+const imageGalleries = ref();
+
+const getImageGalleries = async () => {
+  loading.value = true;
+  const { data } = await $fetch("https://auth.atlasacademy.ir/image-gallery", {
+    headers: {},
+    withCredentials: true,
+    credentials: "include",
+  })
+    .then(function (response) {
+      console.log(response.imageGalleries);
+      imageGalleries.value = response.imageGalleries;
+      loading.value = false;
+    })
+    .catch(function (error) {
+      console.error(error);
+      loading.value = false;
+    });
+};
+
 onMounted(() => {
+  getImageGalleries();
   TM.to(window, {
     scrollTo: {
       top: 0,

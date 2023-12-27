@@ -1,6 +1,6 @@
 <template>
   <head>
-    <title dir="rtl">افتخارات منظومه آموزشی و فرهنگی اصلس</title>
+    <title dir="rtl">افتخارات منظومه آموزشی و فرهنگی اطلس</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" />
   </head>
@@ -8,7 +8,7 @@
     <LazyNavbar />
     <div class="w-auto h-auto flex flex-col items-center px-5 lg:px-44 pt-12">
       <div
-        class="h-auto w-full bg-mainRed text-mainYellow bg-opacity-80 p-5 rounded-md flex lg:flex-row flex-col-reverse items-center justify-center space-x-0 lg:space-y-0 lg:space-x-4"
+        class="h-auto w-full bg-mainBlue text-mainYellow p-5 rounded-md flex lg:flex-row flex-col-reverse items-center justify-center space-x-0 lg:space-y-0 lg:space-x-4"
       >
         <h2
           class="lg:text-5xl text-3xl flex items-center justify-center space-x-2 lg:my-0 my-5 font-bold border-b-8 rounded-lg pb-2 border-darkBlue"
@@ -46,50 +46,13 @@
           class="h-full w-auto gap-10 grid grid-cols-1 lg:grid-cols-3 place-items-center content-center"
         >
           <div
+            v-for="honor in announcements"
+            :key="honor.id"
             class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
           >
             <div class="flex flex-col items-end justify-center">
-              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
-            </div>
-            <img
-              src="../assets/images/Grad.webp"
-              class="w-20 object-contain"
-              alt=""
-            />
-          </div>
-          <div
-            class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-          >
-            <div class="flex flex-col items-end justify-center">
-              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
-            </div>
-            <img
-              src="../assets/images/Grad.webp"
-              class="w-20 object-contain"
-              alt=""
-            />
-          </div>
-          <div
-            class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-          >
-            <div class="flex flex-col items-end justify-center">
-              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
-            </div>
-            <img
-              src="../assets/images/Grad.webp"
-              class="w-20 object-contain"
-              alt=""
-            />
-          </div>
-          <div
-            class="w-72 transition ease-in-out duration-300 hover:border-mainRed cursor-pointer hover:bg-mainYellow bg-white border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-          >
-            <div class="flex flex-col items-end justify-center">
-              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+              <h2 class="text-lg text-darkBlue">{{ honor.title }}</h2>
+              <h2 class="text-sm text-gray-700">{{ honor.winner }}</h2>
             </div>
             <img
               src="../assets/images/Grad.webp"
@@ -123,7 +86,28 @@ const loading = ref(false);
 const latestarticle = ref([]);
 const imageLoading = ref(true);
 
+const announcements = ref();
+
+const getAnnouncements = async () => {
+  loading.value = true;
+  const { data } = await $fetch("https://auth.atlasacademy.ir/announcements", {
+    headers: {},
+    withCredentials: true,
+    credentials: "include",
+  })
+    .then(function (response) {
+      console.log(response.announcements);
+      announcements.value = response.announcements;
+      loading.value = false;
+    })
+    .catch(function (error) {
+      console.error(error);
+      loading.value = false;
+    });
+};
+
 onMounted(() => {
+  getAnnouncements();
   TM.to(window, {
     scrollTo: {
       top: 0,
