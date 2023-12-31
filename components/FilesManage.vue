@@ -5,7 +5,7 @@
       class="px-3 py-1 border-2 items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
     >
       <h2 class="text-lg flex items-center space-x-3">
-        <span> مدیریت کتاب ها </span>
+        <span> مدیریت فایل ها </span>
         <PhBook :size="25" weight="fill" />
       </h2>
     </button>
@@ -21,13 +21,12 @@
         class="w-full h-full flex mb-24 items-center p-7 lg:p-10 flex-col space-y-7"
       >
         <div
-          class="w-full h-full grid grid-cols-5 place-items-end lg:place-items-center border-b pb-3 border-mainRed"
+          class="w-full h-full grid grid-cols-4 place-items-end lg:place-items-center border-b pb-3 border-mainRed"
         >
           <h2 class="text-darkBlue text-xs lg:text-lg">تغییرات</h2>
           <h2 class="text-darkBlue text-xs lg:text-lg">تاریخ آپلود</h2>
-          <h2 class="text-darkBlue text-xs lg:text-lg">نام نویسنده کننده</h2>
-          <h2 class="text-darkBlue text-xs lg:text-lg">دسته بندی</h2>
-          <h2 class="text-darkBlue text-xs lg:text-lg">عنوان کتاب</h2>
+          <h2 class="text-darkBlue text-xs lg:text-lg">نام گروه</h2>
+          <h2 class="text-darkBlue text-xs lg:text-lg">عنوان فایل</h2>
         </div>
         <div
           v-if="loading"
@@ -58,7 +57,7 @@
             <Skeleton height="3rem" class="mb-2"></Skeleton>
           </div>
         </div>
-        <LazyBookAdmin v-for="book in books" :key="book.id" :book="book" />
+        <LazyFilesAdmin v-for="file in files" :key="file.id" :file="file" />
       </div>
     </Dialog>
   </div>
@@ -75,33 +74,32 @@ const loading = ref(false);
 
 const managementStore = useManagementStore();
 
-const { stateChange, booksStateChange } = storeToRefs(managementStore);
+const { filesState } = storeToRefs(managementStore);
 const visible = ref(false);
 
 // state watcher
 
-watch(booksStateChange, (old, cur) => {
-  getBooks();
+watch(filesState, (old, cur) => {
+  getFiles();
 });
 
 //  upload data
 
 const eventFile = ref(null);
-const books = ref();
+const files = ref();
 
-const getBooks = async () => {
+const getFiles = async () => {
   managementStore.setLoading();
   loading.value = true;
-  const { data } = await $fetch("https://auth.atlasacademy.ir/books", {
+  const { data } = await $fetch("https://auth.atlasacademy.ir/files", {
     headers: {},
     withCredentials: true,
     credentials: "include",
   })
     .then(function (response) {
-      console.log(response.books);
-      books.value = response.books;
+      console.log(response.files);
+      files.value = response.files;
       loading.value = false;
-      managementStore.setBooksCount(response.books.length);
       managementStore.falseLoading();
     })
     .catch(function (error) {
@@ -112,26 +110,8 @@ const getBooks = async () => {
   managementStore.falseLoading();
 };
 
-const uploadVideo = async function (event) {
-  const formData = new FormData();
-
-  formData.append("file", eventFile.value);
-  console.log(eventFile.value);
-  await $fetch("https://auth.atlasacademy.ir/management/addvideo", {
-    method: "POST",
-
-    body: formData,
-  })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error.data.message);
-    });
-};
-
 onMounted(() => {
-  getBooks();
+  getFiles();
 });
 </script>
 

@@ -20,13 +20,19 @@
           />
         </div>
         <div class="flex items-end flex-col space-y-3">
-          <label class="text-lg text-mainBlue" for="username"
-            >نام نویسنده</label
-          >
+          <label class="text-lg text-mainBlue" for="authur">نام نویسنده</label>
           <InputText
-            id="username"
+            id="authur"
             v-model="author"
             aria-describedby="username-help"
+          />
+          <Dropdown
+            v-model="selectedCategory"
+            :options="category"
+            @change="showCode = true"
+            optionLabel="name"
+            placeholder="دسته بندی"
+            class="w-full rounded-lg h-11 lg:col-span-2"
           />
         </div>
         <label
@@ -148,11 +154,21 @@ const author = ref();
 const title = ref("");
 const description = ref("");
 
+const selectedCategory = ref("");
+
+const category = ref([
+  { name: "کتاب های غیردرسی", code: "NY" },
+  { name: "عمومی", code: "RM" },
+  { name: "کتاب های زبان", code: "LDN" },
+  { name: "کتاب های درسی", code: "IST" },
+]);
+
 const uploadVideo = async function (event) {
   loading.value = true;
   const formData = new FormData();
 
   formData.append("file", eventFile.value);
+  formData.append("category", selectedCategory.value.name);
   formData.append("title", title.value);
   formData.append("author", author.value);
   formData.append("description", description.value);

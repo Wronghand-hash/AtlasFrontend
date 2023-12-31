@@ -163,7 +163,7 @@
               class="dropdown-content z-50 text-mainBlue flex items-end justify-end menu p-2 shadow bg-mainWhite rounded-md w-52"
             >
               <li><NuxtLink to="/books">کتب آموزشی</NuxtLink></li>
-              <li><NuxtLink>صدای شما</NuxtLink></li>
+              <li><NuxtLink to="/audioBooks">صدای شما</NuxtLink></li>
             </ul>
           </div>
 

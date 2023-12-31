@@ -6,7 +6,7 @@
       <span class="text-2xl">با موفقیت پاک شد</span>
     </Message>
     <div
-      class="w-full h-full grid grid-cols-5 place-items-center text-center text-darkBlue"
+      class="w-full h-full grid grid-cols-4 place-items-center text-center text-darkBlue"
     >
       <div
         class="text-lg flex p-2 border-2 border-dashed cursor-pointer transition duration-200 ease-in hover:bg-mainRed hover:text-mainWhite border-mainRed rounded-md items-center text-red-500"
@@ -21,22 +21,22 @@
         />
         <PhTrash
           v-if="!loading"
-          @click="removeBookImage()"
+          @click="removeFile()"
           :size="20"
           weight="fill"
           class=""
         />
       </div>
-      <h2 class="text-lg">دوشنبه 19 تیر 1402</h2>
-      <h2 class="text-lg">{{ book.description }}</h2>
-      <h2 class="text-sm">{{ book.category }}</h2>
-      <h2 class="text-sm">{{ book.title }}</h2>
+      <h2 class="text-lg">{{ file.date }}</h2>
+      <h2 class="text-lg">{{ file.group }}</h2>
+
+      <h2 class="text-sm">{{ file.title }}</h2>
     </div>
   </div>
 </template>
 
 <script setup>
-const props = defineProps(["book"]);
+const props = defineProps(["file"]);
 import { ref, onMounted } from "vue";
 import { PhTrash } from "@phosphor-icons/vue";
 import { useManagementStore } from "../stores/management";
@@ -45,35 +45,9 @@ const managementStore = useManagementStore();
 const loading = ref(false);
 const message = ref(false);
 
-const removeBookImage = async function () {
-  loading.value = true;
-  if (props.book.BooksImages[0]) {
-    await $fetch(
-      `https://auth.atlasacademy.ir/books/management/bookimageremove/${props.book.BooksImages[0].id}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        credentials: "include",
-        withCredentials: true,
-      }
-    )
-      .then((response, error) => {
-        removeBook();
-      })
-      .catch((error) => {
-        console.log(error.data);
-        loading.value = false;
-      });
-  } else {
-    removeBook();
-  }
-};
-
-const removeBook = async function () {
+const removeFile = async function () {
   await $fetch(
-    `https://auth.atlasacademy.ir/books/management/bookremove/${props.book.id}`,
+    `https://auth.atlasacademy.ir/files/management/removefile/${props.file.id}`,
     {
       method: "POST",
       headers: {
@@ -89,7 +63,7 @@ const removeBook = async function () {
       setTimeout(() => {
         message.value = false;
       }, 2000);
-      managementStore.changeBooksState();
+      managementStore.changeFileState();
     })
     .catch((error) => {
       console.log(error.data);
