@@ -2,9 +2,9 @@
   <div>
     <button
       @click="visible = true"
-      class="px-3 py-1 border-2 items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+      class="px-3 py-1 border-2 cursor-pointer items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
     >
-      <h2 class="text-xl flex items-center space-x-3">
+      <h2 class="text-md flex items-center space-x-3">
         <span> مدیریت تازه های اطلس </span>
         <PhArticle :size="25" weight="fill" />
       </h2>
@@ -18,7 +18,7 @@
       :contentStyle="{ backgroundColor: '#f9f5ff' }"
     >
       <div
-        class="w-full h-full flex mb-24 items-center p-7 lg:p-10 flex-col space-y-7"
+        class="w-full h-full flex mb-24 items-center p-3 lg:p-10 flex-col space-y-7"
       >
         <div
           class="w-full h-full grid grid-cols-4 place-items-end lg:place-items-center border-b pb-3 border-mainBlue"

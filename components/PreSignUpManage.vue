@@ -5,8 +5,8 @@
       class="px-3 py-1 border-2 items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
     >
       <h2 class="text-md flex items-center space-x-3">
-        <span> مدیریت کتب صوتی </span>
-        <PhMusicNote :size="25" weight="fill" />
+        <span> پیش ثبت نام </span>
+        <PhArticle :size="25" weight="fill" />
       </h2>
     </button>
     <Dialog
@@ -18,16 +18,9 @@
       :contentStyle="{ backgroundColor: '#f9f5ff' }"
     >
       <div
-        class="w-full h-full flex mb-24 items-center p-2 lg:p-10 flex-col space-y-7"
+        dir="rtl"
+        class="w-full h-full flex flex-wrap space-y-3 justify-center lg:grid lg:grid-cols-1 lg:place-items-center items-center p-2 lg:p-10"
       >
-        <div
-          class="w-full h-full grid grid-cols-4 place-items-end lg:place-items-center border-b pb-3 border-mainRed"
-        >
-          <h2 class="text-darkBlue text-xs lg:text-lg">تغییرات</h2>
-          <h2 class="text-darkBlue text-xs lg:text-lg">تاریخ آپلود</h2>
-          <h2 class="text-darkBlue text-xs lg:text-lg">نام نویسنده کننده</h2>
-          <h2 class="text-darkBlue text-xs lg:text-lg">عنوان کتاب</h2>
-        </div>
         <div
           v-if="loading"
           class="w-full h-full flex flex-col items-center space-y-5"
@@ -57,10 +50,10 @@
             <Skeleton height="3rem" class="mb-2"></Skeleton>
           </div>
         </div>
-        <LazyAudioBooksAdmin
-          v-for="book in books"
-          :key="book.id"
-          :book="book"
+        <LazySignUpCard
+          v-for="item in registrations"
+          :key="item.id"
+          :registration="item"
         />
       </div>
     </Dialog>
@@ -68,60 +61,49 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { PhMusicNote } from "@phosphor-icons/vue";
-
+import { ref, onMounted } from "vue";
+import { PhArticle } from "@phosphor-icons/vue";
 import { useManagementStore } from "../stores/management";
 import { storeToRefs } from "pinia";
-
+const visible = ref(false);
 const loading = ref(false);
+
+const articles = ref([]);
 
 const managementStore = useManagementStore();
 
-const { stateChange, audioBooksState } = storeToRefs(managementStore);
-const visible = ref(false);
+const { stateChange } = storeToRefs(managementStore);
 
-// state watcher
-
-watch(audioBooksState, (old, cur) => {
-  getAudioBooks();
+watch(stateChange, (old, cur) => {
+  getArticles();
 });
 
-//  upload data
+const registrations = ref();
 
-const eventFile = ref(null);
-const books = ref();
-
-const getAudioBooks = async () => {
-  managementStore.setLoading();
+const getRegistrations = async () => {
   loading.value = true;
-  const { data } = await $fetch("https://auth.atlasacademy.ir/audio-books", {
-    headers: {},
-    withCredentials: true,
-    credentials: "include",
-  })
+  const { data } = await $fetch(
+    "https://auth.atlasacademy.ir/registrations/management/info",
+    {
+      headers: {},
+      withCredentials: true,
+      credentials: "include",
+    }
+  )
     .then(function (response) {
-      console.log(response.audioBooks);
-      books.value = response.audioBooks;
+      console.log(response.registrations);
+      registrations.value = response.registrations;
       loading.value = false;
-      managementStore.setAudioBooksCount(response.audioBooks.length);
-      managementStore.falseLoading();
     })
     .catch(function (error) {
       console.error(error);
       loading.value = false;
-      managementStore.falseLoading();
     });
-  managementStore.falseLoading();
 };
 
 onMounted(() => {
-  getAudioBooks();
+  getRegistrations();
 });
 </script>
 
-<style>
-.p-dialog .p-dialog-header {
-  background-color: #f9f5ff;
-}
-</style>
+<style lang="scss" scoped></style>

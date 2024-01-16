@@ -17,18 +17,50 @@
         </h2>
         <PhArticle size="55" />
       </div>
+      <h2 dir="rtl" class="lg:text-lg text-sm my-5 text-gray-600">
+        <span>
+          در دسته بندی زیر می‌توانید، عکس های اطلس را به تفکیک هر موضوع مشاهده
+          کنید:
+        </span>
+      </h2>
       <div
-        class="h-auto flex-col w-screen flex items-center justify-center mb-10 px-5 lg:px-52"
+        class="w-full h-10 flex space-x-3 items-center justify-center bg-mainWhite text-md"
       >
-        <div
-          class="lg:grid lg:grid-cols-4 lg:place-items-end lg:gap-5 h-full w-full lg:p-10 my-10 lg:my-0 flex items-center justify-center space-y-7 lg:space-y-0 flex-col"
+        <button
+          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
         >
-          <LazyGalleryCard
-            v-for="gallery in imageGalleries"
-            :key="gallery.id"
-            :gallery="gallery"
-          />
-        </div>
+          <span>آموزشگاه</span></button
+        ><button
+          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+        >
+          <span>مدرسه</span></button
+        ><button
+          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+        >
+          <span>خلاقیت</span></button
+        ><button
+          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+        >
+          <span>مناسبت ها</span></button
+        ><button
+          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+        >
+          <span>سال های تحصیلی</span>
+        </button>
+      </div>
+
+      <div
+        class="lg:grid lg:grid-cols-3 lg:place-items-end lg:gap-5 h-full w-full lg:p-3 my-10 lg:my-8 flex items-center justify-center space-y-7 lg:space-y-0 flex-col"
+      >
+        <Skeleton v-if="loading" width="18rem" height="17rem"></Skeleton>
+        <Skeleton v-if="loading" width="18rem" height="17rem"></Skeleton>
+        <Skeleton v-if="loading" width="18rem" height="17rem"></Skeleton>
+        <LazyGalleryCard
+          v-if="!loading"
+          v-for="gallery in imageGalleries"
+          :key="gallery.id"
+          :gallery="gallery"
+        />
       </div>
     </div>
     <LazyFooter />
@@ -40,7 +72,7 @@ import { PhArticle } from "@phosphor-icons/vue";
 const { $gsap } = useNuxtApp();
 const TM = $gsap.timeline();
 
-const loading = ref(true);
+const loading = ref();
 
 const imageGalleries = ref();
 

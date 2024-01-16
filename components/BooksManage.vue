@@ -4,7 +4,7 @@
       @click="visible = true"
       class="px-3 py-1 border-2 items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
     >
-      <h2 class="text-lg flex items-center space-x-3">
+      <h2 class="text-md flex items-center space-x-3">
         <span> مدیریت کتاب ها </span>
         <PhBook :size="25" weight="fill" />
       </h2>
@@ -18,7 +18,7 @@
       :contentStyle="{ backgroundColor: '#f9f5ff' }"
     >
       <div
-        class="w-full h-full flex mb-24 items-center p-7 lg:p-10 flex-col space-y-7"
+        class="w-full h-full flex mb-24 items-center p-2 lg:p-10 flex-col space-y-7"
       >
         <div
           class="w-full h-full grid grid-cols-5 place-items-end lg:place-items-center border-b pb-3 border-mainRed"

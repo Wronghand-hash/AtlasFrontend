@@ -35,7 +35,7 @@
       <h2
         class="lg:text-md self-end text-md text-darkBlue leading-snug text-center lg:text-right"
       >
-        تاریخ : 1402/05/29
+        تاریخ : {{ news.date }}
       </h2>
       <div
         class="lg:h-dialog h-96 w-full bg-white flex items-center justify-center lg:my-10"
@@ -129,7 +129,7 @@
           v-for="news in allNews"
           :key="news.id"
           :news="news"
-          class="flex w-64 h-full flex-col items-center space-y-6 bg-white"
+          class="flex w-64 h-full flex-col items-end space-y-6 bg-white"
         >
           <div
             class="w-64 h-64 Card transition border-b-8 bg-white border-mainBlue ease-in duration-100 hover:border-mainYellow relative hover:shadow-mainOrange cursor-pointer shadow-md flex items-center justify-center shadow-transparent rounded-sm"

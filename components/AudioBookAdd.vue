@@ -12,7 +12,7 @@
         class="grid grid-cols-1 lg:grid-cols-2 place-items-center justify-items-center gap-9"
       >
         <div class="flex items-end flex-col space-y-3 order-1 lg:-order-none">
-          <label class="text-lg text-mainBlue" for="title">عنوان کتاب</label>
+          <label class="text-md text-mainBlue" for="title">عنوان کتاب</label>
           <InputText
             id="title"
             v-model="title"
@@ -20,7 +20,7 @@
           />
         </div>
         <div class="flex items-end flex-col space-y-3">
-          <label class="text-lg text-mainBlue" for="username"
+          <label class="text-md text-mainBlue" for="username"
             >نام نویسنده</label
           >
           <InputText
@@ -29,49 +29,69 @@
             aria-describedby="username-help"
           />
         </div>
-        <label
-          for="track"
-          label="Show"
-          class="px-3 py-1 cursor-pointer border-2 items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
-        >
-          <span> آپلود فایل صوتی </span>
-          <PhMusicNote :size="25" />
-        </label>
+        <div class="flex flex-col justify-center items-center space-y-3">
+          <label
+            for="track"
+            label="Show"
+            class="px-3 py-1 cursor-pointer border-2 items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+          >
+            <span> انتخاب فایل صوتی </span>
+            <PhMusicNote :size="25" />
+          </label>
 
-        <input
-          @change="
-            (event) => {
-              eventFile = event.target.files[0];
-              console.log(eventFile);
-            }
-          "
-          type="file"
-          id="track"
-          class="hidden"
-        />
+          <input
+            @change="
+              (event) => {
+                eventFile = event.target.files[0];
+                console.log(eventFile);
+              }
+            "
+            type="file"
+            id="track"
+            class="hidden"
+          />
+          <label
+            v-show="eventFile"
+            label="Show"
+            class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
+          >
+            <span> انتخاب شد </span>
+            <PhCheckCircle :size="25" weight="fill" class="text-black" />
+          </label>
+        </div>
 
-        <label
-          for="audioBookImage"
-          label="Show"
-          class="px-3 py-1 cursor-pointer border-2 items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
-        >
-          <span> آپلود عکس </span>
-          <PhPictureInPicture :size="25" />
-        </label>
-        <input
-          @change="
-            (event) => {
-              eventImage = event.target.files[0];
-              console.log(eventImage);
-            }
-          "
-          type="file"
-          class="hidden"
-          id="audioBookImage"
-        />
+        <div class="flex flex-col justify-center items-center space-y-3">
+          <label
+            for="audioBookImage"
+            label="Show"
+            class="px-3 py-1 cursor-pointer border-2 items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+          >
+            <span> انتخاب عکس </span>
+            <PhPictureInPicture :size="25" />
+          </label>
+          <input
+            @change="
+              (event) => {
+                eventImage = event.target.files[0];
+                console.log(eventImage);
+              }
+            "
+            type="file"
+            class="hidden"
+            id="audioBookImage"
+          />
+          <label
+            v-show="eventImage"
+            label="Show"
+            class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
+          >
+            <span> انتخاب شد </span>
+            <PhCheckCircle :size="25" weight="fill" class="text-black" />
+          </label>
+        </div>
 
         <div class="flex items-end col-span-2 flex-col space-y-4">
-          <label class="text-lg text-mainBlue" for="description"
+          <label class="text-md text-mainBlue" for="description"
             >توضیحات اضافه
           </label>
           <Textarea
