@@ -24,26 +24,51 @@
         </span>
       </h2>
       <div
-        class="w-full h-10 flex space-x-3 items-center justify-center bg-mainWhite text-md"
+        class="w-full text-mainWhite lg:h-10 h-auto flex flex-wrap lg:space-y-0 space-y-3 space-x-3 lg:items-center items-end justify-center bg-mainWhite text-md"
       >
         <button
-          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+          :class="{
+            'bg-mainWhite': category === 'atlas',
+            'text-mainBlue': category === 'atlas',
+          }"
+          @click="category = 'atlas'"
+          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
         >
           <span>آموزشگاه</span></button
         ><button
-          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+          :class="{
+            'bg-mainWhite': category === 'school',
+            'text-mainBlue': category === 'school',
+          }"
+          @click="category = 'school'"
+          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
         >
           <span>مدرسه</span></button
         ><button
-          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+          :class="{
+            'bg-mainWhite': category === 'creativity',
+            'text-mainBlue': category === 'creativity',
+          }"
+          @click="category = 'creativity'"
+          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
         >
           <span>خلاقیت</span></button
         ><button
-          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+          :class="{
+            'bg-mainWhite': category === 'events',
+            'text-mainBlue': category === 'events',
+          }"
+          @click="category = 'events'"
+          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
         >
           <span>مناسبت ها</span></button
         ><button
-          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
+          :class="{
+            'bg-mainWhite': category === 'public',
+            'text-mainBlue': category === 'public',
+          }"
+          @click="category = 'public'"
+          class="px-2 py-1 border-2 w-44 h-full justify-center items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
         >
           <span>سال های تحصیلی</span>
         </button>
@@ -73,19 +98,27 @@ const { $gsap } = useNuxtApp();
 const TM = $gsap.timeline();
 
 const loading = ref();
+const category = ref("atlas");
+
+watch(category, (cur, old) => {
+  getGalleries();
+});
 
 const imageGalleries = ref();
-
-const getImageGalleries = async () => {
+const getGalleries = async () => {
   loading.value = true;
-  const { data } = await $fetch("https://auth.atlasacademy.ir/image-gallery", {
-    headers: {},
-    withCredentials: true,
-    credentials: "include",
-  })
+  const { data } = await $fetch(
+    `https://auth.atlasacademy.ir/image-gallery/bycategory/${category.value}`,
+    {
+      headers: {},
+      withCredentials: true,
+      credentials: "include",
+    }
+  )
     .then(function (response) {
-      console.log(response.imageGalleries);
-      imageGalleries.value = response.imageGalleries;
+      console.log(response.news);
+      imageGalleries.value = response.galleries;
+
       loading.value = false;
     })
     .catch(function (error) {
@@ -95,7 +128,6 @@ const getImageGalleries = async () => {
 };
 
 onMounted(() => {
-  getImageGalleries();
   TM.to(window, {
     scrollTo: {
       top: 0,
@@ -103,5 +135,6 @@ onMounted(() => {
     duration: 0.01,
     ease: "easeInOutQuart",
   });
+  getGalleries();
 });
 </script>

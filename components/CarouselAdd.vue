@@ -2,7 +2,7 @@
   <div>
     <div class="w-full h-full flex items-end flex-col space-y-4">
       <h2
-        class="lg:text-2xl text-2xl text-mainBlue border-b-8 pb-1 rounded-md border-mainYellow"
+        class="lg:text-xl text-2xl text-darkBlue border-b-8 pb-1 rounded-md border-mainYellow"
       >
         اضافه کردن تصاویر
       </h2>
@@ -31,7 +31,7 @@
             class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
           >
             <span> انتخاب شد </span>
-            <PhCheckCircle :size="25" weight="fill" class="text-black" />
+            <PhCheckCircle :size="25" weight="fill" />
           </label>
         </div>
         <div class="flex items-end flex-col space-y-3">
@@ -58,7 +58,7 @@
             class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
           >
             <span> انتخاب شد </span>
-            <PhCheckCircle :size="25" weight="fill" class="text-black" />
+            <PhCheckCircle :size="25" weight="fill" />
           </label>
         </div>
         <div class="flex items-end flex-col space-y-3">
@@ -85,7 +85,7 @@
             class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
           >
             <span> انتخاب شد </span>
-            <PhCheckCircle :size="25" weight="fill" class="text-black" />
+            <PhCheckCircle :size="25" weight="fill" />
           </label>
         </div>
       </div>
@@ -97,7 +97,7 @@
           @click="submit()"
           class="px-3 py-1 border-2 items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
         >
-          <span> اضافه کردن تصاویر </span>
+          <span> اضافه کردن تصاویر به صفحه ی اول </span>
           <PhHouse :size="25" />
         </button>
       </div>
@@ -123,7 +123,12 @@
 
 <script setup>
 import { ref } from "vue";
-import { PhArticle, PhCalendar, PhHouse } from "@phosphor-icons/vue";
+import {
+  PhArticle,
+  PhCalendar,
+  PhHouse,
+  PhCheckCircle,
+} from "@phosphor-icons/vue";
 import { useManagementStore } from "../stores/management";
 import { PhPictureInPicture } from "@phosphor-icons/vue";
 

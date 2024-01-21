@@ -295,7 +295,7 @@
             </div>
           </div>
         </NuxtLink>
-        <NuxtLink class="secondPhase" to="/schedule">
+        <NuxtLink class="secondPhase" to="/Gallery/pictureGallery">
           <div
             class="w-64 h-64 Card transition border-4 hover:border-mainRed border-dashed ease-out duration-300 border-mainBlue bg-mainWhite relative cursor-pointer flex items-center justify-center rounded-md p-6"
           >
@@ -307,7 +307,7 @@
             <div
               class="absolute w-44 rounded-md flex items-center justify-center bottom-0 h-10 top-56 Blue bg-mainBlue"
             >
-              <h2 class="text-md text-mainWhite">برنامه کلاسی</h2>
+              <h2 class="text-md text-mainWhite">گالری تصاویر</h2>
             </div>
           </div>
         </NuxtLink>
@@ -510,9 +510,7 @@
           <Skeleton width="18rem" height="17rem"></Skeleton>
         </div>
       </div>
-      <div
-        class="h-full lg:flex-row flex-col space-y-12 lg:space-y-0 space-x-0 w-full flex items-center justify-center lg:space-x-16"
-      >
+      <div class="h-full grid lg:grid-cols-4 grid-cols-1 w-full">
         <div
           v-if="!articles.length && !loading"
           class="flex justify-center items-center"

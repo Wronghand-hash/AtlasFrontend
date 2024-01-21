@@ -21,10 +21,11 @@
         class="w-full h-full flex mb-24 items-center p-2 lg:p-10 flex-col space-y-7"
       >
         <div
-          class="w-full h-full grid grid-cols-4 place-items-end lg:place-items-center border-b pb-3 border-mainBlue"
+          class="w-full h-full grid grid-cols-5 place-items-end lg:place-items-center border-b pb-3 border-mainBlue"
         >
           <h2 class="text-darkBlue text-xs lg:text-lg">تغییرات</h2>
           <h2 class="text-darkBlue text-xs lg:text-lg">تاریخ آپلود</h2>
+          <h2 class="text-darkBlue text-xs lg:text-lg">دسته بندی</h2>
           <h2 class="text-darkBlue text-xs lg:text-lg">نام نویسنده</h2>
           <h2 class="text-darkBlue text-xs lg:text-lg">عنوان گالری</h2>
         </div>
@@ -57,6 +58,15 @@
             <Skeleton height="3rem" class="mb-2"></Skeleton>
           </div>
         </div>
+        <div
+          v-show="isEmpty"
+          class="lg:text-2xl text-lg p-5 border-2 lg:p-10 text-blue-700 border-blue-700 flex items-center justify center rounded-md"
+        >
+          <h2 class="flex w-full items-center justify-center">
+            <span> موردی برای نشان دادن وجود ندارد </span>
+            <PhInfo class="mr-4" :size="44" weight="fill" />
+          </h2>
+        </div>
         <LazyImageGalleryAdmin
           v-for="gallery in imageGalleries"
           :key="gallery.id"
@@ -69,14 +79,14 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { PhArticle } from "@phosphor-icons/vue";
+import { PhArticle, PhInfo } from "@phosphor-icons/vue";
 import { useManagementStore } from "../stores/management";
 import { storeToRefs } from "pinia";
 const visible = ref(false);
 const loading = ref(false);
 
 const imageGalleries = ref([]);
-
+const isEmpty = ref(false);
 const managementStore = useManagementStore();
 
 const { imageGalleryState } = storeToRefs(managementStore);
@@ -102,6 +112,9 @@ const getImageGalleries = async () => {
       loading.value = false;
       managementStore.setImageGalleryCount(imageGalleries.value.length);
       managementStore.falseLoading();
+      if (!response.imageGalleries.length) {
+        isEmpty.value = true;
+      }
     })
     .catch(function (error) {
       console.error(error);

@@ -63,7 +63,7 @@
             class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
           >
             <span> انتخاب شد </span>
-            <PhCheckCircle :size="25" weight="fill" class="text-black" />
+            <PhCheckCircle :size="25" weight="fill" />
           </label>
         </div>
         <div class="flex flex-col justify-center items-center space-y-2">
@@ -92,7 +92,7 @@
             class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
           >
             <span> انتخاب شد </span>
-            <PhCheckCircle :size="25" weight="fill" class="text-black" />
+            <PhCheckCircle :size="25" weight="fill" />
           </label>
         </div>
         <div class="flex flex-col justify-center items-center space-y-2">
@@ -121,7 +121,7 @@
             class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
           >
             <span> انتخاب شد </span>
-            <PhCheckCircle :size="25" weight="fill" class="text-black" />
+            <PhCheckCircle :size="25" weight="fill" />
           </label>
         </div>
         <div class="flex flex-col justify-center items-center space-y-2">
@@ -150,7 +150,7 @@
             class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
           >
             <span> انتخاب شد </span>
-            <PhCheckCircle :size="25" weight="fill" class="text-black" />
+            <PhCheckCircle :size="25" weight="fill" />
           </label>
         </div>
         <div class="flex items-end flex-col space-y-3">
@@ -170,37 +170,31 @@
       >
         <button
           label="Show"
-          @click="addArticle()"
+          @click="addGallery()"
           class="px-3 py-1 border-2 items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
         >
           <span> اضافه کردن به گالری </span>
           <PhPlus :size="25" />
         </button>
       </div>
-      <Message class="w-full" v-show="addArticleError" severity="error">
+      <Message
+        class="w-full"
+        v-show="addGalleryError && statusCode !== 400"
+        severity="error"
+      >
         <span class="text-2xl">{{ errorMessage }}</span>
       </Message>
-      <div v-if="Array.isArray(errorMessage)">
+      <div v-show="statusCode === 400">
         <Message
           v-for="error in errorMessage"
           :key="error"
           class="w-full"
-          v-show="signupError"
           severity="error"
         >
           <span class="text-2xl">{{ error }}</span>
         </Message>
       </div>
-      <div v-else>
-        <Message
-          :key="error"
-          class="w-full"
-          v-show="signupError"
-          severity="error"
-        >
-          <span class="text-2xl">{{ errorMessage }}</span>
-        </Message>
-      </div>
+
       <div>
         <Message
           class="space-x-4 flex items-center justify-center"
@@ -217,7 +211,10 @@
         </Message>
       </div>
       <Message class="w-full" v-show="message" severity="success">
-        <span class="text-2xl">مقاله اضافه شد</span>
+        <span class="text-2xl">گالری اضافه شد</span>
+      </Message>
+      <Message class="w-full" v-show="uploadSuccuss" severity="success">
+        <span class="text-2xl"> عکس اضافه شد</span>
       </Message>
     </div>
   </div>
@@ -225,7 +222,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { PhPictureInPicture, PhPlus } from "@phosphor-icons/vue";
+import { PhPictureInPicture, PhPlus, PhCheckCircle } from "@phosphor-icons/vue";
 import { useManagementStore } from "../stores/management";
 
 // asign store
@@ -237,8 +234,15 @@ const managementStore = useManagementStore();
 const visible = ref(false);
 const loading = ref(false);
 const message = ref(false);
-const addArticleError = ref(false);
+const addGalleryError = ref(false);
 const errorMessage = ref("");
+
+const statusCode = ref("");
+
+const error1 = ref(false);
+const error2 = ref(false);
+const error3 = ref(false);
+const error4 = ref(false);
 
 // gallery information
 
@@ -251,23 +255,49 @@ const eventFile = ref(null);
 const eventFile2 = ref(null);
 const eventFile3 = ref(null);
 const eventFile4 = ref(null);
-const selectedCategory = ref(null);
+const selectedCategory = ref("");
 
 const category = ref([
   { name: "سال های تحصیلی", code: "public" },
   { name: "مناسبت ها", code: "events" },
   { name: "خلاقیت", code: "creativity" },
   { name: "مدرسه", code: "school" },
-  { name: "آموزشگاه", code: "institude" },
+  { name: "آموزشگاه", code: "atlas" },
 ]);
 
 // add gallery to DB
 
-const addArticle = async function () {
+const addGallery = async function () {
+  uploadSuccuss.value = false;
+  addGalleryError.value = false;
+  message.value = false;
+  imageUploadError.value = false;
+
   loading.value = true;
   const data = new URLSearchParams({
     title: galleryTitle.value,
+    category: selectedCategory.value.code,
   });
+
+  if (eventFile.value === null) {
+    error1.value = true;
+  }
+  if (eventFile2.value === null) {
+    error2.value = true;
+  }
+  if (eventFile3.value === null) {
+    error3.value = true;
+  }
+  if (eventFile4.value === null) {
+    error4.value = true;
+  }
+
+  let images = [
+    eventFile.value,
+    eventFile2.value,
+    eventFile3.value,
+    eventFile4.value,
+  ];
 
   await $fetch("https://auth.atlasacademy.ir/image-gallery/management/addgallery", {
     method: "POST",
@@ -283,17 +313,25 @@ const addArticle = async function () {
       galleryId.value = response.gallery.id;
       if (response.gallery) {
         imageUploadLoading.value = true;
-        uploadImage();
+        images.forEach((image) => {
+          uploadImage(image);
+        });
         managementStore.changeState();
       }
     })
     .catch((error) => {
-      addArticleError.value = true;
-      errorMessage.value = error.data.message;
-      console.log(error.data);
+      addGalleryError.value = true;
+      if (error.data.statusCode === 400) {
+        statusCode.value = 400;
+        errorMessage.value = error.data.message;
+      }
+      console.log(statusCode.value);
+      if (error.data.statusCode === 403) {
+        errorMessage.value = "وارد حساب ادمین شوید";
+      }
 
       setTimeout(() => {
-        addArticleError.value = false;
+        addGalleryError.value = false;
       }, 5000);
     });
   loading.value = false;
@@ -305,12 +343,15 @@ const imageUploadLoading = ref(false);
 const imageUploadError = ref(false);
 const uploadErrorMessage = ref("");
 
-const uploadImage = async function (event) {
+const success = ref([]);
+const uploadSuccuss = ref(false);
+
+const uploadImage = async function (image) {
   const formData = new FormData();
 
-  formData.append("file", eventFile.value);
+  formData.append("file", image);
   formData.append("galleryId", galleryId.value);
-  console.log(eventFile.value);
+  console.log(image);
   console.log(galleryId.value);
   await $fetch("https://auth.atlasacademy.ir/image-gallery/management/galleryimage", {
     method: "POST",
@@ -319,20 +360,22 @@ const uploadImage = async function (event) {
     body: formData,
   })
     .then((response) => {
+      message.value = true;
       if (response) {
         imageUploadLoading.value = false;
         managementStore.changeImageGalleryState();
-        message.value = true;
-
+        uploadSuccuss.value = true;
+        success.value.push(image);
         setTimeout(() => {
           message.value = false;
         }, 3000);
       }
     })
     .catch((error) => {
+      imageUploadLoading.value = false;
       imageUploadError.value = true;
       loading.value = false;
-      uploadErrorMessage.value = error.data.message;
+      uploadErrorMessage.value = "فایل عکس را انتخاب کنید";
     });
 };
 </script>

@@ -130,7 +130,7 @@
               class="px-2 py-1 items-center active:bg-mainBlue active:text-mainWhite bg-mainWhite border-2 border-transparent hover:border-mainBlue text-mainBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
             >
               <span>سوالات متداول</span>
-              <PhPhoneCall :size="20" weight="fill" />
+              <PhSealQuestion :size="20" weight="fill" />
             </button>
           </NuxtLink>
 
@@ -146,12 +146,25 @@
             </button>
             <ul
               tabindex="0"
-              class="dropdown-content z-50 text-mainBlue flex items-end justify-end menu p-2 shadow bg-mainWhite rounded-md w-44"
+              class="dropdown-content z-50 text-mainBlue flex items-end justify-end menu p-2 shadow bg-mainWhite rounded-md w-60 text-right"
             >
-              <li><NuxtLink to="/courses/public">دوره های عمومی</NuxtLink></li>
-              <li><NuxtLink to="/courses/women">مکالمه سریع</NuxtLink></li>
-              <li dir="rtl">
-                <NuxtLink to="/courses/IELTS">دوره های آیلتس و تافل</NuxtLink>
+              <li>
+                <NuxtLink to="/courses/public">
+                  <span>دوره های عمومی</span>
+                  <PhChalkboardTeacher :size="20" weight="fill" />
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/courses/public">
+                  <span>مکالمه سریع</span>
+                  <PhChalkboardTeacher :size="20" weight="fill" />
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/courses/public">
+                  <span>دوره های آیلتس و تافل</span>
+                  <PhChalkboardTeacher :size="20" weight="fill" />
+                </NuxtLink>
               </li>
             </ul>
           </div>
@@ -169,8 +182,17 @@
               tabindex="0"
               class="dropdown-content z-50 text-mainBlue flex items-end justify-end menu p-2 shadow bg-mainWhite rounded-md w-52"
             >
-              <li><NuxtLink to="/books">کتب آموزشی</NuxtLink></li>
-              <li><NuxtLink to="/audioBooks">صدای شما</NuxtLink></li>
+              <li>
+                <NuxtLink to="/books"
+                  ><span>کتب آموزشی</span> <PhBook :size="20" weight="fill" />
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/audioBooks">
+                  <span>صدای شما</span>
+                  <PhMusicNote :size="20" weight="fill" />
+                </NuxtLink>
+              </li>
             </ul>
           </div>
 
@@ -200,7 +222,7 @@
               class="dropdown-content z-50 text-mainBlue flex items-end justify-end menu p-2 shadow bg-mainWhite rounded-md w-52"
             >
               <li>
-                <NuxtLink to="/courses/IELTS">
+                <NuxtLink to="/courses/tutorial">
                   <span> آیلتس </span>
                   <PhChalkboardTeacher :size="20" weight="fill" />
                 </NuxtLink>
@@ -227,8 +249,18 @@
               tabindex="0"
               class="dropdown-content z-50 text-mainBlue flex items-end justify-end menu p-2 shadow bg-mainWhite rounded-md w-52"
             >
-              <li><NuxtLink to="/">موسسه زبان اطلس</NuxtLink></li>
-              <li><NuxtLink to="/school/">دبستان دخترانه اطلس</NuxtLink></li>
+              <li>
+                <NuxtLink to="/">
+                  <span>موسسه زبان اطلس</span>
+                  <PhBuildings :size="20" weight="fill" />
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/school/"
+                  ><span>دبستان دخترانه اطلس</span>
+                  <PhBuildings :size="20" weight="fill" />
+                </NuxtLink>
+              </li>
             </ul>
           </div>
           <NuxtLink to="/">
@@ -237,14 +269,6 @@
             >
               <span>خانه</span>
               <PhHouse :size="20" weight="fill" />
-            </button>
-          </NuxtLink>
-          <NuxtLink v-show="isManager" to="/admin">
-            <button
-              class="px-2 py-1 border-2 border-mainBlue text-md active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
-            >
-              <span>مدیریت</span>
-              <PhGlobeStand :size="20" weight="fill" />
             </button>
           </NuxtLink>
         </div>
@@ -257,6 +281,8 @@
         <LazyLogin class="flex" />
         <div class="lg:flex items-center justify-center space-x-3 hidden">
           <button
+            v-if="isLogged === true"
+            @click="logout()"
             label="Show"
             class="px-3 py-1 border-2 items-center border-mainBlue text-sm active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
           >
@@ -268,7 +294,7 @@
               class="px-2 py-1 border-2 items-center border-mainBlue text-sm active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
             >
               <span>درباره ما</span>
-              <PhTranslate :size="20" weight="fill" />
+              <PhGlobeStand :size="20" weight="fill" />
             </button>
           </NuxtLink>
           <div class="dropdown dropdown-hover">
@@ -279,14 +305,18 @@
               <PhCaretDown :size="20" />
 
               <span>ارتباط با ما</span>
-              <PhArticle :size="20" weight="fill" />
+              <PhPhoneCall :size="20" weight="fill" />
             </button>
             <ul
               tabindex="0"
               class="dropdown-content z-50 text-mainBlue flex items-end justify-end menu p-2 shadow bg-mainWhite rounded-md w-52"
             >
-              <li><NuxtLink to="/contactUs">تماس با موسسه</NuxtLink></li>
-              <li><NuxtLink to="/coopForm">فرم همکاری</NuxtLink></li>
+              <li>
+                <NuxtLink to="/contactUs"><span>تماس با موسسه</span></NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/coopForm"><span>فرم همکاری</span></NuxtLink>
+              </li>
             </ul>
           </div>
           <NuxtLink to="/honors">
@@ -298,7 +328,7 @@
             </button>
           </NuxtLink>
 
-          <NuxtLink to="/Gallery/pictureGallery">
+          <NuxtLink to="/gallery/pictureGallery">
             <button
               class="px-2 py-1 border-2 border-mainBlue text-sm active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
             >
@@ -347,6 +377,14 @@
               <PhArticle :size="20" weight="fill" />
             </button>
           </NuxtLink>
+          <NuxtLink v-show="isManager" to="/admin">
+            <button
+              class="px-2 py-1 border-2 border-mainBlue text-md active:bg-mainBlue active:text-mainWhite bg-mainYellow hover:bg-mainWhite hover:text-mainBlue text-mainBlue transition ease-linear duration-200 flex space-x-2 rounded-sm"
+            >
+              <span>مدیریت</span>
+              <PhGlobeStand :size="20" weight="fill" />
+            </button>
+          </NuxtLink>
           <!-- <NuxtLink to="/">
             <button
               class="px-2 py-1 border-2 items-center border-mainBlue text-md active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue shadow-md shadow-transparent hover:shadow-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
@@ -387,6 +425,8 @@ import {
   PhStudent,
   PhMonitor,
   PhLockKey,
+  PhMusicNote,
+  PhSealQuestion,
 } from "@phosphor-icons/vue";
 import { useUserStore } from "../stores/user";
 import { storeToRefs } from "pinia";
@@ -395,6 +435,7 @@ const { $gsap } = useNuxtApp();
 // asign user store
 
 const userStore = useUserStore();
+const { isManager, isLogged } = storeToRefs(userStore);
 
 // is auth
 
@@ -414,10 +455,19 @@ async function isAuth() {
   });
 }
 
-const { isManager, isLogged } = storeToRefs(userStore);
-
-const logout = function () {
+const logout = async function () {
   userStore.setLogout();
+
+  await $fetch("https://auth.atlasacademy.ir/logout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    credentials: "include",
+    withCredentials: true,
+  }).then(function (response) {
+    console.log(response);
+  });
 };
 const isHomePage = computed(() => {
   return window.location.pathname === "/";

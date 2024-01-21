@@ -2,7 +2,7 @@
   <div>
     <div class="w-full h-full flex items-end p-7 lg:p-16 flex-col space-y-10">
       <h2
-        class="lg:text-3xl text-2xl text-mainBlue border-b-8 rounded-md border-mainYellow"
+        class="lg:text-xl text-2xl text-darkBlue border-b-8 rounded-md border-mainYellow"
       >
         اضافه کردن مقاله
       </h2>
@@ -72,12 +72,12 @@
             id="articleImage"
           />
           <label
+            class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
             v-show="eventFile"
             label="Show"
-            class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
           >
             <span> انتخاب شد </span>
-            <PhCheckCircle :size="25" weight="fill" class="text-black" />
+            <PhCheckCircle class=" " :size="25" weight="fill" />
           </label>
         </div>
 
@@ -267,6 +267,8 @@ const errorStatus = ref("");
 // add article to DB
 
 const addArticle = async function () {
+  addArticleError.value = false;
+  message.value = false;
   loading.value = true;
   console.log("the func is running", selectedCategory.value);
 

@@ -3,10 +3,10 @@
     class="h-60 overflow-hidden cursor-pointer duration-200 transition ease-linear hover:border-mainYellow w-80 border-2 border-mainBlue rounded-sm flex items-center flex-col"
   >
     <NuxtLink
-      class="w-full h-3/5 flex items-center justify-center"
-      :to="'/gallery/galleryDetail/' + gallery.id"
+      class="w-full h-full flex items-center justify-center"
+      to="/gallery/galleryDetail"
     >
-      <div class="h-full flex items-center justify-center">
+      <div class="">
         <ProgressSpinner
           v-if="loading"
           style="width: 30px; height: 30px"
@@ -14,32 +14,22 @@
           animationDuration=".5s"
           aria-label="Custom ProgressSpinner"
         />
-        <img v-if="!loading" :src="image" class="h-full object-cover" alt="" />
+        <img v-if="!loading" :src="image" class="w-full object-fill" alt="" />
       </div>
     </NuxtLink>
-
-    <div class="w-full h-2/5 flex-col flex items-center justify-center">
-      <NuxtLink :to="'/gallery/galleryDetail/' + gallery.id">
-        <h2
-          class="border-b-4 text-md hover:text-blue-600 hover:border-mainYellow cursor-pointer transition ease-linear duration-200 border-mainRed text-darkBlue text-right rounded-sm"
-        >
-          {{ gallery.title }}
-        </h2>
-      </NuxtLink>
-    </div>
   </div>
 </template>
 
 <script setup>
-const props = defineProps(["gallery"]);
+const props = defineProps(["galleryImage"]);
 const loading = ref();
 const image = ref("");
 
 const getGalleryImages = async () => {
   loading.value = true;
-  console.log(props.gallery);
+  console.log(props.galleryImage);
   const { data } = await $fetch(
-    `https://auth.atlasacademy.ir/image-gallery/image/${props.gallery.GalleryImages[0].id}`,
+    `https://auth.atlasacademy.ir/image-gallery/image/${props.galleryImage.id}`,
     {
       headers: {},
       withCredentials: true,

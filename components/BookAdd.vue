@@ -1,15 +1,13 @@
 <template>
   <div>
-    <div
-      class="w-full h-full flex items-center p-7 lg:p-16 flex-col space-y-10"
-    >
+    <div class="w-full h-full flex items-end p-7 lg:p-16 flex-col space-y-10">
       <h2
         class="lg:text-2xl text-2xl text-mainBlue border-b-8 rounded-xl border-mainYellow"
       >
         اضافه کردن کتاب
       </h2>
       <div
-        class="grid grid-cols-1 lg:grid-cols-2 place-items-center justify-items-center gap-9"
+        class="grid grid-cols-1 lg:grid-cols-2 place-items-center justify-items-end gap-9"
       >
         <div class="flex items-end flex-col space-y-3 order-1 lg:-order-none">
           <label class="text-md text-mainBlue" for="title">عنوان کتاب</label>
@@ -61,7 +59,7 @@
             class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
           >
             <span> انتخاب شد </span>
-            <PhCheckCircle :size="25" weight="fill" class="text-black" />
+            <PhCheckCircle :size="25" weight="fill" />
           </label>
         </div>
 
@@ -91,11 +89,11 @@
             class="px-3 py-1 cursor-pointer border-2 items-center border-mainGreen active:bg-mainGreen active:text-mainWhite bg-mainGreen hover:bg-mainWhite hover:text-mainGreen text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-full"
           >
             <span> انتخاب شد </span>
-            <PhCheckCircle :size="25" weight="fill" class="text-black" />
+            <PhCheckCircle :size="25" weight="fill" />
           </label>
         </div>
 
-        <div class="flex items-end col-span-2 flex-col space-y-4">
+        <div class="flex items-end lg:col-span-2 flex-col space-y-4">
           <label class="text-md text-mainBlue" for="description"
             >توضیحات اضافه
           </label>
@@ -148,7 +146,7 @@ import { ref } from "vue";
 
 import { useManagementStore } from "../stores/management";
 import { storeToRefs } from "pinia";
-import { PhBook, PhPictureInPicture } from "@phosphor-icons/vue";
+import { PhBook, PhPictureInPicture, PhCheckCircle } from "@phosphor-icons/vue";
 
 // register mainStore
 const mainStore = useManagementStore();
@@ -163,9 +161,9 @@ const uploadErrorMessage = ref("");
 const { stateChange } = storeToRefs(managementStore);
 const visible = ref(false);
 
-const eventFile = ref(null);
+const eventFile = ref("");
 const videos = ref();
-const author = ref();
+const author = ref("");
 const title = ref("");
 const description = ref("");
 
@@ -182,10 +180,14 @@ const minutes = ref(null);
 const seconds = ref(null);
 
 const uploadVideo = async function (event) {
+  uploadError.value = false;
+  uploadErrorMessage.value = "";
+  imageUploadError.value = false;
+  uploadImageErrorMessage.value = "";
   loading.value = true;
   const formData = new FormData();
 
-  const uploadTimeSeconds = eventFile.value.size / 1000000;
+  const uploadTimeSeconds = eventFile.value.size / 100000;
   // Convert upload time to minutes and seconds
   minutes.value = Math.floor(uploadTimeSeconds / 60);
   seconds.value = Math.round(uploadTimeSeconds % 60);
@@ -213,39 +215,69 @@ const uploadVideo = async function (event) {
     }
   }, 1000); // Run the countdown every 1 second
 
+  if (eventFile.value === "") {
+    uploadError.value = true;
+    uploadErrorMessage.value = "لطفا فایل کتاب را انتخاب کنید";
+  }
+  if (title.value === "") {
+    uploadError.value = true;
+    uploadErrorMessage.value = "لطفا عنوان کتاب را وارد کنید";
+  }
+  if (description.value === "") {
+    uploadError.value = true;
+    uploadErrorMessage.value = "لطفا توضیحات کتاب را وارد کنید";
+  }
+  if (selectedCategory.value === "") {
+    uploadError.value = true;
+    uploadErrorMessage.value = "لطفا دسته بندی کتاب را انتخاب کنید";
+  }
+
   formData.append("file", eventFile.value);
   formData.append("category", selectedCategory.value.name);
   formData.append("title", title.value);
   formData.append("author", author.value);
   formData.append("description", description.value);
-  await $fetch("https://auth.atlasacademy.ir/books/management/addbook", {
-    method: "POST",
-    credentials: "include",
-    withCredentials: true,
-    body: formData,
-  })
-    .then((response) => {
-      console.log(response);
-      bookId.value = response.book.id;
-      loading.value = false;
-      uploadImage();
-      message.value = true;
-      setTimeout(() => {
-        message.value = false;
-      }, 3000);
-      mainStore.changeBooksState();
+  if (
+    eventFile.value !== "" &&
+    title.value !== "" &&
+    description.value !== "" &&
+    selectedCategory.value !== ""
+  ) {
+    await $fetch("https://auth.atlasacademy.ir/books/management/addbook", {
+      method: "POST",
+      credentials: "include",
+      withCredentials: true,
+      body: formData,
     })
-    .catch((error) => {
-      console.log(error.data);
-      if (error.data) {
-        uploadError.value = true;
-        uploadErrorMessage.value = "مشکلی رخ داد دوباره امتحان کنید";
+      .then((response) => {
+        console.log(response);
+        bookId.value = response.book.id;
+        loading.value = false;
+        uploadImage();
+        message.value = true;
+        setTimeout(() => {
+          message.value = false;
+        }, 3000);
+        mainStore.changeBooksState();
+      })
+      .catch((error) => {
+        console.log(error.data);
+        if (error.data.statusCode === 403) {
+          uploadError.value = true;
+          uploadErrorMessage.value = "وارد حساب ادمین شوید";
+        }
+        if (error.data.statusCode === 422) {
+          uploadError.value = true;
+          uploadErrorMessage.value = "فایل درست کتاب را انتخاب کنید";
+        }
+        loading.value = false;
         setTimeout(() => {
           uploadError.value = false;
         }, 3000);
-      }
-    });
-  loading.value = false;
+      });
+  } else {
+    loading.value = false;
+  }
 };
 
 const eventImage = ref();
@@ -279,7 +311,7 @@ const uploadImage = async function (event) {
     })
     .catch((error) => {
       imageUploadError.value = true;
-      uploadImageErrorMessage.value = error.data.message;
+      uploadImageErrorMessage.value = "فایل عکس کتاب را انتخاب کنید";
       setTimeout(() => {
         uploadImageErrorMessage.value = false;
       }, 3000);
