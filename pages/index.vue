@@ -172,76 +172,13 @@
           class="h-full w-auto gap-10 grid grid-cols-1 lg:grid-cols-3 place-items-center content-center"
         >
           <div
+            v-for="honor in announcements"
+            :key="honor.id"
             class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
           >
             <div class="flex flex-col items-end justify-center">
-              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
-            </div>
-            <img
-              src="../assets/images/Grad.webp"
-              class="w-20 object-contain"
-              alt=""
-            />
-          </div>
-          <div
-            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-          >
-            <div class="flex flex-col items-end justify-center">
-              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
-            </div>
-            <img
-              src="../assets/images/Grad.webp"
-              class="w-20 object-contain"
-              alt=""
-            />
-          </div>
-          <div
-            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-          >
-            <div class="flex flex-col items-end justify-center">
-              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
-            </div>
-            <img
-              src="../assets/images/Grad.webp"
-              class="w-20 object-contain"
-              alt=""
-            />
-          </div>
-          <div
-            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-          >
-            <div class="flex flex-col items-end justify-center">
-              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
-            </div>
-            <img
-              src="../assets/images/Grad.webp"
-              class="w-20 object-contain"
-              alt=""
-            />
-          </div>
-          <div
-            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-          >
-            <div class="flex flex-col items-end justify-center">
-              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
-            </div>
-            <img
-              src="../assets/images/Grad.webp"
-              class="w-20 object-contain"
-              alt=""
-            />
-          </div>
-          <div
-            class="w-72 transition ease-in-out duration-300 cursor-pointer hover:bg-mainYellow bg-white drop-shadow-xl border-2 border-darkBlue h-28 rounded-md flex items-center justify-around"
-          >
-            <div class="flex flex-col items-end justify-center">
-              <h2 class="text-lg text-darkBlue">رتبه دوم ریاضی</h2>
-              <h2 class="text-sm text-gray-700">ایمان پرک</h2>
+              <h2 class="text-lg text-darkBlue">{{ honor.title }}</h2>
+              <h2 class="text-sm text-gray-700">{{ honor.winner }}</h2>
             </div>
             <img
               src="../assets/images/Grad.webp"
@@ -569,9 +506,9 @@
       alt=""
     />
     <div
-      class="w-full mb-20 h-auto lg:h-screen flex lg:flex-row flex-col-reverse items-center justify-around lg:px-52 space-x-10 lg:py-14"
+      class="w-full mb-20 h-auto lg:h-screen flex lg:flex-row flex-col-reverse items-center justify-around px-14 lg:px-52 space-x-10 lg:py-14"
     >
-      <div class="w-1/2 flex flex-col items-end space-y-4 h-full">
+      <div class="lg:w-1/2 w-full flex flex-col items-end space-y-4 h-full">
         <h2
           class="lg:text-lg p-2 text-2xl text-mainWhite border-r-8 bg-mainBlue bg-opacity-40 border-mainBlue pb-1 rounded-md text-center"
         >
@@ -599,7 +536,9 @@
           </button>
         </NuxtLink>
       </div>
-      <div class="w-1/2 flex items-center justify-center h-dialog py-10">
+      <div
+        class="lg:w-1/2 w-full flex items-center justify-center h-dialog py-10"
+      >
         <img
           src="../assets/images/mainPageContact.webp"
           class="h-full object-contain"
@@ -671,6 +610,26 @@ const getArticles = async () => {
     });
 };
 
+const announcements = ref();
+
+const getAnnouncements = async () => {
+  loading.value = true;
+  const { data } = await $fetch("https://auth.atlasacademy.ir/announcements", {
+    headers: {},
+    withCredentials: true,
+    credentials: "include",
+  })
+    .then(function (response) {
+      console.log(response.announcements);
+      announcements.value = response.announcements;
+      loading.value = false;
+    })
+    .catch(function (error) {
+      console.error(error);
+      loading.value = false;
+    });
+};
+
 function formatNumber(value, decimals) {
   let s = (+value).toLocaleString("en-US").split(".");
   return decimals
@@ -682,6 +641,7 @@ onMounted(() => {
     display: "none",
     delay: 0.9,
   });
+  getAnnouncements();
   const items = document.querySelectorAll(".counts");
   $gsap.from(items, {
     textContent: "0",
