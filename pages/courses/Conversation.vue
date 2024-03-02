@@ -1,6 +1,6 @@
 <template>
   <head>
-    <title dir="rtl">دوره های کودکان منظومه آموزشی و فرهنگی اطلس</title>
+    <title dir="rtl">دوره های مکالمه سریع منظومه آموزشی و فرهنگی اطلس</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" />
   </head>
@@ -13,7 +13,7 @@
         <h2
           class="lg:text-5xl text-3xl flex items-center justify-center space-x-2 lg:my-0 my-5 font-bold border-b-8 rounded-lg pb-2 border-darkBlue"
         >
-          <span>کودکان</span>
+          <span>مکالمه سریع</span>
           <span>دوره های</span>
         </h2>
         <PhArticle size="55" />
@@ -46,9 +46,10 @@
         >
           <NuxtLink :to="'articledetail/' + latestarticle.id">
             <h2
+              dir="rtl"
               class="lg:text-3xl duration-200 transition ease-in-out hover:text-blue-600 text-2xl lg:my-0 font-bold text-darkBlue leading-snug text-right"
             >
-              دوره آموزش زبان انگلیسی کودکان اطلس
+              دوره آموزش زبان انگلیسی مکالمه سریع اطلس
             </h2>
           </NuxtLink>
 
@@ -57,22 +58,34 @@
             class="lg:text-sm leading-loose text-md text-right flex flex-col space-y-10"
           >
             <span class="leading-loose text-gray-600">
-              دوران نوجوانی را می توان دوران الگوپذیری و یا به عبارتی کودکان در
-              دنیایی آمیخته از تنوع ، جاذبه و سرشار از شادی و حرکت بسر می برند
-              از این رو آموزش زبان انگلیسی کودکان از ظرافت ها و حساسیت های خاصی
-              برخوردار می باشد.سیستم آموزشی آموزشگاه اطلس با توجه به عوامل فوق
-              در محیطی شاد و زیبا و پر انرژی با تکیه بر اصول تربیتی و متناسب با
-              روانشناسی رشد برای کودکان برنامه های درسی زیر را تدارک نموده است. </span
+              زبان انگلیسی همواره با نام "زبان فرصت ها" شناخته می شود که هم
+              اکنون ۸۵۰ میلیون نفر در سراسر جهان به این زبان صحبت می کنند. زبان
+              شناسان و جامعه شناسان بر این باورند که در طی چند سال آینده این
+              آمار به بیش از ۲ میلیارد نفر خواهد رسید. با توجه به پیشرفت
+              روزافزون تکنولوژی و تغییر رویه ی استفاده ابزار کار از سنتی به
+              مدرن، یادگیری زبان انگلیسی امری مهم به شمار می رود. شخصی که وظیفه
+              ی مادری یعنی تعلیم و ترتبیت فرزندان را بر عهده دارد و یا در آینده
+              قرار است این وظیفه را عهده دار شود، با یادگیری زبان انگلیسی فاصله
+              ی خود را با پیشرفت تکنولوژی کمتر کرده و این باعث مدیریت بهتر و
+              آسان تر فرزندان می شود. فراگیری یک زبان نه تنها باعث پیشرفت
+              خانواده بلکه باعث آشنایی با دیگر فرهنگ ها و حتی عامل برقراری
+              ارتباط با مردم نقاط مختلف جهان است که این مسئله خود موجب افزایش
+              اعتماد به نفس شخص شده و علاوه بر آن با تقویت حافظه مانع از بروز
+              بیماری آلزایمر می شود. یادگیری زبان انگلیسی در کلاس های عمومی
+              علاوه بر جنبه ی آموزشی، باعث بالا رفتن روحیه و روابط اجتماعی نیز
+              می شود. </span
             ><span class="leading-loose text-gray-600">
-              این دوره برای کودکان8 (کلاس اول تمام کرده) تا 12 سال در قالب 9 ترم
-              آموزشی هر ترم 16 جلسه 90 دقیقه ای به صورت دو روز در هفته و زبان
-              آموزدر هر هفته 3.5 ساعت آموزشی فراگیری می کند .که در مجموع یک ترم
-              28 ساعت آموزشی حدود 60 روز (دو ماه ) می باشد</span
+              همانطور که می دانید اکثر فیلم های پر طرفدار جهان در هالیوود و به
+              زبان انگلیسی ساخته می شوند و شما با آموختن این زبان دیگر نیازی به
+              زیرنویس و یا دوبله فارسی نخواهید داشت. همینطور گوش دادن به آهنگ
+              های متنوع خارجی و بهره مندی از اخبار سراسر جهان را می توان از
+              فواید این امر نام برد. حالا انتخاب با شماست که مهمترین گام را در
+              ارتقاء کیفیت زندگیتان برداریدو از همین الان شروع کنید.</span
             >
           </h3>
           <h3 class="text-xs text-black">
             <span class="font-bold">نوع دوره </span><span>:</span>
-            <span>عمومی کودکان</span>
+            <span>مکالمه سریع</span>
           </h3>
           <NuxtLink to="/preSignUp">
             <button
@@ -111,7 +124,7 @@
               dir="rtl"
               class="lg:text-3xl duration-200 transition ease-in-out hover:text-blue-600 text-2xl lg:my-0 font-bold text-darkBlue leading-snug text-right"
             >
-              درباره دوره های آموزشی کودکان اطلس
+              درباره دوره های مکالمه سریع اطلس
             </h2>
           </NuxtLink>
 
@@ -120,22 +133,15 @@
             class="lg:text-sm leading-loose text-md text-right flex flex-col space-y-2"
           >
             <span class="leading-loose text-gray-600"
-              >برای این دوره از مجموعه کتاب های بیگ انگلیش starter – 1 در نظر
-              گرفته شده که توسط موسسه پیرسون منتشر شده است. یکی از مزایای این
-              کتب آموزش با استفاده از تصاویر است که بسیار مورد استقبال قرار
-              گرفته و زبان آموزان را در مسیر یادگیری راحت تر زبان همراهی می کند.
-              این مجموعه شامل کتاب دانش آموز، کتاب کار، کتاب معلم، فایل های صوتی
-              دانش آموزش و تمرین، فایل های تصویری و نرم افزار است. در این کتاب
-              از ویژگی CLI و یا Language Integrated Learning استفاده شده
-              است.</span
-            >
-            <span class="leading-loose text-gray-600">اهداف:</span>
-            <span class="leading-loose text-gray-600"
-              >• آشنایی کودکان با زبان انگلیسی در محیطی جذاب و هدفمند</span
-            >
-            <span class="leading-loose text-gray-600"
-              >• تقویت توانایی برقراری ارتباط در آنان توسط اساتید مجرب می
-              باشد.</span
+              >این پک آموزشی نتیجه سالها تجربه و ماه ها تلاش تیم متخصص برای تهیه
+              و گرد آوری مطالب و فیلم ها و فایل های صوتی می باشد. بر اساس نیاز
+              های شما عزیزان پکی آماده شده که از همان جلسه اول قادر به صحبت
+              انگلیسی می کند پس از اتمام دوره نیاز به مترجم نخواهید داشت و سفر
+              خارجی آسوده ای تجربه خواهید کرد . </span
+            ><span class="leading-loose text-gray-600">
+              زمان تشکیل کلاس ها حدالامکان با نظر شما تعیین می شود. هزینه این
+              کلاس ها فقط 540 هزار تومان می باشد.این کلاس ها ویژه افراد بالای 20
+              سال می باشد که فرصت اندکی برای آموزش مکالمات ضروری دارند.</span
             >
           </h3>
           <NuxtLink to="/preSignUp">
@@ -148,11 +154,21 @@
           </NuxtLink>
         </div>
         <div
+          v-if="!loading"
           class="lg:w-1/2 w-full h-96 lg:h-96 flex items-center justify-center bg-white rounded-sm border-2 border-mainRed"
         >
+          <ProgressSpinner
+            v-if="imageLoading"
+            style="width: 50px; height: 50px"
+            strokeWidth="8"
+            fill="var(--surface-ground)"
+            animationDuration=".5s"
+            aria-label="Custom ProgressSpinner"
+          />
           <img
+            v-show="!imageLoading"
             class="w-full h-full object-contain"
-            src="../../assets/images/bigFun.png"
+            :src="latestArticleImage"
             alt=""
           />
         </div>
@@ -179,9 +195,10 @@
           class="h-auto w-full text-darkBlue bg-opacity-80 p-5 rounded-md flex lg:flex-row flex-col-reverse items-center justify-end space-x-0 lg:space-y-0 lg:space-x-4"
         >
           <h2
+            dir="rtl"
             class="lg:text-2xl text-lg flex items-center justify-center space-x-2 lg:my-0 my-5 border-b-8 rounded-lg border-mainYellow"
           >
-            <span> شهریه کلاس زبان اطلس کودکان </span>
+            <span> شهریه کلاس زبان اطلس مکالمه سریع </span>
           </h2>
           <PhArticle size="39" />
         </div>
@@ -189,12 +206,8 @@
           <span>
             در جدول زیر می‌توانید، شهریه دوره‌ها را به تفکیک هر سطح مشاهده کنید:
           </span>
-          <img
-            class="w-full h-full object-contain"
-            src="../../assets/images/kidsTax.jpg"
-            alt=""
-          />
         </h2>
+        <div class="h-44 w-96 bg-mainBlue"></div>
         <NuxtLink to="/preSignUp">
           <button
             class="px-3 py-1 border-2 items-center border-mainBlue active:bg-mainBlue active:text-mainWhite bg-mainBlue hover:bg-mainWhite hover:text-mainBlue text-mainWhite transition ease-linear duration-200 flex space-x-2 rounded-sm"
@@ -247,7 +260,7 @@ const tabs = ref([
     content:
       "شماره تلفن : 33661029 - 33661021 آدرس : خیابان سعدی - خیابان باباطاهر - پلاک 88",
   },
-  { title: "واحد دبستان دخترانه", content: "مراجعه به صفحه سوالانت پر تکرار" },
+  { title: "واحد دبستان دخترانه", content: "Content 2" },
 ]);
 const { $gsap } = useNuxtApp();
 const TM = $gsap.timeline();
