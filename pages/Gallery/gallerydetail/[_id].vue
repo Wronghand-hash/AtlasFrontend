@@ -34,6 +34,40 @@
         />
       </div>
     </div>
+    <div class="flex w-full m-4 justify-end px-14">
+      <h2 class="font-bold justfiy-self-end text-3xl">برچسب ها</h2>
+    </div>
+    <div
+      v-show="!loading"
+      class="flex flex-wrap text-xl justify-end w-full space-x-5 px-14"
+    >
+      <NuxtLink to="/gallery/pictureGallery">
+        <span
+          v-show="!loading"
+          class="flex cursor-pointer justify-center py-3 px-6 border-solid border-2 border-mainOrange"
+        >
+          {{ gallery.tagone }}
+        </span>
+      </NuxtLink>
+      <span
+        v-show="!loading"
+        class="flex cursor-pointer justify-center py-3 px-6 border-solid border-2 border-mainOrange"
+      >
+        {{ gallery.tagtwo }}
+      </span>
+      <span
+        v-show="!loading"
+        class="flex cursor-pointer justify-center py-3 px-6 border-solid border-2 border-mainOrange"
+      >
+        {{ gallery.tagthree }}
+      </span>
+      <span
+        v-show="!loading"
+        class="flex cursor-pointer justify-center py-3 px-6 border-solid border-2 border-mainOrange"
+      >
+        {{ gallery.tagfour }}
+      </span>
+    </div>
     <LazyFooter />
   </div>
 </template>
@@ -47,7 +81,7 @@ const route = useRoute();
 
 const loading = ref(true);
 
-const gallery = ref();
+const gallery = ref({});
 
 const getImageGalleries = async () => {
   loading.value = true;

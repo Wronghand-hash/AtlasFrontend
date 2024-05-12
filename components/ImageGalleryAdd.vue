@@ -216,6 +216,48 @@
           </label>
         </div>
       </div>
+      <div class="flex flex-wrap space-y-2 space-x-2 justify-around">
+        <div
+          class="flex items-end lg:col-span-2 place-self-end flex-col space-y-3"
+        >
+          <label class="text-md text-mainBlue" for="tag1">برچسب ها</label>
+          <InputText
+            id="tag1"
+            v-model="tag1"
+            aria-describedby="username-help"
+          />
+        </div>
+        <div
+          class="flex items-end lg:col-span-2 place-self-end flex-col space-y-3"
+        >
+          <label class="text-md text-mainBlue" for="tag2">برچسب ها</label>
+          <InputText
+            id="tag2"
+            v-model="tag2"
+            aria-describedby="username-help"
+          />
+        </div>
+        <div
+          class="flex items-end lg:col-span-2 place-self-end flex-col space-y-3"
+        >
+          <label class="text-md text-mainBlue" for="tag3">برچسب ها</label>
+          <InputText
+            id="tag3"
+            v-model="tag3"
+            aria-describedby="username-help"
+          />
+        </div>
+        <div
+          class="flex items-end lg:col-span-2 place-self-end flex-col space-y-3"
+        >
+          <label class="text-md text-mainBlue" for="tag4">برچسب ها</label>
+          <InputText
+            id="tag4"
+            v-model="tag4"
+            aria-describedby="username-help"
+          />
+        </div>
+      </div>
       <div
         class="h-full lg:flex-row flex-col-reverse justify-center w-full flex items-center self-center lg:space-x-5"
       >
@@ -309,6 +351,11 @@ const error2 = ref(false);
 const error3 = ref(false);
 const error4 = ref(false);
 
+const tag1 = ref("");
+const tag2 = ref("");
+const tag3 = ref("");
+const tag4 = ref("");
+
 // gallery information
 
 const articleImage = ref(null);
@@ -344,6 +391,10 @@ const addGallery = async function () {
   const data = new URLSearchParams({
     title: galleryTitle.value,
     category: selectedCategory.value.code,
+    tagone: tag1.value,
+    tagtwo: tag2.value,
+    tagthree: tag3.value,
+    tagfour: tag4.value,
   });
 
   if (eventFile.value === null) {
@@ -364,6 +415,8 @@ const addGallery = async function () {
     eventFile2.value,
     eventFile3.value,
     eventFile4.value,
+    eventFile5.value,
+    eventFile6.value,
   ];
 
   await $fetch("https://auth.atlasacademy.ir/image-gallery/management/addgallery", {

@@ -30,7 +30,7 @@
           class=""
         />
       </div>
-      <h2 class="lg:text-lg text-sm">دوشنبه 19 تیر 1402</h2>
+      <h2 class="lg:text-lg text-sm">{{ date }}</h2>
       <h2 class="text-lg">{{ gallery.category }}</h2>
       <h2 class="text-lg">{{ gallery.authur }}</h2>
 
@@ -44,6 +44,21 @@ const props = defineProps(["gallery"]);
 import { ref, onMounted } from "vue";
 import { PhTrash } from "@phosphor-icons/vue";
 import { useManagementStore } from "../stores/management";
+
+import dayjs from "dayjs";
+import jalaliday from "jalaliday";
+const checked = ref(false);
+const date = ref();
+
+dayjs.extend(jalaliday);
+
+onMounted(() => {
+  console.log(props.gallery.created_at);
+  date.value = dayjs(props.gallery.created_at)
+    .calendar("jalali")
+    .locale("en")
+    .format("DD MMMM YYYY");
+});
 
 const managementStore = useManagementStore();
 const loading = ref(false);
